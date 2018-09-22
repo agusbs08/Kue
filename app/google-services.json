@@ -1,0 +1,63 @@
+{
+  "project_info": {
+    "project_number": "1013683540916",
+    "firebase_url": "https://bikinkue-e59a5.firebaseio.com",
+    "project_id": "bikinkue-e59a5",
+    "storage_bucket": "bikinkue-e59a5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1013683540916:android:33b062b5614835c0",
+        "android_client_info": {
+          "package_name": "com.marketplace.kelompok2.kue"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1013683540916-1artlh7qr9abpi0gcslqg7q8dm972ikq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.marketplace.kelompok2.kue",
+            "certificate_hash": "4d7f1a99baca3cb53029e8b76385cc02a050b5f2"
+          }
+        },
+        {
+          "client_id": "1013683540916-fqg361ihu11pmm25dmoq685hnp8mptil.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.marketplace.kelompok2.kue",
+            "certificate_hash": "f825e5eff2a415d0e2fc56a13468055f3b7bcf42"
+          }
+        },
+        {
+          "client_id": "1013683540916-ip9gt4utimvf3g20al1fffpici62jq6s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBh_iwcv2uxae-0xu-YQhJkLh_han2dS7o"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1013683540916-ip9gt4utimvf3g20al1fffpici62jq6s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
