@@ -1,6 +1,5 @@
-package com.marketplace.kelompok2.kue.login;
+package com.marketplace.kelompok2.kue.ui.login;
 
-import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -17,6 +16,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.marketplace.kelompok2.kue.BerhasilActivity;
 import com.marketplace.kelompok2.kue.R;
+import com.marketplace.kelompok2.kue.ui.register.RegisterActivity;
 
 public class LoginActivity extends AppCompatActivity implements LoginView{
     public final int RC_SIGN_IN = 234;
@@ -40,6 +40,14 @@ public class LoginActivity extends AppCompatActivity implements LoginView{
                 startActivityForResult(mGoogleSignInClient.getSignInIntent(), RC_SIGN_IN);
             }
         });
+
+//        findViewById(R.id.register).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(getApplicationContext(), RegisterActivity.class);
+//                startActivity(intent);
+//            }
+//        });
     }
 
     @Override
