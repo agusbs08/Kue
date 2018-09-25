@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">Kue</string>
+    <string name="Username">Username</string>
+    <string name="password">Password</string>
+    <string name="Re_password">Re - Password</string>
+    <string name="daftar">Daftar</string>
+    <string name="email">Email</string>
+    <string name="todo">TODO</string>
+    <string name="nama_lengkap">Nama Lengkap</string>
+    <string name="no_handphone">No. Handphone</string>
+    
+    <string name="home_menu_name">Home</string>
+    <string name="keranjang_menu_name">Keranjang</string>
+    <string name="wishlist_menu_name">Wishlist</string>
+    <string name="transaksi_menu_name">Transaksi</string>
+    <string name="profile_menu_name">Profile</string>
+
 </resources>

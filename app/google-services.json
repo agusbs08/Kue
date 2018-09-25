@@ -23,7 +23,23 @@
           }
         },
         {
-          "client_id": "1013683540916-fqg361ihu11pmm25dmoq685hnp8mptil.apps.googleusercontent.com",
+          "client_id": "1013683540916-du8j9rv2g8jhh28hsda3db925tol84bb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.marketplace.kelompok2.kue",
+            "certificate_hash": "d4fc3ec47911d3b133269d3c6b6269b86100dc37"
+          }
+        },
+        {
+          "client_id": "1013683540916-bi9j3613f8qu397vg5f7sut3hu7i9ecl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.marketplace.kelompok2.kue",
+            "certificate_hash": "2d1e2019af72794d1163911e11028bc206312c71"
+          }
+        },
+        {
+          "client_id": "1013683540916-beru4mf5e0jkkk4fsmmkbdiqd24apih4.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.marketplace.kelompok2.kue",

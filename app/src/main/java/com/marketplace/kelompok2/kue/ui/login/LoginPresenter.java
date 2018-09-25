@@ -1,4 +1,4 @@
-package com.marketplace.kelompok2.kue.login;
+package com.marketplace.kelompok2.kue.ui.login;
 
 
 import android.support.annotation.NonNull;
