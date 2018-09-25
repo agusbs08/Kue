@@ -1,24 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
         android:id="@+id/home_menu"
         android:title="@string/home_menu_name"
+        android:enabled="true"
+        app:showAsAction="ifRoom"
         />
     <item
         android:id="@+id/keranjang_menu"
         android:title="@string/keranjang_menu_name"
+        android:enabled="true"
+        app:showAsAction="ifRoom"
         />
     <item
         android:id="@+id/wishlist_menu"
         android:title="@string/wishlist_menu_name"
+        android:enabled="true"
+        app:showAsAction="ifRoom"
         />
     <item
         android:id="@+id/traksaksi_menu"
         android:title="@string/transaksi_menu_name"
+        android:enabled="true"
+        app:showAsAction="ifRoom"
         />
     <item
         android:id="@+id/profile_menu"
         android:title="@string/profile_menu_name"
+        android:enabled="true"
+        app:showAsAction="ifRoom"
         />
 </menu>
