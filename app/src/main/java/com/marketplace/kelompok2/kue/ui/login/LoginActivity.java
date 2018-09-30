@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -16,6 +17,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.marketplace.kelompok2.kue.BerhasilActivity;
 import com.marketplace.kelompok2.kue.R;
+import com.marketplace.kelompok2.kue.ui.home.HomeActivity;
 import com.marketplace.kelompok2.kue.ui.register.RegisterActivity;
 
 public class LoginActivity extends AppCompatActivity implements LoginView{
@@ -48,6 +50,15 @@ public class LoginActivity extends AppCompatActivity implements LoginView{
 //                startActivity(intent);
 //            }
 //        });
+        Button tes = (Button)findViewById(R.id.tes);
+        tes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
     }
 
     @Override

@@ -1,6 +1,5 @@
 package com.marketplace.kelompok2.kue.ui.home;
 
-import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
@@ -19,8 +18,7 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-
-        BottomNavigationView btn = (BottomNavigationView)findViewById(R.id.bottom_nav);
+        BottomNavigationView btn = (BottomNavigationView)findViewById(R.id.bottom_navigation_menu);
         btn.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener(){
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
