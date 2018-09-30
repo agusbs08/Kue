@@ -25,14 +25,10 @@ public class PopulerPresenter extends BasePresenterNetwork {
         result.enqueue(new Callback<DataResponse<Barang>>() {
             @Override
             public void onResponse(Call<DataResponse<Barang>> call, Response<DataResponse<Barang>> response) {
-                String errroMessage = response.body().getErrorMessage();
-                if (errroMessage.equals(null)) {
-                    ArrayList<Barang> listData = response.body().getListData();
-                    view.showItems(listData);
-                }
-                else{
-                    view.showErrorMessage();
-                }
+                ArrayList<Barang> listData = response.body().getListData();
+                view.showItems(listData);
+                view.hideLoading();
+
             }
 
             @Override
