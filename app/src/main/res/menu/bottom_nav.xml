@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_home"
+        android:icon="@drawable/ic_home"
+        android:title="@string/home_menu_name" />
+    <item
+        android:id="@+id/nav_keranjang"
+        android:icon="@drawable/ic_shopping_cartx"
+        android:title="@string/keranjang_menu_name" />
+    <item
+        android:id="@+id/nav_wishlist"
+        android:icon="@drawable/ic_heart"
+        android:title="@string/wishlist_menu_name" />
+    <item
+        android:id="@+id/nav_pesanan"
+        android:icon="@drawable/ic_wedding_planning"
+        android:title="@string/transaksi_menu_name" />
+    <item
+        android:id="@+id/nav_profile"
+        android:icon="@drawable/ic_avatar"
+        android:title="@string/profile_menu_name" />
+</menu>

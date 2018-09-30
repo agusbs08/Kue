@@ -12,7 +12,7 @@
     <string name="home_menu_name">Home</string>
     <string name="keranjang_menu_name">Keranjang</string>
     <string name="wishlist_menu_name">Wishlist</string>
-    <string name="transaksi_menu_name">Transaksi</string>
-    <string name="profile_menu_name">Profile</string>
+    <string name="transaksi_menu_name">Pesanan</string>
+    <string name="profile_menu_name">Profil</string>
 
 </resources>
