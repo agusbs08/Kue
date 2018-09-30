@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.marketplace.kelompok2.kue.PaketListActivity">
+
+
+    <TextView
+        android:id="@+id/tv_header"
+        android:layout_width="384dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="26dp"
+        android:background="@drawable/square_header"
+        android:gravity="center"
+        android:text="@string/list_paket_toko"
+        android:textColor="#707070"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toTopOf="@+id/et_search_list"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/et_search_list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="22dp"
+        android:layout_marginStart="22dp"
+        android:layout_marginTop="26dp"
+        android:background="@drawable/rounded_search"
+        android:drawableLeft="@drawable/ic_magnifier"
+        android:drawableStart="@drawable/ic_magnifier"
+        android:drawablePadding="20dp"
+        android:ems="10"
+        android:hint="@string/cari_paket"
+        android:padding="10dp"
+        android:paddingLeft="20dp"
+        android:paddingStart="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_header"
+        tools:ignore="RtlSymmetry" />
+
+    <ListView
+        android:id="@android:id/list"
+        android:layout_width="fill_parent"
+        android:layout_height="566dp"
+        android:layout_marginTop="27dp"
+        android:layout_weight="1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_search_list" />
+
+
+</android.support.constraint.ConstraintLayout>

@@ -8,12 +8,20 @@
     <string name="todo">TODO</string>
     <string name="nama_lengkap">Nama Lengkap</string>
     <string name="no_handphone">No. Handphone</string>
-    
+
     <string name="home_menu_name">Home</string>
     <string name="keranjang_menu_name">Keranjang</string>
     <string name="wishlist_menu_name">Wishlist</string>
     <string name="transaksi_menu_name">Transaksi</string>
     <string name="profile_menu_name">Profile</string>
+    <string name="username">Username</string>
+    <string name="re_password">Re - Password</string>
+    <string name="list_paket_toko">List Paket Toko</string>
+    <string name="cari_paket">Cari Paket ...</string>
+    <string name="nama_paket">Nama Paket</string>
+    <string name="nama_toko">Nama Toko</string>
+    <string name="todo1">TODO</string>
+    <string name="todo_back">TODO</string>
 
     <string name="tab_beranda_home">Beranda</string>
     <string name="tab_promo_home">Promo</string>
