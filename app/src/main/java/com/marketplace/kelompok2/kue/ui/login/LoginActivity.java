@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -23,19 +25,18 @@ import com.marketplace.kelompok2.kue.ui.register.RegisterActivity;
 public class LoginActivity extends AppCompatActivity implements LoginView{
     public final int RC_SIGN_IN = 234;
     private GoogleSignInClient mGoogleSignInClient;
+    GoogleSignInOptions gso;
     private LoginPresenter presenter;
+    private EditText etUsername;
+    private EditText etPassword;
+    private Button btnLogin;
+    private TextView tvRegister;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        Toast.makeText(this, R.string.default_web_client_id, Toast.LENGTH_SHORT).show();
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(getString(R.string.default_web_client_id))
-                .requestEmail()
-                .build();
-        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
-        presenter = new LoginPresenter(this, FirebaseAuth.getInstance(), this);
+        init();
         findViewById(R.id.default_google_sign_in_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -43,13 +44,6 @@ public class LoginActivity extends AppCompatActivity implements LoginView{
             }
         });
 
-//        findViewById(R.id.register).setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(getApplicationContext(), RegisterActivity.class);
-//                startActivity(intent);
-//            }
-//        });
         Button tes = (Button)findViewById(R.id.tes);
         tes.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,6 +54,20 @@ public class LoginActivity extends AppCompatActivity implements LoginView{
             }
         });
     }
+
+    private void init(){
+        etUsername = findViewById(R.id.et_username_login);
+        etPassword = findViewById(R.id.et_password_login);
+        btnLogin = findViewById(R.id.btn_login_login);
+        tvRegister = findViewById(R.id.tv_daftar_login);
+        gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build();
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+        presenter = new LoginPresenter(this, FirebaseAuth.getInstance(), this);
+    }
+
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -80,7 +88,6 @@ public class LoginActivity extends AppCompatActivity implements LoginView{
     @Override
     public void updateUI(FirebaseUser user){
         if(user != null){
-            //Toast.makeText(this, "Berhasil: " + user.getDisplayName(), Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(getApplicationContext(), BerhasilActivity.class);
             startActivity(intent);
             finish();
