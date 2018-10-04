@@ -19,7 +19,6 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-
         BottomNavigationView btn = (BottomNavigationView)findViewById(R.id.bottom_navigation_menu);
         btn.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener(){
             @Override
