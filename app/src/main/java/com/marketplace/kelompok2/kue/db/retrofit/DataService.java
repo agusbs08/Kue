@@ -1,12 +1,15 @@
 package com.marketplace.kelompok2.kue.db.retrofit;
 
 import com.marketplace.kelompok2.kue.model.Barang;
+import com.marketplace.kelompok2.kue.model.Pembeli;
 import com.marketplace.kelompok2.kue.model.response.DataResponse;
 
-import retrofit2.CallAdapter;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.Call;
 import retrofit2.http.Headers;
+import retrofit2.http.POST;
 import retrofit2.http.Query;
 
 public interface DataService {
@@ -18,4 +21,7 @@ public interface DataService {
     @GET("api/barang")
     public Call<DataResponse<Barang>> getBarangByKeyword(@Query("keyword") String inputKeyword);
 
+    @FormUrlEncoded
+    @POST("api/pembeli/login")
+    public Call<DataResponse<Pembeli>> getUser(@Field("email_pem") String email, @Field("password_pem") String password);
 }

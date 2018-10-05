@@ -23,7 +23,7 @@
         <!--android:layout_marginEnd="80dp" />-->
 
         <EditText
-            android:id="@+id/et_nama"
+            android:id="@+id/et_nama_register"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="223dp"
@@ -46,7 +46,7 @@
             android:paddingStart="20dp" />
 
         <EditText
-            android:id="@+id/et_nohp"
+            android:id="@+id/et_nohp_register"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="56dp"
@@ -60,13 +60,13 @@
             android:padding="10dp"
             android:paddingLeft="20dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/et_nama"
+            app:layout_constraintTop_toBottomOf="@+id/et_nama_register"
             tools:ignore="RtlSymmetry"
             android:layout_marginEnd="56dp"
             android:paddingStart="20dp" />
 
         <EditText
-            android:id="@+id/et_email"
+            android:id="@+id/et_email_register"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="56dp"
@@ -80,13 +80,13 @@
             android:padding="10dp"
             android:paddingLeft="20dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/et_nohp"
+            app:layout_constraintTop_toBottomOf="@+id/et_nohp_register"
             tools:ignore="RtlSymmetry"
             android:layout_marginEnd="56dp"
             android:paddingStart="20dp" />
 
         <EditText
-            android:id="@+id/et_username"
+            android:id="@+id/et_username_register"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="56dp"
@@ -100,13 +100,13 @@
             android:padding="10dp"
             android:paddingLeft="20dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/et_email"
+            app:layout_constraintTop_toBottomOf="@+id/et_email_register"
             tools:ignore="RtlSymmetry"
             android:layout_marginEnd="56dp"
             android:paddingStart="20dp" />
 
         <EditText
-            android:id="@+id/et_password"
+            android:id="@+id/et_password_register"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="56dp"
@@ -120,13 +120,13 @@
             android:padding="10dp"
             android:paddingLeft="20dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/et_username"
+            app:layout_constraintTop_toBottomOf="@+id/et_username_register"
             tools:ignore="RtlSymmetry"
             android:layout_marginEnd="56dp"
             android:paddingStart="20dp" />
 
         <EditText
-            android:id="@+id/et_repassword"
+            android:id="@+id/et_repassword_register"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="56dp"
@@ -140,13 +140,13 @@
             android:paddingLeft="20dp"
             android:drawablePadding="20dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/et_password"
+            app:layout_constraintTop_toBottomOf="@+id/et_password_register"
             tools:ignore="RtlSymmetry"
             android:paddingStart="20dp"
             android:layout_marginEnd="56dp" />
 
         <Button
-            android:id="@+id/btn_daftar"
+            android:id="@+id/btn_daftar_register"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="56dp"
@@ -156,7 +156,7 @@
             android:textAllCaps="false"
             android:textColor="#FFFF"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/et_repassword"
+            app:layout_constraintTop_toBottomOf="@+id/et_repassword_register"
             android:layout_marginEnd="56dp" />
 
     </android.support.constraint.ConstraintLayout>

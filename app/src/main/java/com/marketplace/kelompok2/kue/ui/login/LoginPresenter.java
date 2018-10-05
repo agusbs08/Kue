@@ -13,13 +13,21 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.marketplace.kelompok2.kue.model.Pembeli;
+import com.marketplace.kelompok2.kue.model.response.DataResponse;
+import com.marketplace.kelompok2.kue.ui.base.BasePresenterNetwork;
 
-public class LoginPresenter {
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+public class LoginPresenter extends BasePresenterNetwork{
     private LoginView view;
     private FirebaseAuth mAuth;
     private AppCompatActivity activity;
-
+    private Call<DataResponse<Pembeli>> result;
     public LoginPresenter(LoginView view, FirebaseAuth mAuth, AppCompatActivity activity){
+        super();
         this.view = view;
         this.mAuth = mAuth;
         this.activity = activity;
@@ -44,5 +52,26 @@ public class LoginPresenter {
                 });
     }
 
+    public void getPembeli(String email, String password){
+        result = super.service.getUser(email, password);
+        result.enqueue(new Callback<DataResponse<Pembeli>>() {
+            @Override
+            public void onResponse(Call<DataResponse<Pembeli>> call, Response<DataResponse<Pembeli>> response) {
+                if(response.body().getErrorMessage() == null){
+                    Pembeli pembeli = response.body().getListData().get(0);
+                    view.actionLoginSuccess();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<DataResponse<Pembeli>> call, Throwable t) {
+                view.showError();
+            }
+        });
+    }
+
+    public void getPembeli(String email){
+
+    }
 }
 

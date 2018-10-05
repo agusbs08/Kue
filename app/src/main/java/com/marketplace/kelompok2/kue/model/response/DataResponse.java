@@ -7,13 +7,13 @@ import java.util.ArrayList;
 public class DataResponse<MODEL> {
 
     @SerializedName("message")
-    private String message;
+    private String message = null;
 
     @SerializedName("data")
-    private ArrayList<MODEL> listData;
+    private ArrayList<MODEL> listData = null;
 
     @SerializedName("error_message")
-    private String errorMessage;
+    private String errorMessage = null;
 
     public DataResponse(){
 

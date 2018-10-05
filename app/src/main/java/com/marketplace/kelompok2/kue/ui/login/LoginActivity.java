@@ -36,7 +36,28 @@ public class LoginActivity extends AppCompatActivity implements LoginView{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        init();
+        initView();
+        initComponent();
+        setViewAction();
+    }
+
+    private void initView(){
+        etUsername = findViewById(R.id.et_username_login);
+        etPassword = findViewById(R.id.et_password_login);
+        btnLogin = findViewById(R.id.btn_login_login);
+        tvRegister = findViewById(R.id.tv_daftar_login);
+    }
+
+    private void initComponent(){
+        gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build();
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+        presenter = new LoginPresenter(this, FirebaseAuth.getInstance(), this);
+    }
+
+    private void setViewAction(){
         findViewById(R.id.default_google_sign_in_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -49,25 +70,34 @@ public class LoginActivity extends AppCompatActivity implements LoginView{
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+                //startActivity(intent);
+                //finish();
+            }
+        });
+
+        btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(etUsername.getText().toString().equals("")
+                        && etPassword.getText().toString().equals("")){
+                   Toast.makeText(getApplicationContext(), "Isi field yang kosong"
+                           , Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    presenter.getPembeli(etUsername.getText().toString(),
+                            etPassword.getText().toString());
+                }
+            }
+        });
+
+        tvRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), RegisterActivity.class);
                 startActivity(intent);
-                finish();
             }
         });
     }
-
-    private void init(){
-        etUsername = findViewById(R.id.et_username_login);
-        etPassword = findViewById(R.id.et_password_login);
-        btnLogin = findViewById(R.id.btn_login_login);
-        tvRegister = findViewById(R.id.tv_daftar_login);
-        gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(getString(R.string.default_web_client_id))
-                .requestEmail()
-                .build();
-        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
-        presenter = new LoginPresenter(this, FirebaseAuth.getInstance(), this);
-    }
-
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -88,17 +118,17 @@ public class LoginActivity extends AppCompatActivity implements LoginView{
     @Override
     public void updateUI(FirebaseUser user){
         if(user != null){
-            Intent intent = new Intent(getApplicationContext(), BerhasilActivity.class);
-            startActivity(intent);
-            finish();
-        }
-        else{
-            Toast.makeText(this, "Gagal", Toast.LENGTH_SHORT).show();
+            presenter.getPembeli(user.getEmail());
         }
     }
     @Override
     public void showError(){
         Toast.makeText(this, "Gagal", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void actionLoginSuccess() {
+
     }
 
 }
