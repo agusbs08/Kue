@@ -8,7 +8,7 @@
     <string name="todo">TODO</string>
     <string name="nama_lengkap">Nama Lengkap</string>
     <string name="no_handphone">No. Handphone</string>
-    
+
     <string name="home_menu_name">Home</string>
     <string name="keranjang_menu_name">Keranjang</string>
     <string name="wishlist_menu_name">Wishlist</string>
@@ -19,5 +19,11 @@
     <string name="tab_promo_home">Promo</string>
     <string name="tab_popular_home">Popular</string>
     <string name="action_search">Search</string>
+    <string name="nama_item">Nama Item</string>
+    <string name="harga">Harga</string>
+    <string name="cod">COD</string>
+    <string name="no_pesanan">0</string>
+    <string name="dikirim_pesanan">Dikirim</string>
+    <string name="total_pesanan">0,-</string>
 
 </resources>

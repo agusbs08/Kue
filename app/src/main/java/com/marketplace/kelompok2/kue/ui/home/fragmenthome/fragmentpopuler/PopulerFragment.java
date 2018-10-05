@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -67,6 +68,7 @@ public class PopulerFragment extends Fragment implements HomeView {
         barangs = new ArrayList<>();
         adapter = new HomeRecyclerViewAdapter(getContext(), barangs);
         presenter = new PopulerPresenter(this);
+        listEvent.setLayoutManager(new GridLayoutManager(getContext(), 2));
         listEvent.setAdapter(adapter);
     }
 }

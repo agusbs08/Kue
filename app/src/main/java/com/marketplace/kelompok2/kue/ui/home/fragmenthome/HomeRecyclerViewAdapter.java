@@ -11,10 +11,11 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.marketplace.kelompok2.kue.BerhasilActivity;
+import com.marketplace.kelompok2.kue.BuildConfig;
 import com.marketplace.kelompok2.kue.R;
 import com.marketplace.kelompok2.kue.model.Barang;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -42,7 +43,7 @@ public class HomeRecyclerViewAdapter extends RecyclerView.Adapter<HomeRecyclerVi
         }
 
         public void bindItem(Barang barang){
-            Glide.with(imageItem).load(barang.getGambar());
+            Picasso.get().load(BuildConfig.BASE_STORAGE + barang.getGambar()).into(imageItem);
             ratingItem.setRating(barang.getRating());
             namaItem.setText(barang.getNama());
         }

@@ -1,7 +1,6 @@
 package com.marketplace.kelompok2.kue.ui.home.fragmenthome;
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -11,6 +10,7 @@ import com.marketplace.kelompok2.kue.R;
 import com.marketplace.kelompok2.kue.ui.home.fragmenthome.fragmentberanda.BerandaFragment;
 import com.marketplace.kelompok2.kue.ui.home.fragmenthome.fragmentpopuler.PopulerFragment;
 import com.marketplace.kelompok2.kue.ui.home.fragmenthome.fragmentpromo.PromoFragment;
+import com.marketplace.kelompok2.kue.ui.home.fragmentsearch.SearchFragment;
 
 public class ViewPagerAdapterFragmentHome extends FragmentPagerAdapter {
 

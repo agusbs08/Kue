@@ -26,8 +26,6 @@ public class LoginPresenter {
     }
 
     public void firebaseAuthWithGoogle(GoogleSignInAccount acct){
-        Log.d("auth", "firebaseAuthWithGoogle:" + acct.getId());
-
         AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
         mAuth.signInWithCredential(credential)
                 .addOnCompleteListener(activity, new OnCompleteListener<AuthResult>() {
