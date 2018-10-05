@@ -3,6 +3,8 @@ package com.marketplace.kelompok2.kue.ui.listtoko;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.marketplace.kelompok2.kue.R;
+
 public class ListTokoActivity extends AppCompatActivity {
 
     @Override

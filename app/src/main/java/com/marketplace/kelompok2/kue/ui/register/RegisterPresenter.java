@@ -1,7 +1,5 @@
 package com.marketplace.kelompok2.kue.ui.register;
 
-import android.support.v7.widget.RecyclerView;
-
 import com.marketplace.kelompok2.kue.model.Pembeli;
 import com.marketplace.kelompok2.kue.model.response.DataResponse;
 import com.marketplace.kelompok2.kue.ui.base.BasePresenterNetwork;

@@ -1,4 +1,4 @@
-package com.marketplace.kelompok2.kue.ui.home.fragmentkeranjang;
+package com.marketplace.kelompok2.kue.ui.home.fragmentpesanan;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -10,12 +10,12 @@ import android.view.ViewGroup;
 
 import com.marketplace.kelompok2.kue.R;
 
-public class KeranjangFragment extends Fragment {
+public class PesananFragment extends Fragment {
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_keranjang, container,false);
+        View rootView = inflater.inflate(R.layout.fragment_pesanan, container, false);
 
         return rootView;
     }

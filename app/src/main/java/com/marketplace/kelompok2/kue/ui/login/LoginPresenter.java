@@ -59,7 +59,7 @@ public class LoginPresenter extends BasePresenterNetwork{
             public void onResponse(Call<DataResponse<Pembeli>> call, Response<DataResponse<Pembeli>> response) {
                 if(response.body().getErrorMessage() == null){
                     Pembeli pembeli = response.body().getListData().get(0);
-                    view.actionLoginSuccess();
+                    view.actionLoginSuccess(pembeli.getId());
                 }
             }
 

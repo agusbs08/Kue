@@ -21,7 +21,8 @@
         <activity android:name=".BerhasilActivity" />
         <activity android:name=".ui.register.RegisterActivity" />
         <activity android:name=".ui.home.HomeActivity" />
-        <activity android:name=".ui.resep.ResepActivity"></activity>
+        <activity android:name=".ui.resep.ResepActivity" />
+        <activity android:name=".ui.listtoko.ListTokoActivity"></activity>
     </application>
 
 </manifest>

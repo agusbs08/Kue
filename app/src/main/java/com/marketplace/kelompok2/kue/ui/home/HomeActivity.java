@@ -10,9 +10,9 @@ import android.view.MenuItem;
 import com.marketplace.kelompok2.kue.R;
 import com.marketplace.kelompok2.kue.ui.home.fragmenthome.HomeFragment;
 import com.marketplace.kelompok2.kue.ui.home.fragmentkeranjang.KeranjangFragment;
+import com.marketplace.kelompok2.kue.ui.home.fragmentpesanan.PesananFragment;
 import com.marketplace.kelompok2.kue.ui.home.fragmentprofile.ProfileFragment;
 import com.marketplace.kelompok2.kue.ui.home.fragmentsearch.SearchFragment;
-import com.marketplace.kelompok2.kue.ui.home.fragmenttransaksi.TransaksiFragment;
 import com.marketplace.kelompok2.kue.ui.home.fragmentwishlist.WishlistFragment;
 
 public class HomeActivity extends AppCompatActivity implements HomeSearchView{
@@ -38,7 +38,7 @@ public class HomeActivity extends AppCompatActivity implements HomeSearchView{
                         setFragment(savedInstanceState, new WishlistFragment());
                         break;
                     case R.id.traksaksi_menu :
-                        setFragment(savedInstanceState, new TransaksiFragment());
+                        setFragment(savedInstanceState, new PesananFragment());
                         break;
                     case R.id.profile_menu :
                         setFragment(savedInstanceState, new ProfileFragment());

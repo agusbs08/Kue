@@ -127,8 +127,9 @@ public class LoginActivity extends AppCompatActivity implements LoginView{
     }
 
     @Override
-    public void actionLoginSuccess() {
-
+    public void actionLoginSuccess(Integer idUser) {
+        Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+        intent.putExtra("idUser" , idUser);
     }
 
 }
