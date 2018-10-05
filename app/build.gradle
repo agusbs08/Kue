@@ -9,8 +9,8 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        buildConfigField "String", "BASE_URL", "\"http://10.0.2.2:8000\""
-        buildConfigField "String", "BASE_STORAGE", "\"http://10.0.2.2:8000/storage/\""
+        buildConfigField "String", "BASE_URL", "\"https://bikinkue.herokuapp.com/\""
+        buildConfigField "String", "BASE_STORAGE", "\"https://s3-ap-southeast-1.amazonaws.com/bikinkue\""
     }
 
     signingConfigs {
@@ -64,6 +64,7 @@ dependencies {
     implementation 'com.jakewharton.picasso:picasso2-okhttp3-downloader:1.1.0'
 
     //circleview
+    implementation 'de.hdodenhof:circleimageview:2.2.0'
 }
 
 apply plugin: 'com.google.gms.google-services'
