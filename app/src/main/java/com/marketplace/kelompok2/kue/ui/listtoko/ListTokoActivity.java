@@ -1,13 +1,13 @@
-package com.marketplace.kelompok2.kue;
+package com.marketplace.kelompok2.kue.ui.listtoko;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class BerhasilActivity extends AppCompatActivity {
+public class ListTokoActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.listitem_promo);
+        setContentView(R.layout.activity_list_toko);
     }
 }
