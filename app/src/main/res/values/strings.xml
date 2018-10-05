@@ -33,5 +33,7 @@
     <string name="no_pesanan">0</string>
     <string name="dikirim_pesanan">Dikirim</string>
     <string name="total_pesanan">0,-</string>
+    <string name="alamat">Alamat</string>
+    <string name="total_keranjang">0,-</string>
 
 </resources>

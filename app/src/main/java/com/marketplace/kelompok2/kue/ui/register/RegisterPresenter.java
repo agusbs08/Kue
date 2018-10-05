@@ -20,7 +20,7 @@ public class RegisterPresenter extends BasePresenterNetwork{
     }
 
     public void register(String nama, String password, String email, String noHp){
-       result = super.service.registerPembeli(nama, password, email);
+      // result = super.service.registerPembeli(nama, password, email);
 
        result.enqueue(new Callback<DataResponse<Pembeli>>() {
            @Override
@@ -37,7 +37,7 @@ public class RegisterPresenter extends BasePresenterNetwork{
     }
 
     public Pembeli getPembeli(String email){
-        result = super.service.getPembeliFromEmail(email);
+       // result = super.service.getPembeliFromEmail(email);
         result.enqueue(new Callback<DataResponse<Pembeli>>() {
             @Override
             public void onResponse(Call<DataResponse<Pembeli>> call, Response<DataResponse<Pembeli>> response) {

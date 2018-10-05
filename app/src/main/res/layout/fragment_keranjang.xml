@@ -1,8 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <View
+        android:id="@+id/view_header_keranjang"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/square_header"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Keranjang"
+        android:textColor="@color/abu"
+        app:layout_constraintBottom_toBottomOf="@+id/view_header_keranjang"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/view_header_keranjang"
+        app:layout_constraintTop_toTopOf="@+id/view_header_keranjang"
+        tools:ignore="HardcodedText" />
+
+    <View
+        android:id="@+id/view_bottom_keranjang"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="520dp"
+        android:background="@drawable/blue_dompet"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"/>
+
+    <TextView
+        android:id="@+id/tv_bayar_keranjang"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="18dp"
+        android:text="Bayar Rp"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.426"
+        app:layout_constraintStart_toStartOf="@+id/view_bottom_keranjang"
+        app:layout_constraintTop_toTopOf="@+id/view_bottom_keranjang"
+        app:layout_constraintVertical_bias="0.0"
+        android:layout_marginRight="8dp"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/tv_total_keranjang"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="18dp"
+        android:text="@string/total_keranjang"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tv_bayar_keranjang"
+        app:layout_constraintTop_toTopOf="@+id/view_bottom_keranjang"
+        app:layout_constraintVertical_bias="0.0"
+        android:layout_marginLeft="4dp" />
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view_header_keranjang"></android.support.v7.widget.RecyclerView>
 
 </android.support.constraint.ConstraintLayout>
