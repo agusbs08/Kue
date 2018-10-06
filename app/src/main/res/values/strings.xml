@@ -27,13 +27,18 @@
     <string name="tab_promo_home">Promo</string>
     <string name="tab_popular_home">Popular</string>
     <string name="action_search">Search</string>
-    <string name="nama_item">Nama Item</string>
-    <string name="harga">Harga</string>
+    <string name="deskripsi">Deskripsi</string>
+    <string name="tambahkekeranjang">Tambahkan ke Keranjang</string>
+    <string name="belibahan">Beli Bahan</string>
+    <string name="bahan">Bahan</string>
+    <string name="caramemasak">Cara Memasak</string>
+    <string name="nama_item">Nama Produk</string>
+    <string name="harga">10000</string>
     <string name="cod">COD</string>
-    <string name="no_pesanan">0</string>
+    <string name="no_pesanan">11223</string>
+    <string name="total_pesanan">20000000</string>
     <string name="dikirim_pesanan">Dikirim</string>
-    <string name="total_pesanan">0,-</string>
-    <string name="alamat">Alamat</string>
-    <string name="total_keranjang">0,-</string>
+    <string name="alamat">jl Jalan</string>
+    <string name="total_keranjang">12</string>
 
 </resources>
