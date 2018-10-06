@@ -8,6 +8,7 @@ public class BerhasilActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.listitem_promo);
+        setContentView(R.layout.activity_berhasil);
+
     }
 }
