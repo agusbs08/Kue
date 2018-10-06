@@ -29,6 +29,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_above="@+id/bottom_nav"
+        android:layout_marginBottom="56dp"
         android:layout_marginTop="520dp"
         android:background="@drawable/blue_dompet"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -37,7 +38,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0">
-
     </View>
 
     <ImageView
@@ -131,7 +131,7 @@
         android:id="@+id/view5"
         android:layout_width="match_parent"
         android:layout_height="124dp"
-        android:layout_marginBottom="188dp"
+        android:layout_marginBottom="100dp"
         android:background="@color/abuLight"
         app:layout_constraintBottom_toTopOf="@+id/view"
         app:layout_constraintEnd_toEndOf="parent"

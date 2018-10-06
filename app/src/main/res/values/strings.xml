@@ -25,5 +25,9 @@
     <string name="no_pesanan">0</string>
     <string name="dikirim_pesanan">Dikirim</string>
     <string name="total_pesanan">0,-</string>
+    <string name="nama_paket">nama_paket</string>
+    <string name="nama_toko">nama_toko</string>
+    <string name="todo_back">todo_back</string>
+    <string name="todo1">todo1</string>
 
 </resources>
