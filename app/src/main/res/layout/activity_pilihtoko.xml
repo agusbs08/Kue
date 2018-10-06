@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <View
-        android:id="@+id/view_header_pesanan"
+        android:id="@+id/view_pilihtoko"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@drawable/square_header"
@@ -21,21 +21,23 @@
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="Pesanan"
+        android:layout_marginTop="16dp"
+        android:text="Pilih Toko"
         android:textColor="@color/abu"
-        app:layout_constraintBottom_toBottomOf="@+id/view_header_pesanan"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/view_header_pesanan"
-        app:layout_constraintTop_toTopOf="@+id/view_header_pesanan"
+        app:layout_constraintStart_toStartOf="@+id/view_pilihtoko"
+        app:layout_constraintTop_toTopOf="@+id/view_pilihtoko"
         tools:ignore="HardcodedText" />
 
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="18dp"
+        android:layout_marginTop="22dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view_header_pesanan"></android.support.v7.widget.RecyclerView>
+        app:layout_constraintTop_toBottomOf="@+id/view_pilihtoko">
 
+    </android.support.v7.widget.RecyclerView>
 </android.support.constraint.ConstraintLayout>
