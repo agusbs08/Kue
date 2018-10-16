@@ -8,13 +8,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.marketplace.kelompok2.kue.BerhasilActivity;
 import com.marketplace.kelompok2.kue.BuildConfig;
 import com.marketplace.kelompok2.kue.R;
-import com.marketplace.kelompok2.kue.model.Barang;
+import com.marketplace.kelompok2.kue.model.Resep;
+import com.marketplace.kelompok2.kue.ui.resep.ResepActivity;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -23,54 +23,63 @@ import java.util.ArrayList;
 public class HomeRecyclerViewAdapter extends RecyclerView.Adapter<HomeRecyclerViewAdapter.HomeViewHolder> {
 
     private Context context;
-    private ArrayList<Barang> listBarang;
+    private ArrayList<Resep> listResep;
 
-    public HomeRecyclerViewAdapter(Context context, ArrayList<Barang> listBarang){
+    public HomeRecyclerViewAdapter(Context context, ArrayList<Resep> listResep){
         this.context = context;
-        this.listBarang = listBarang;
+        this.listResep = listResep;
     }
 
-    class HomeViewHolder extends RecyclerView.ViewHolder{
-        private ImageView imageItem;
-        private RatingBar ratingItem;
-        private TextView namaItem ;
+    public class HomeViewHolder extends RecyclerView.ViewHolder{
+        private Context ctx;
+        private ImageView imageResep;
+        private TextView namaResep ;
 
-        public HomeViewHolder(View view){
+        HomeViewHolder(View view, Context context){
             super(view);
-            imageItem = (ImageView)view.findViewById(R.id.img_list_item);
-            ratingItem = (RatingBar)view.findViewById(R.id.rating_list_item);
-            namaItem = (TextView)view.findViewById(R.id.tv_nama_item);
+            this.ctx = context;
+            initView(view);
         }
 
-        public void bindItem(Barang barang){
-            Picasso.get().load(BuildConfig.BASE_STORAGE + barang.getGambar()).into(imageItem);
-            ratingItem.setRating(barang.getRating());
-            namaItem.setText(barang.getNama());
+        private void initView(View view){
+            namaResep = view.findViewById(R.id.tv_namaproduk_list_beranda);
+            imageResep = view.findViewById(R.id.img_produk_list_beranda);
+        }
+
+        void bindItem(final Resep resep){
+            Picasso.get().load(resep.getImageResep()).into(imageResep);
+            namaResep.setText(resep.getNamaResep());
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context, ResepActivity.class);
+                    intent.putExtra("idResep", resep.getId());
+                    intent.putExtra("namaResep", resep.getNamaResep());
+                    intent.putExtra("caraResep", resep.getListCara());
+                    intent.putExtra("bahanResep", resep.getListBahan());
+                    intent.putExtra("imageResep", resep.getImageResep());
+                    ctx.startActivity(intent);
+                }
+            });
         }
     }
 
     @NonNull
     @Override
     public HomeViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new HomeViewHolder(LayoutInflater.from(context).inflate(R.layout.list_item, parent, false));
+        return new HomeViewHolder(LayoutInflater.from(context)
+                .inflate(R.layout.list_beranda, parent, false), parent.getContext());
     }
 
     @Override
-    public void onBindViewHolder(@NonNull HomeViewHolder holder, int position) {
-        holder.bindItem(listBarang.get(position));
-
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context, BerhasilActivity.class);
-                context.startActivity(intent);
-            }
-        });
+    public void onBindViewHolder(@NonNull HomeViewHolder holder, final int position) {
+        holder.bindItem(listResep.get(position));
     }
 
     @Override
     public int getItemCount() {
-       return listBarang.size();
+       return listResep.size();
     }
 
 }

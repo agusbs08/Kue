@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.Date;
 
-public class Transaksi {
+public class Pesanan {
     @SerializedName("id_detail_transaksi")
     private Integer id;
 
@@ -29,7 +29,7 @@ public class Transaksi {
     @SerializedName("total_harga_transaksi")
     private Integer totalHargaTransaksi;
 
-    public Transaksi(){
+    public Pesanan(){
 
     }
 

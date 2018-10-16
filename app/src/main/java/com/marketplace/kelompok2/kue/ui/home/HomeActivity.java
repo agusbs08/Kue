@@ -1,28 +1,34 @@
 package com.marketplace.kelompok2.kue.ui.home;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Toast;
 
+import com.google.android.gms.common.internal.service.Common;
 import com.marketplace.kelompok2.kue.R;
+import com.marketplace.kelompok2.kue.common.UserState;
 import com.marketplace.kelompok2.kue.ui.home.fragmenthome.HomeFragment;
 import com.marketplace.kelompok2.kue.ui.home.fragmentkeranjang.KeranjangFragment;
+import com.marketplace.kelompok2.kue.ui.home.fragmentpesanan.PesananFragment;
 import com.marketplace.kelompok2.kue.ui.home.fragmentprofile.ProfileFragment;
 import com.marketplace.kelompok2.kue.ui.home.fragmentsearch.SearchFragment;
-import com.marketplace.kelompok2.kue.ui.home.fragmenttransaksi.TransaksiFragment;
 import com.marketplace.kelompok2.kue.ui.home.fragmentwishlist.WishlistFragment;
 
 public class HomeActivity extends AppCompatActivity implements HomeSearchView{
 
     private Bundle save;
+
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         save = savedInstanceState;
+        init();
         BottomNavigationView btn = findViewById(R.id.bottom_navigation_menu);
         btn.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener(){
             @Override
@@ -38,7 +44,7 @@ public class HomeActivity extends AppCompatActivity implements HomeSearchView{
                         setFragment(savedInstanceState, new WishlistFragment());
                         break;
                     case R.id.traksaksi_menu :
-                        setFragment(savedInstanceState, new TransaksiFragment());
+                        setFragment(savedInstanceState, new PesananFragment());
                         break;
                     case R.id.profile_menu :
                         setFragment(savedInstanceState, new ProfileFragment());
@@ -48,6 +54,14 @@ public class HomeActivity extends AppCompatActivity implements HomeSearchView{
             }
         });
         btn.setSelectedItemId(R.id.home_menu);
+    }
+
+    private void init(){
+        if(UserState.getInstance().getIdUser() == 0){
+            Intent intent = getIntent();
+            Integer id = intent.getIntExtra("idUser", 0);
+            UserState.getInstance().setIdUser(id);
+        }
     }
 
     private void setFragment(Bundle savedInstanceState, Fragment fragment){

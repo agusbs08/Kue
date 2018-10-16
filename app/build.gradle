@@ -10,8 +10,8 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        buildConfigField "String", "BASE_URL", "\"http://10.0.2.2:8000\""
-        buildConfigField "String", "BASE_STORAGE", "\"http://10.0.2.2:8000/storage/\""
+        buildConfigField "String", "BASE_URL", "\"https://bikinkue.herokuapp.com/\""
+        buildConfigField "String", "BASE_STORAGE", "\"https://s3-ap-southeast-1.amazonaws.com/bikinkue\""
     }
 
 //    signingConfigs {
@@ -25,7 +25,7 @@ android {
     //}
     buildTypes {
         release {
-      //      signingConfig signingConfigs.release
+            //      signingConfig signingConfigs.release
 
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'

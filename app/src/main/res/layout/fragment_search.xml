@@ -1,29 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#FFFFFF">
+        android:background="@color/white">
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/et_search_fragment_search"
+            android:drawableLeft="@drawable/ic_search"
             android:hint="@string/action_search"
-            android:inputType="text"/>
+            android:inputType="text"
+            android:background="@drawable/rounded_edittext"
+            android:layout_margin="20dp"/>
+
     </android.support.design.widget.AppBarLayout>
-    <TextView
+    <ProgressBar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="JOSS"/>
-
+        android:id="@+id/pb_fragment_search"/>
     <android.support.v7.widget.RecyclerView
+        android:layout_margin="20dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/rv_fragment_search"
         />
 
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>

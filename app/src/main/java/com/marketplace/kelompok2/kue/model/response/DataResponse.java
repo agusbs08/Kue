@@ -3,6 +3,7 @@ package com.marketplace.kelompok2.kue.model.response;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class DataResponse<MODEL> {
 
@@ -10,7 +11,7 @@ public class DataResponse<MODEL> {
     private String message;
 
     @SerializedName("data")
-    private ArrayList<MODEL> listData;
+    private ArrayList<MODEL> listData = new ArrayList<>();
 
     @SerializedName("error_message")
     private String errorMessage;
