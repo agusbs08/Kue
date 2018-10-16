@@ -27,6 +27,9 @@ public class Pembeli {
     @SerializedName("image_pem")
     private String gambarPembeli;
 
+    @SerializedName("notlp_pem")
+    private String noTlp;
+
 
     public Pembeli(){
 
@@ -95,5 +98,9 @@ public class Pembeli {
     public void setGambarPembeli(String gambarPembeli) {
         this.gambarPembeli = gambarPembeli;
     }
+
+    public String getNoTlp() { return noTlp; }
+
+    public void setNoTlp(String noTlp) { this.noTlp = noTlp; }
 
 }

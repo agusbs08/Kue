@@ -8,27 +8,36 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.marketplace.kelompok2.kue.R;
+import com.marketplace.kelompok2.kue.model.Resep;
 import com.marketplace.kelompok2.kue.ui.home.HomeSearchView;
 
-public class HomeFragment extends Fragment {
+import java.util.ArrayList;
+
+public class HomeFragment extends Fragment implements HomeView {
 
     private EditText searchView;
-    private ViewPager viewPager;
-    private TabLayout tabLayout;
-    private Context context;
-    private ViewPagerAdapterFragmentHome adapter;
+    private RecyclerView recyclerView;
+    private HomeRecyclerViewAdapter adapter;
+    private ArrayList<Resep> listResep;
+    private ProgressBar progressBar;
+    private HomePresenter presenter;
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        presenter.getListResep();
     }
 
     @Override
@@ -41,10 +50,9 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_home, container, false);
-        init(rootView);
+        initView(rootView);
+        initComponent();
         setSearchView();
-        setViewPager();
-        tabLayout.setupWithViewPager(viewPager);
         return rootView;
     }
 
@@ -53,11 +61,18 @@ public class HomeFragment extends Fragment {
         super.onCreateOptionsMenu(menu, inflater);
     }
 
-    private void init(View rootView){
+    private void initView(View rootView){
         searchView = rootView.findViewById(R.id.et_search_fragment_home);
-        viewPager = rootView.findViewById(R.id.view_pager_fragment_home);
-        tabLayout = rootView.findViewById(R.id.tab_layout_fragment_home);
-        context = getContext();
+        recyclerView = rootView.findViewById(R.id.recyclerview_fragment_home);
+        progressBar = rootView.findViewById(R.id.pb_fragment_home);
+    }
+
+    private void initComponent(){
+        listResep = new ArrayList<>();
+        adapter = new HomeRecyclerViewAdapter(getContext(), listResep);
+        recyclerView.setLayoutManager(new GridLayoutManager(getContext(),2));
+        recyclerView.setAdapter(adapter);
+        presenter = new HomePresenter(this);
     }
 
     private void setSearchView(){
@@ -71,10 +86,24 @@ public class HomeFragment extends Fragment {
         });
     }
 
-    private void setViewPager(){
-        adapter = new ViewPagerAdapterFragmentHome(getChildFragmentManager(),context);
-        viewPager.setAdapter(adapter);
-        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+    @Override
+    public void showListResep(ArrayList<Resep> listResep) {
+        this.listResep.addAll(listResep);
+        adapter.notifyDataSetChanged();
     }
 
+    @Override
+    public void showErrorMessage() {
+        Toast.makeText(getContext(), "Error Get Data", Toast.LENGTH_SHORT);
+    }
+
+    @Override
+    public void showLoading() {
+        progressBar.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hideLoading() {
+        progressBar.setVisibility(View.INVISIBLE);
+    }
 }

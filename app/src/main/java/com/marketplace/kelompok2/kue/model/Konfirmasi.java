@@ -8,7 +8,7 @@ public class Konfirmasi {
     private Integer id;
 
     @SerializedName("detail_transaksi")
-    private Transaksi detailTransaksi;
+    private Pesanan detailPesanan;
 
     @SerializedName("waktu_pembayaran")
     private String waktuPembayaran;
