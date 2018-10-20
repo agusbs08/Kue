@@ -40,5 +40,6 @@
     <string name="dikirim_pesanan">Dikirim</string>
     <string name="alamat">jl Jalan</string>
     <string name="total_keranjang">12</string>
+    <string name="judul_resep">Judul Resep</string>
 
 </resources>
