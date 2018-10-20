@@ -14,13 +14,15 @@
         >
 
         <EditText
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/et_search_fragment_home"
             android:inputType="text"
+            android:paddingLeft="20dp"
+            android:drawablePadding="20dp"
             android:drawableLeft="@drawable/ic_search"
             android:hint="Search"
-            android:background="@drawable/rounded_edittext"
+            android:background="@drawable/rounded_search"
             android:layout_margin="20dp"
             />
     </android.support.design.widget.AppBarLayout>
