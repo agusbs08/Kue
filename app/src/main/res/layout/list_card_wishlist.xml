@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    card_view:cardBackgroundColor="@color/white"
+    card_view:cardCornerRadius="8dp"
+    card_view:cardElevation="10dp"
+    card_view:cardMaxElevation="30dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/img_item_wishlist"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:background="@drawable/card_wishlist"
+            card_view:srcCompat="@drawable/ic_launcher_background"
+            tools:ignore="VectorDrawableCompat"
+            android:contentDescription="TODO" />
+
+       <LinearLayout
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:orientation="vertical">
+
+           <TextView
+               android:id="@+id/tv_item_wishlist"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:paddingLeft="20dp"
+               android:paddingTop="15dp"
+               android:text="@string/nama_item"
+               android:textSize="12dp" />
+
+
+           <LinearLayout
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:orientation="horizontal">
+
+               <TextView
+                   android:id="@+id/tv_harga_wishlist"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:paddingLeft="20dp"
+                   android:paddingTop="15dp"
+                   android:text="Rp 5.000"
+                   android:textSize="12dp"
+                   android:textStyle="bold" />
+
+           </LinearLayout>
+
+       </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center|right"
+            android:orientation="vertical">
+
+            <ImageButton
+                android:id="@+id/btn_addtochart_wishlist"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="right"
+                android:layout_marginRight="10dp"
+                android:background="?android:attr/selectableItemBackground"
+                android:src="@drawable/ic_shopping_cartx"
+                android:tint="@color/black"
+                android:contentDescription="TODO" />
+
+            <ImageButton
+                android:id="@+id/btn_remove_wishlist"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="right"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                android:background="?android:attr/selectableItemBackground"
+                android:src="@drawable/ic_trash"
+                android:tint="@color/black"
+                android:contentDescription="TODO" />
+        </LinearLayout>
+    </LinearLayout>
+</android.support.v7.widget.CardView>
