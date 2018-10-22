@@ -11,6 +11,8 @@ import android.widget.TextView;
 
 import com.marketplace.kelompok2.kue.BuildConfig;
 import com.marketplace.kelompok2.kue.R;
+import com.marketplace.kelompok2.kue.model.Barang;
+import com.marketplace.kelompok2.kue.model.BarangTokoList;
 import com.marketplace.kelompok2.kue.model.Penjual;
 import com.squareup.picasso.Picasso;
 
@@ -19,11 +21,11 @@ import java.util.ArrayList;
 public class PilihTokoRecyclerViewAdapter extends RecyclerView.Adapter<PilihTokoRecyclerViewAdapter.PilihTokoViewHolder>{
 
     private Context context;
-    private ArrayList<Penjual> listPenjual;
+    private ArrayList<BarangTokoList> listBarangPenjual;
 
-    public PilihTokoRecyclerViewAdapter(Context context, ArrayList<Penjual> listPenjual){
+    public PilihTokoRecyclerViewAdapter(Context context, ArrayList<BarangTokoList> listBarangPenjual){
         this.context = context;
-        this.listPenjual = listPenjual;
+        this.listBarangPenjual = listBarangPenjual;
     }
 
     @NonNull
@@ -35,12 +37,12 @@ public class PilihTokoRecyclerViewAdapter extends RecyclerView.Adapter<PilihToko
 
     @Override
     public void onBindViewHolder(@NonNull PilihTokoViewHolder holder, int position) {
-        holder.bindItem(listPenjual.get(position));
+        holder.bindItem(listBarangPenjual.get(position).getPenjual());
     }
 
     @Override
     public int getItemCount() {
-        return listPenjual.size();
+        return listBarangPenjual.size();
     }
 
     class PilihTokoViewHolder extends RecyclerView.ViewHolder{
