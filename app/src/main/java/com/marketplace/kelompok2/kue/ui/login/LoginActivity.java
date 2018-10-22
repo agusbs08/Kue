@@ -43,6 +43,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        initComponent();
         init();
         findViewById(R.id.default_google_sign_in_button).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,6 +56,28 @@ public class LoginActivity extends AppCompatActivity implements LoginView{
     }
 
     private void init(){
+        btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(checkEmail(etUsername.getText().toString())){
+                    presenter.checkUser(etUsername.getText().toString(), etPassword.getText().toString());
+                }
+                else{
+                    showError();
+                }
+            }
+        });
+
+        tvRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), RegisterActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
+
+    private void initComponent(){
         etUsername = findViewById(R.id.et_username_login);
         etPassword = findViewById(R.id.et_password_login);
         btnLogin = findViewById(R.id.btn_login_login);
@@ -66,12 +89,6 @@ public class LoginActivity extends AppCompatActivity implements LoginView{
                 .build();
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
         presenter = new LoginPresenter(this, FirebaseAuth.getInstance(), this);
-        btnLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                presenter.checkUser(etUsername.getText().toString(), etPassword.getText().toString());
-            }
-        });
     }
 
     private boolean checkEmail(String email){
