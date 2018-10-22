@@ -11,6 +11,7 @@ import android.widget.TableRow;
 import android.widget.Toast;
 
 import com.marketplace.kelompok2.kue.R;
+import com.marketplace.kelompok2.kue.ui.listtoko.PilihTokoActivity;
 
 import java.util.ArrayList;
 
@@ -31,7 +32,14 @@ public class PilihBahanActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 ArrayList<String> tesString = getListString();
-                Toast.makeText(getApplicationContext(),tesString.get(0).toString(), Toast.LENGTH_SHORT).show();
+                if(tesString.size() == 0){
+                    Toast.makeText(getApplicationContext(), "Anda Belum Memilih Bahan", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    Intent intent = new Intent(getApplicationContext(), PilihTokoActivity.class);
+                    intent.putExtra("listBahan", setArrayListStringtoArrayString(tesString));
+                    startActivity(intent);
+                }
             }
         });
     }
@@ -44,6 +52,14 @@ public class PilihBahanActivity extends AppCompatActivity {
             }
         }
         return dump;
+    }
+
+    private String[] setArrayListStringtoArrayString(ArrayList<String> listString){
+        String[] tmp = new String[listString.size()];
+        for(int i=0;i<listString.size();i++){
+            tmp[i] = listString.get(i);
+        }
+        return tmp;
     }
 
     private void init(){

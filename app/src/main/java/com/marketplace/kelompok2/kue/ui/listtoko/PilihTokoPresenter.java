@@ -1,6 +1,7 @@
 package com.marketplace.kelompok2.kue.ui.listtoko;
 
 import com.marketplace.kelompok2.kue.model.Barang;
+import com.marketplace.kelompok2.kue.model.BarangTokoList;
 import com.marketplace.kelompok2.kue.model.Penjual;
 import com.marketplace.kelompok2.kue.model.response.DataResponse;
 import com.marketplace.kelompok2.kue.base.BasePresenterNetwork;
@@ -13,7 +14,7 @@ import retrofit2.Response;
 
 public class PilihTokoPresenter extends BasePresenterNetwork {
 
-    private Call<DataResponse<Penjual>> result;
+    private Call<DataResponse<BarangTokoList>> result;
     private PilihTokoView view;
 
     public PilihTokoPresenter(PilihTokoView view){
@@ -25,18 +26,19 @@ public class PilihTokoPresenter extends BasePresenterNetwork {
 
     }
 
-    public void getListToko(){
+    public void getListToko(String keyword){
         view.hideLoading();
-        result = super.service.getListPenjual();
-        result.enqueue(new Callback<DataResponse<Penjual>>() {
+        result = super.service.getListBarangPenjual(keyword);
+
+        result.enqueue(new Callback<DataResponse<BarangTokoList>>() {
             @Override
-            public void onResponse(Call<DataResponse<Penjual>> call, Response<DataResponse<Penjual>> response) {
-                ArrayList<Penjual> listPenjual = response.body().getListData();
-                view.showListKeranjang(listPenjual);
+            public void onResponse(Call<DataResponse<BarangTokoList>> call, Response<DataResponse<BarangTokoList>> response) {
+                ArrayList<BarangTokoList> listBarangPenjual = response.body().getListData();
+                view.showListKeranjang(listBarangPenjual);
             }
 
             @Override
-            public void onFailure(Call<DataResponse<Penjual>> call, Throwable t) {
+            public void onFailure(Call<DataResponse<BarangTokoList>> call, Throwable t) {
 
             }
         });

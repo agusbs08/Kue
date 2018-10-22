@@ -1,6 +1,9 @@
 package com.marketplace.kelompok2.kue.db.retrofit;
 
+import android.provider.ContactsContract;
+
 import com.marketplace.kelompok2.kue.model.Barang;
+import com.marketplace.kelompok2.kue.model.BarangTokoList;
 import com.marketplace.kelompok2.kue.model.Pembeli;
 import com.marketplace.kelompok2.kue.model.Penjual;
 import com.marketplace.kelompok2.kue.model.Resep;
@@ -50,4 +53,7 @@ public interface DataService {
                                                @Field("email_pem") String email,
                                                @Field("notlp_pem") String noHp);
 
+    @FormUrlEncoded
+    @POST("api/penjual/pilihan")
+    public Call<DataResponse<BarangTokoList>> getListBarangPenjual(@Field("keyword") String keyword);
 }
