@@ -11,12 +11,15 @@ import android.view.ViewGroup;
 import com.marketplace.kelompok2.kue.R;
 
 public class WishlistFragment extends Fragment {
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+    }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_wishlist, container, false);
-
         return rootView;
     }
 }
