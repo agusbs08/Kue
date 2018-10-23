@@ -20,9 +20,8 @@ public class RegisterPresenter extends BasePresenterNetwork{
         this.view = view;
     }
 
-    public void register(String nama, String email, String password, String nohp, Context context){
+    public void register(String nama, String email, String password, String nohp){
         view.showLoading();
-        Toast.makeText(context, nama + "," + email + "," + password + "," + nohp , Toast.LENGTH_SHORT).show();
         result = service.registerPembeli(nama, password, email, nohp);
         result.enqueue(new Callback<ModelResponse<Pembeli>>() {
             @Override

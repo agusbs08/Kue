@@ -71,8 +71,7 @@ public class RegisterActivity extends AppCompatActivity implements RegisterView{
                         presenter.register(etUsername.getText().toString(),
                                             etEmail.getText().toString(),
                                             etPassword.getText().toString(),
-                                            etNoHp.getText().toString(),
-                                getApplicationContext());
+                                            etNoHp.getText().toString());
                     }
                     else{
                         showError();
