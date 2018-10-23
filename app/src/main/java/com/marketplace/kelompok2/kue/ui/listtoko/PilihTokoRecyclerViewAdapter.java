@@ -47,7 +47,6 @@ public class PilihTokoRecyclerViewAdapter extends RecyclerView.Adapter<PilihToko
 
     class PilihTokoViewHolder extends RecyclerView.ViewHolder{
 
-        private View view;
         private ImageView imgToko;
         private TextView namaToko;
         public PilihTokoViewHolder(View view) {

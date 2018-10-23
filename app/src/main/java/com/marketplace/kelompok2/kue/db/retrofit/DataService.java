@@ -15,7 +15,9 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.Call;
 import retrofit2.http.Headers;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
@@ -46,12 +48,12 @@ public interface DataService {
     @POST("api/pembeli/getbyemail")
     public Call<ModelResponse<Pembeli>> getUserFromEmail(@Field("email_pem") String email);
 
-    @FormUrlEncoded
+    @Multipart
     @POST("api/pembeli")
-    public Call<ModelResponse<Pembeli>> registerPembeli(@Field("username_pem") String username,
-                                               @Field("password_pem") String password,
-                                               @Field("email_pem") String email,
-                                               @Field("notlp_pem") String noHp);
+    public Call<ModelResponse<Pembeli>> registerPembeli(@Part("username_pem") String username,
+                                               @Part("password_pem") String password,
+                                               @Part("email_pem") String email,
+                                               @Part("notlp_pem") String noHp);
 
     @FormUrlEncoded
     @POST("api/penjual/pilihan")

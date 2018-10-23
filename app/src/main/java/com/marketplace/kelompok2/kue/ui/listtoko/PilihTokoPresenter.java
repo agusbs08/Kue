@@ -1,5 +1,7 @@
 package com.marketplace.kelompok2.kue.ui.listtoko;
 
+import android.util.Log;
+
 import com.marketplace.kelompok2.kue.model.Barang;
 import com.marketplace.kelompok2.kue.model.BarangTokoList;
 import com.marketplace.kelompok2.kue.model.Penjual;
@@ -22,24 +24,24 @@ public class PilihTokoPresenter extends BasePresenterNetwork {
         this.view = view;
     }
 
-    public void getListToko(ArrayList<Barang> listBarang){
-
-    }
-
     public void getListToko(String keyword){
-        view.hideLoading();
+        view.showLoading();
         result = super.service.getListBarangPenjual(keyword);
 
         result.enqueue(new Callback<DataResponse<BarangTokoList>>() {
             @Override
             public void onResponse(Call<DataResponse<BarangTokoList>> call, Response<DataResponse<BarangTokoList>> response) {
                 ArrayList<BarangTokoList> listBarangPenjual = response.body().getListData();
+                Integer d = listBarangPenjual.size();
+                Log.i("getListToko", d.toString());
+                view.hideLoading();
                 view.showListKeranjang(listBarangPenjual);
             }
 
             @Override
             public void onFailure(Call<DataResponse<BarangTokoList>> call, Throwable t) {
-
+                Log.i("getListToko", "Failed");
+                view.hideLoading();
             }
         });
     }
