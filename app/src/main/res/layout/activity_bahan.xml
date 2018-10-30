@@ -41,16 +41,120 @@
         app:layout_constraintStart_toStartOf="@+id/view2"
         app:layout_constraintTop_toTopOf="@+id/view2" />
 
-    <android.support.v7.widget.RecyclerView
+    <ImageView
+        android:id="@+id/iv_bottom_bahan"
         android:layout_width="match_parent"
-        android:layout_height="457dp"
-        android:layout_marginBottom="56dp"
-        android:padding="10dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="520dp"
+        android:background="@drawable/blue_dompet"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"/>
+
+    <TextView
+        android:id="@+id/tv_bayar_bahan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="18dp"
+        android:text="Bayar : Rp"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.426"
+        app:layout_constraintStart_toStartOf="@+id/iv_bottom_bahan"
+        app:layout_constraintTop_toTopOf="@+id/iv_bottom_bahan"
+        app:layout_constraintVertical_bias="0.0"
+        android:layout_marginRight="8dp"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/tv_total_bahan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="18dp"
+        android:text="@string/total_keranjang"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tv_bayar_bahan"
+        app:layout_constraintTop_toTopOf="@+id/iv_bottom_bahan"
+        app:layout_constraintVertical_bias="0.0"
+        android:layout_marginLeft="4dp" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerview_fragment_bahan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view3"
-        app:layout_constraintVertical_bias="0.0" />
+        />
+
+    <RadioGroup
+        android:id="@+id/rg_keranjang"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerview_fragment_bahan">
+
+        <RadioButton
+            android:id="@+id/rb_saldo"
+            android:layout_width="30dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="43dp"
+            android:layout_marginStart="43dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardView" />
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="9dp"
+            android:layout_marginStart="9dp"
+            android:layout_marginTop="20dp"
+            android:text="Saldo"
+            android:textColor="#000"
+            android:textSize="20sp"
+            app:layout_constraintStart_toEndOf="@+id/rb_saldo"
+            app:layout_constraintTop_toBottomOf="@+id/cardView" />
+
+        <RadioButton
+            android:id="@+id/rb_cod"
+            android:layout_width="30dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="28dp"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintStart_toEndOf="@+id/iv_gosend"
+            app:layout_constraintTop_toBottomOf="@+id/cardView" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="9dp"
+            android:layout_marginStart="9dp"
+            android:layout_marginTop="20dp"
+            android:text="Bayar di tempat"
+            android:textColor="#000"
+            android:textSize="20sp"
+            app:layout_constraintStart_toEndOf="@+id/rb_cod"
+            app:layout_constraintTop_toBottomOf="@+id/cardView" />
+    </RadioGroup>
 
     //List : list_bahan.xml
 </android.support.constraint.ConstraintLayout>
