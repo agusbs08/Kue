@@ -1,84 +1,150 @@
 package com.marketplace.kelompok2.kue.ui.pilihbahan;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TableRow;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.marketplace.kelompok2.kue.BerhasilActivity;
 import com.marketplace.kelompok2.kue.R;
+import com.marketplace.kelompok2.kue.model.Barang;
+import com.marketplace.kelompok2.kue.model.BarangTokoList;
+import com.marketplace.kelompok2.kue.model.list.BarangList;
+import com.marketplace.kelompok2.kue.model.response.DataResponse;
 import com.marketplace.kelompok2.kue.ui.listtoko.PilihTokoActivity;
 
 import java.util.ArrayList;
 
-public class PilihBahanActivity extends AppCompatActivity {
+public class PilihBahanActivity extends AppCompatActivity implements PilihBahanView {
 
-    private LinearLayout layout;
+
     private String[] listBahan;
-    private ArrayList<CheckBox> listCheckBox;
-    private Button btn;
+    private RecyclerView recyclerView;
+    private PilihBahanRecyclerViewAdapter adapter;
+    private PilihBahanPresenter presenter;
+    private ArrayList<BarangTokoList> listBarang;
+
+    private Button btnTes;
+    private ArrayList<PilihBahanRecyclerViewAdapter.PilihBahanViewHolder> listViewHolder;
+    private Spinner spinner;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pilih_bahan);
-        init();
+        initData();
         initView();
-        btn = findViewById(R.id.btn_tes);
-        btn.setOnClickListener(new View.OnClickListener() {
+        actionBtnOnclick();
+    }
+
+    private void initData(){
+        listBarang = new ArrayList<>();
+        Intent intent = getIntent();
+        listBahan = intent.getStringArrayExtra("listBahan");
+        BarangTokoList barangTokoList = (BarangTokoList) intent.getSerializableExtra("barangTokoList");
+        listBarang.add(barangTokoList);
+    }
+
+    private void initView(){
+        listViewHolder = new ArrayList<>();
+        recyclerView = findViewById(R.id.rv_listbarang_pilih_bahan);
+        adapter = new PilihBahanRecyclerViewAdapter(listBarang, getApplicationContext(), listViewHolder);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+        recyclerView.setAdapter(adapter);
+        presenter = new PilihBahanPresenter(this);
+        btnTes = findViewById(R.id.btn_tes_bahan);
+        spinner = findViewById(R.id.spinner_metodebayar_bahan);
+        spinner.setAdapter(ArrayAdapter.createFromResource(getApplicationContext(), R.array.spinner_item, R.layout.support_simple_spinner_dropdown_item ));
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                ((TextView) parent.getChildAt(0)).setTextColor(Color.BLACK);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+        spinner.setSelection(0);
+    }
+
+    private void actionBtnOnclick(){
+        btnTes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ArrayList<String> tesString = getListString();
-                if(tesString.size() == 0){
-                    Toast.makeText(getApplicationContext(), "Anda Belum Memilih Bahan", Toast.LENGTH_SHORT).show();
-                }
-                else{
-                    Intent intent = new Intent(getApplicationContext(), PilihTokoActivity.class);
-                    intent.putExtra("listBahan", setArrayListStringtoArrayString(tesString));
-                    startActivity(intent);
-                }
+                BarangList listBarang = new BarangList(getListBahan());
+                Intent intent = new Intent(getApplicationContext(), BerhasilActivity.class);
+                intent.putExtra("listBarang", listBarang);
+                startActivity(intent);
             }
         });
     }
 
-    private ArrayList<String> getListString(){
-        ArrayList<String> dump = new ArrayList<>();
-        for(int i=0;i<listCheckBox.size();i++){
-            if(listCheckBox.get(i).isChecked()){
-                dump.add(listBahan[i]);
+    private ArrayList<Barang> getListBahan(){
+        ArrayList<Barang> listBarang = new ArrayList<>();
+        for(int i=0;i<listViewHolder.size();i++){
+            if(listViewHolder.get(i).getStatusCheckboxChecked()){
+               String keyword = listViewHolder.get(i).getBarangName();
+               listBarang.add(getBarangFromKeyword(keyword));
             }
         }
-        return dump;
+        return listBarang;
     }
 
-    private String[] setArrayListStringtoArrayString(ArrayList<String> listString){
-        String[] tmp = new String[listString.size()];
-        for(int i=0;i<listString.size();i++){
-            tmp[i] = listString.get(i);
+    private Barang getBarangFromKeyword(String keyword){
+        ArrayList<Barang> dumpBarang = listBarang.get(0).getListBarang();
+        Barang barang = null;
+        for(int i=0;i<dumpBarang.size();i++){
+            Barang tmp = dumpBarang.get(i);
+            if(tmp.getNama().toLowerCase().equals(keyword.toLowerCase())){
+                barang = tmp;
+                break;
+            }
         }
-        return tmp;
+        return barang;
     }
 
-    private void init(){
-        Intent intent = getIntent();
-        listBahan = intent.getStringArrayExtra("listBahan");
-        layout = findViewById(R.id.linear_pilih_bahan);
-        listCheckBox = new ArrayList<>();
-    }
-
-    private void initView(){
+    private String setStrListBahan(){
+        String str = "";
         for(int i=0;i<listBahan.length;i++){
-            TableRow row =new TableRow(this);
-            row.setId(i);
-            row.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
-            CheckBox checkBox = new CheckBox(this);
-            checkBox.setText(listBahan[i]);
-            row.addView(checkBox);
-            listCheckBox.add(checkBox);
-            layout.addView(row);
+            if(i == listBahan.length -1){
+                str += listBahan[i];
+            }
+            else{
+                str += listBahan[i] + ",";
+            }
         }
+        return str;
+    }
+
+    @Override
+    public void showListBahan(ArrayList<BarangTokoList> listBarang) {
+        this.listBarang.clear();
+        this.listBarang.addAll(listBarang);
+        adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void showLoading() {
+
+    }
+
+    @Override
+    public void hideLoading() {
+
     }
 }

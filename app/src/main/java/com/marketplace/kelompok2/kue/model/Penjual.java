@@ -2,7 +2,9 @@ package com.marketplace.kelompok2.kue.model;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Penjual {
+import java.io.Serializable;
+
+public class Penjual implements Serializable {
     @SerializedName("id_penjual")
     private Integer id;
 

@@ -43,4 +43,8 @@
     <string name="nama_resep">Nama Resep</string>
     <string name="author">Author</string>
 
+    <string-array name="spinner_item">
+        <item>COD</item>
+        <item>Transfer</item>
+    </string-array>
 </resources>

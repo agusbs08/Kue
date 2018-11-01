@@ -34,7 +34,7 @@ public class PilihTokoActivity extends AppCompatActivity implements PilihTokoVie
     }
 
     private void initView(){
-        recyclerView = (RecyclerView) findViewById(R.id.recyclerview_pilihtoko);
+        recyclerView = findViewById(R.id.recyclerview_pilihtoko);
     }
 
     private void initComponent(){
@@ -60,7 +60,6 @@ public class PilihTokoActivity extends AppCompatActivity implements PilihTokoVie
                 str += listBahan[i] + ",";
             }
         }
-        Toast.makeText(this,str,Toast.LENGTH_SHORT).show();
         return str;
     }
 

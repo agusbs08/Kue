@@ -5,7 +5,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    card_view:cardBackgroundColor="@color/biru"
     card_view:cardCornerRadius="8dp">
 
     <LinearLayout
@@ -20,7 +19,7 @@
             android:padding="10dp">
 
             <TextView
-                android:id="@+id/tv_namaBahan_bahan"
+                android:id="@+id/tv_namabahan_bahan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="3dp"
@@ -28,14 +27,14 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="3dp"
                 android:gravity="left"
-                android:text="@string/nama_item"
                 android:textStyle="bold"
+                android:textColor="@color/black"
                 card_view:layout_constraintBottom_toBottomOf="parent"
                 card_view:layout_constraintStart_toStartOf="parent"
                 card_view:layout_constraintTop_toTopOf="parent" />
 
             <CheckBox
-                android:id="@+id/checkbox_bahan"
+                android:id="@+id/cb_bahan_bahan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="3dp"
@@ -49,17 +48,36 @@
                 card_view:layout_constraintBottom_toBottomOf="parent"
                 card_view:layout_constraintEnd_toEndOf="parent"
                 card_view:layout_constraintHorizontal_bias="0.964"
-                card_view:layout_constraintStart_toEndOf="@+id/tv_namaBahan_bahan"
+                card_view:layout_constraintStart_toEndOf="@+id/tv_namabahan_bahan"
                 card_view:layout_constraintTop_toTopOf="parent" />
         </android.support.constraint.ConstraintLayout>
 
-        <android.support.v7.widget.RecyclerView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="10dp"/>
+            android:orientation="horizontal">
 
-        //List : list_bahan_item.xml
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                >
+                <RadioGroup
+                    android:id="@+id/rg_listbarang_bahan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
+            </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:id="@+id/linear_pilihbahan_bahan"
+                />
+        </LinearLayout>
 
     </LinearLayout>
 

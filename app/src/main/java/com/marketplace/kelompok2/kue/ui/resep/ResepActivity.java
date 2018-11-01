@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.marketplace.kelompok2.kue.BuildConfig;
 import com.marketplace.kelompok2.kue.R;
 import com.marketplace.kelompok2.kue.model.Resep;
+import com.marketplace.kelompok2.kue.ui.listtoko.PilihTokoActivity;
 import com.marketplace.kelompok2.kue.ui.pilihbahan.PilihBahanActivity;
 import com.squareup.picasso.Picasso;
 
@@ -36,7 +37,19 @@ public class ResepActivity extends AppCompatActivity implements ResepView {
         initComponent();
         initActionView();
         showData();
+        setActionIntent();
         presenter.getResep(idResep);
+    }
+
+    private void setActionIntent(){
+        btnBeli.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), PilihTokoActivity.class);
+                intent.putExtra("listBahan", justBahan);
+                startActivity(intent);
+            }
+        });
     }
 
     private void initView(){
@@ -81,7 +94,7 @@ public class ResepActivity extends AppCompatActivity implements ResepView {
         btnBeli.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), PilihBahanActivity.class);
+                Intent intent = new Intent(getApplicationContext(), PilihTokoActivity.class);
                 intent.putExtra("listBahan", justBahan);
                 startActivity(intent);
             }

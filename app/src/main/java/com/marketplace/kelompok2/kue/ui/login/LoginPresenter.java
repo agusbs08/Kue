@@ -68,7 +68,8 @@ public class LoginPresenter extends BasePresenterNetwork{
                     view.actionLoginSuccess(pembeli1.getId());
                 }
                 else{
-                    Log.i("lala","lala");
+                    view.hideLoading();
+                    view.showError();
                 }
             }
 
@@ -92,9 +93,15 @@ public class LoginPresenter extends BasePresenterNetwork{
         result.enqueue(new Callback<ModelResponse<Pembeli>>() {
             @Override
             public void onResponse(Call<ModelResponse<Pembeli>> call, Response<ModelResponse<Pembeli>> response) {
-                Pembeli pembeli = response.body().getModel();
-                view.hideLoading();
-                view.actionLoginSuccess(pembeli.getId());
+                if(response.isSuccessful()){
+                    Pembeli pembeli1 = response.body().getModel();
+                    view.hideLoading();
+                    view.actionLoginSuccess(pembeli1.getId());
+                }
+                else{
+                    view.hideLoading();
+                    view.showError();
+                }
             }
 
             @Override
