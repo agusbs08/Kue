@@ -25,6 +25,7 @@ import com.marketplace.kelompok2.kue.model.BarangTokoList;
 import com.marketplace.kelompok2.kue.model.list.BarangList;
 import com.marketplace.kelompok2.kue.model.response.DataResponse;
 import com.marketplace.kelompok2.kue.ui.listtoko.PilihTokoActivity;
+import com.marketplace.kelompok2.kue.ui.nota.NotaActivity;
 
 import java.util.ArrayList;
 
@@ -86,9 +87,10 @@ public class PilihBahanActivity extends AppCompatActivity implements PilihBahanV
         btnTes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                BarangList listBarang = new BarangList(getListBahan());
-                Intent intent = new Intent(getApplicationContext(), BerhasilActivity.class);
-                intent.putExtra("listBarang", listBarang);
+                BarangList listBarangs = new BarangList(getListBahan());
+                Intent intent = new Intent(getApplicationContext(), NotaActivity.class);
+                intent.putExtra("listBarang", listBarangs);
+                intent.putExtra("penjual", listBarang.get(0).getPenjual());
                 startActivity(intent);
             }
         });
@@ -110,7 +112,7 @@ public class PilihBahanActivity extends AppCompatActivity implements PilihBahanV
         Barang barang = null;
         for(int i=0;i<dumpBarang.size();i++){
             Barang tmp = dumpBarang.get(i);
-            if(tmp.getNama().toLowerCase().equals(keyword.toLowerCase())){
+            if(tmp.getNama().equals(keyword)){
                 barang = tmp;
                 break;
             }

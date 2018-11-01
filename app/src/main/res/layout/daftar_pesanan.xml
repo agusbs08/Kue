@@ -58,7 +58,7 @@
                 tools:ignore="RtlSymmetry" />
 
             <TextView
-                android:id="@+id/textView6"
+                android:id="@+id/tv_namatoko_nota"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -70,7 +70,7 @@
                 android:layout_marginLeft="16dp" />
 
             <android.support.v7.widget.RecyclerView
-                android:id="@+id/recyclerView"
+                android:id="@+id/rv_listbarang_nota"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -78,9 +78,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView6">
-
-            </android.support.v7.widget.RecyclerView>
+                app:layout_constraintTop_toBottomOf="@+id/tv_namatoko_nota"/>
 
             <TextView
                 android:id="@+id/textView9"
@@ -91,7 +89,7 @@
                 android:text="Total : Rp"
                 android:textColor="#000"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/recyclerView"
+                app:layout_constraintTop_toBottomOf="@+id/rv_listbarang_nota"
                 tools:ignore="HardcodedText"
                 android:layout_marginLeft="113dp" />
 
@@ -104,7 +102,7 @@
                 android:text="@string/total_pesanan"
                 android:textColor="#000"
                 app:layout_constraintStart_toEndOf="@+id/textView9"
-                app:layout_constraintTop_toBottomOf="@+id/recyclerView"
+                app:layout_constraintTop_toBottomOf="@+id/rv_listbarang_nota"
                 android:paddingStart="10dp"
                 tools:ignore="RtlSymmetry" />
 
