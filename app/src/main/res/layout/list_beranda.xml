@@ -4,7 +4,7 @@
             xmlns:tools="http://schemas.android.com/tools"
             style="@style/CardView.Light"
             android:layout_width="match_parent"
-            android:layout_height="175dp"
+            android:layout_height="230dp"
             app:cardElevation="8dp"
             android:layout_marginTop="20dp"
             android:background="@drawable/rounded_cardview">
@@ -17,13 +17,14 @@
                     android:id="@+id/img_produk_list_beranda"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:scaleType="fitXY"
+                    android:scaleType="centerCrop"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="1.0"
                     app:srcCompat="@mipmap/ic_launcher"
-                    tools:ignore="ContentDescription" />
+                    tools:ignore="ContentDescription"
+                    />
 
                 <ImageView
                     android:id="@+id/imageView3"

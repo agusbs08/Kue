@@ -2,10 +2,11 @@ package com.marketplace.kelompok2.kue.model.response;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DataResponse<MODEL> {
+public class DataResponse<MODEL> implements Serializable{
 
     @SerializedName("message")
     private String message;

@@ -4,7 +4,9 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import com.marketplace.kelompok2.kue.model.Pembeli;
 
-public class ModelResponse<MODEL> {
+import java.io.Serializable;
+
+public class ModelResponse<MODEL> implements Serializable{
     @SerializedName("message")
     private String message;
 

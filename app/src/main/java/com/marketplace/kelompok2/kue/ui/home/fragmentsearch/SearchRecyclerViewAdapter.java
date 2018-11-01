@@ -67,8 +67,7 @@ public class SearchRecyclerViewAdapter extends RecyclerView.Adapter<SearchRecycl
         }
 
         public void bindItem(final Resep resep){
-            Picasso.get().load(BuildConfig.BASE_STORAGE
-                    + resep.getImageResep()).into(imageResep);
+            Picasso.get().load(resep.getImageResep()).into(imageResep);
             namaResep.setText(resep.getNamaResep());
 
             itemView.setOnClickListener(new View.OnClickListener() {

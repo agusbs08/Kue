@@ -5,12 +5,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.pilihbahan.PilihBahanActivity"
-    android:id="@+id/linear_pilih_bahan"
     android:orientation="vertical">
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/btn_tes"
+        android:id="@+id/btn_tes_bahan"
         android:text="YOOI"/>
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinner_metodebayar_bahan"
+        />
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_listbarang_pilih_bahan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
 </LinearLayout>

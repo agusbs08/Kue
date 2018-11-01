@@ -9,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -70,7 +71,7 @@ public class HomeFragment extends Fragment implements HomeView {
     private void initComponent(){
         listResep = new ArrayList<>();
         adapter = new HomeRecyclerViewAdapter(getContext(), listResep);
-        recyclerView.setLayoutManager(new GridLayoutManager(getContext(),2));
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(adapter);
         presenter = new HomePresenter(this);
     }
