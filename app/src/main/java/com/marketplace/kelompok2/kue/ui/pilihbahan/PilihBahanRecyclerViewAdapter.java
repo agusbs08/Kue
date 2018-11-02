@@ -60,6 +60,8 @@ public class PilihBahanRecyclerViewAdapter extends RecyclerView.Adapter<PilihBah
         private Context context;
         private Integer rbSelectedId;
         private View view;
+        private LinearLayout layoutListHarga;
+        private LinearLayout layout;
 
         public PilihBahanViewHolder(View view, Context context){
             super(view);
@@ -72,40 +74,65 @@ public class PilihBahanRecyclerViewAdapter extends RecyclerView.Adapter<PilihBah
             namaBahan = view.findViewById(R.id.tv_namabahan_bahan);
             checkBoxBahan = view.findViewById(R.id.cb_bahan_bahan);
             radioGroupListBahan = view.findViewById(R.id.rg_listbarang_bahan);
+            layoutListHarga = view.findViewById(R.id.linear_pilihbahan_bahan);
+            layout = view.findViewById(R.id.linear_root_bahan);
+            setActionRadioButton();
+        }
+
+        private void setActionRadioButton(){
+            checkBoxBahan.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(checkBoxBahan.isChecked()){
+                        layout.setVisibility(View.VISIBLE);
+                    }
+                    else{
+                        layout.setVisibility(View.GONE);
+                    }
+                }
+            });
         }
 
         void bindItem(final BarangTokoList barangTokoList,final int position,final String keyword){
             namaBahan.setText(keyword);
             checkBoxBahan.setChecked(true);
             boolean flag = true;
-            LinearLayout linearLayout = view.findViewById(R.id.linear_pilihbahan_bahan);
             for(int i=0;i<barangTokoList.getListBarang().size();i++){
                 Barang barang = barangTokoList.getListBarang().get(i);
                 String match = barangTokoList.getListBarang().get(i).getNama().toLowerCase();
                 if(match.contains(keyword.toLowerCase())){
-                    RadioButton radioButton = new RadioButton(context);
-                    radioButton.setId((position+1)*(i+1));
-                    radioButton.setText(barang.getNama());
-                    radioButton.setLayoutParams(
-                            new LinearLayout
-                                    .LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
-                    );
+                    RadioButton radioButton = getRadioButton(barang, position, i);
                     if(flag){
                         radioButton.setChecked(true);
                         flag = false;
                     }
-                    radioGroupListBahan.addView(radioButton);
-                    TextView hargaBahan = new TextView(context);
-                    hargaBahan.setId((position+1)*100+(i+1));
-                    Integer harga = barang.getHarga().intValue();
-                    hargaBahan.setText(harga.toString());
-                    LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-                    params.setMargins(0,14,20,14);
-                    hargaBahan.setLayoutParams(params);
-                    hargaBahan.setGravity(Gravity.RIGHT);
-                    linearLayout.addView(hargaBahan);
+                    addTextViewHarga(barang, position, i);
                 }
             }
+        }
+
+        private RadioButton getRadioButton(Barang barang, Integer position, int increment){
+            RadioButton radioButton = new RadioButton(context);
+            radioButton.setId((position+1)*(increment+1));
+            radioButton.setText(barang.getNama());
+            radioButton.setLayoutParams(
+                    new LinearLayout
+                            .LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
+            );
+            radioGroupListBahan.addView(radioButton);
+            return radioButton;
+        }
+
+        private void addTextViewHarga(Barang barang, int position, int increment){
+            TextView hargaBahan = new TextView(context);
+            hargaBahan.setId((position+1)*100+(increment+1));
+            Integer harga = barang.getHarga().intValue();
+            hargaBahan.setText(harga.toString());
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            params.setMargins(0,14,20,14);
+            hargaBahan.setLayoutParams(params);
+            hargaBahan.setGravity(Gravity.RIGHT);
+            layoutListHarga.addView(hargaBahan);
         }
 
         @Override
