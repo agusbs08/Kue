@@ -2,12 +2,15 @@ package com.marketplace.kelompok2.kue.ui.nota;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.marketplace.kelompok2.kue.BuildConfig;
 import com.marketplace.kelompok2.kue.R;
 import com.marketplace.kelompok2.kue.model.Barang;
 import com.marketplace.kelompok2.kue.model.list.BarangList;
@@ -55,7 +58,7 @@ public class NotaRecyclerViewAdapter extends RecyclerView.Adapter<NotaRecyclerVi
         }
 
         void bindItem(final Barang barang){
-            Picasso.get().load(barang.getGambar()).into(imageBarang);
+            Picasso.get().load(BuildConfig.BASE_STORAGE + barang.getGambar()).into(imageBarang);
             namaBarang.setText(barang.getNama());
             hargaBarang.setText(barang.getHarga().toString());
         }
