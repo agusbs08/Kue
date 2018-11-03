@@ -20,11 +20,9 @@ import com.squareup.picasso.Picasso;
 public class NotaRecyclerViewAdapter extends RecyclerView.Adapter<NotaRecyclerViewAdapter.NotaViewHolder>{
 
     private BarangList listBarang;
-    private Context context;
 
-    public NotaRecyclerViewAdapter(BarangList listBarang, Context context){
+    public NotaRecyclerViewAdapter(BarangList listBarang){
         this.listBarang = listBarang;
-        this.context = context;
     }
 
     @NonNull

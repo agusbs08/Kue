@@ -14,20 +14,10 @@ import java.util.ArrayList;
 
 public class BerhasilActivity extends AppCompatActivity {
 
-    private RecyclerView recyclerView;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_berhasil);
-        initData();
+        setContentView(R.layout.activity_succes);
     }
 
-    private void initData(){
-        Intent intent = getIntent();
-        BarangList listBarang = (BarangList) intent.getSerializableExtra("listBarang");
-        for(int i=0;i<listBarang.getListBarang().size();i++){
-            Toast.makeText(this, listBarang.getListBarang().get(i).getNama(), Toast.LENGTH_SHORT).show();
-        }
-    }
 }

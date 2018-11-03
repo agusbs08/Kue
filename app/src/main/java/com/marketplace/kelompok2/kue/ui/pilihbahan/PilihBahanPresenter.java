@@ -3,11 +3,16 @@ package com.marketplace.kelompok2.kue.ui.pilihbahan;
 import android.util.Log;
 
 import com.marketplace.kelompok2.kue.base.BasePresenterNetwork;
+import com.marketplace.kelompok2.kue.model.Barang;
 import com.marketplace.kelompok2.kue.model.BarangTokoList;
 import com.marketplace.kelompok2.kue.model.response.DataResponse;
 
 import java.util.ArrayList;
 
+import io.reactivex.Observable;
+import io.reactivex.Scheduler;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -38,4 +43,5 @@ public class PilihBahanPresenter extends BasePresenterNetwork {
             }
         });
     }
+
 }

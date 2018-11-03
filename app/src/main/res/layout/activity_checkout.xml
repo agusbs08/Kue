@@ -29,7 +29,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/view2" />
-
         <TextView
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
@@ -65,6 +64,13 @@
             app:layout_constraintTop_toBottomOf="@+id/view2"
             tools:ignore="HardcodedText" />
 
+        <ProgressBar
+            android:id="@+id/pb_checkout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/textView5"
+            app:layout_constraintBottom_toTopOf="@id/recyclerview_checkout"/>
+
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerview_checkout"
             android:layout_width="match_parent"
@@ -82,7 +88,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="@drawable/action_bar_white"
-            app:layout_constraintBottom_toTopOf="@+id/view"
+            app:layout_constraintBottom_toTopOf="@+id/btn_bayar_checkout"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             tools:ignore="ContentDescription" />
@@ -119,7 +125,7 @@
             android:layout_marginRight="19dp" />
 
         <Button
-            android:id="@+id/view"
+            android:id="@+id/btn_bayar_checkout"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="@drawable/blue_dompet"

@@ -1,6 +1,8 @@
 package com.marketplace.kelompok2.kue.db.retrofit;
 
+import android.database.Observable;
 import android.provider.ContactsContract;
+import android.view.Display;
 
 import com.marketplace.kelompok2.kue.model.Barang;
 import com.marketplace.kelompok2.kue.model.BarangTokoList;
@@ -8,6 +10,7 @@ import com.marketplace.kelompok2.kue.model.Pembeli;
 import com.marketplace.kelompok2.kue.model.Penjual;
 import com.marketplace.kelompok2.kue.model.Resep;
 import com.marketplace.kelompok2.kue.model.response.DataResponse;
+import com.marketplace.kelompok2.kue.model.response.DetailTransaksi;
 import com.marketplace.kelompok2.kue.model.response.ModelResponse;
 
 import retrofit2.http.Field;
@@ -58,4 +61,20 @@ public interface DataService {
     @FormUrlEncoded
     @POST("api/penjual/pilihan")
     public Call<DataResponse<BarangTokoList>> getListBarangPenjual(@Field("keyword") String keyword);
+
+    @FormUrlEncoded
+    @POST("api/transaksi")
+    io.reactivex.Observable<ModelResponse<Barang>> uploadBarang(@Field("id_pembeli") Integer idPembeli,
+                                                                @Field("id_barang") Integer idBarang,
+                                                                @Field("id_detail_transaksi") Integer idDetailTransaksi,
+                                                                @Field("quantity") Integer kuantitas);
+
+    @FormUrlEncoded
+    @POST("api/detailtransaksi")
+    Call<ModelResponse<DetailTransaksi>> setDetailTransaksi(@Field("status_pembayaran") String statusPembayaran,
+                                                            @Field("status_proses") String statusProses,
+                                                            @Field("status_pengiriman") String statusPengiriman,
+                                                            @Field("status_penerimaan") String statusPenerimaan,
+                                                            @Field("total_harga_transaksi") Integer totalHargaTransaksi,
+                                                            @Field("metode_pembayaran") String metodePembayaran);
 }
