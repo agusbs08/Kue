@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.marketplace.kelompok2.kue.R;
 import com.marketplace.kelompok2.kue.model.Barang;
@@ -23,14 +24,13 @@ public class NotaActivity extends AppCompatActivity {
     private NotaRecyclerViewAdapter adapter;
 
     private RecyclerView recyclerView;
-    private TextView namaToko;
     private TextView totalHarga;
     private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.daftar_pesanan);
+        setContentView(R.layout.activity_checkout);
         initData();
         initView();
     }
@@ -42,16 +42,13 @@ public class NotaActivity extends AppCompatActivity {
     }
 
     private void initView(){
-        namaToko = findViewById(R.id.tv_namatoko_nota);
-        recyclerView = findViewById(R.id.rv_listbarang_nota);
-        totalHarga = findViewById(R.id.tv_totalharga);
-        progressBar = findViewById(R.id.pb_daftar_pesanan);
-        adapter = new NotaRecyclerViewAdapter(listBarang);
-        namaToko.setText(penjual.getNamatoko());
+        recyclerView = findViewById(R.id.recyclerview_checkout);
+        totalHarga = findViewById(R.id.tv_nominal_checkout);
+        adapter = new NotaRecyclerViewAdapter(listBarang, this);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
         initTotalHarga();
-        progressBar.setVisibility(View.INVISIBLE);
+        //progressBar.setVisibility(View.INVISIBLE);
     }
 
     private void initTotalHarga(){
@@ -59,6 +56,6 @@ public class NotaActivity extends AppCompatActivity {
         for(Barang barang : listBarang.getListBarang()){
             total += barang.getHarga();
         }
-        totalHarga.setText(total.toString());
+        totalHarga.setText("RP " + total.toString());
     }
 }

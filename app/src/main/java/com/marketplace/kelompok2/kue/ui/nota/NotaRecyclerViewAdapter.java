@@ -1,5 +1,6 @@
 package com.marketplace.kelompok2.kue.ui.nota;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -19,15 +20,17 @@ import com.squareup.picasso.Picasso;
 public class NotaRecyclerViewAdapter extends RecyclerView.Adapter<NotaRecyclerViewAdapter.NotaViewHolder>{
 
     private BarangList listBarang;
+    private Context context;
 
-    public NotaRecyclerViewAdapter(BarangList listBarang){
+    public NotaRecyclerViewAdapter(BarangList listBarang, Context context){
         this.listBarang = listBarang;
+        this.context = context;
     }
 
     @NonNull
     @Override
     public NotaViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new NotaViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.daftar_barang, parent, false));
+        return new NotaViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.detail_checkout, parent, false));
     }
 
     @Override
@@ -52,9 +55,9 @@ public class NotaRecyclerViewAdapter extends RecyclerView.Adapter<NotaRecyclerVi
         }
 
         private void initView(View view){
-            imageBarang = view.findViewById(R.id.iv_foto_barang);
-            namaBarang = view.findViewById(R.id.tv_namaitem_pesanan);
-            hargaBarang = view.findViewById(R.id.tv_hargaitem_pesanan);
+            imageBarang = view.findViewById(R.id.iv_gambaritem_checkout);
+            namaBarang = view.findViewById(R.id.tv_namaitem_checkout);
+            hargaBarang = view.findViewById(R.id.tv_hargaitem_checkout);
         }
 
         void bindItem(final Barang barang){
