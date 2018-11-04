@@ -4,15 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.login.LoginActivity">
+    tools:context=".ui.login.LoginActivity"
+    android:background="@color/white">
 
-    <Button
+    <!--<Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/tes"
         android:text="tes"
         android:gravity="center"
-        />
+        />-->
 
     <!--<ImageView-->
     <!--android:id="@+id/imag_logo_login"-->
@@ -26,37 +27,48 @@
 
     <EditText
         android:id="@+id/et_username_login"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="120dp"
         android:background="@drawable/rounded_edittext"
         android:drawableLeft="@drawable/ic_man_user"
+        android:drawableTint="@color/abu"
+        android:paddingLeft="10dp"
+        android:drawablePadding="10dp"
         android:ems="15"
         android:hint="@string/Username"
+        android:fontFamily="@font/mukta_vaani_light"
         android:inputType="textPersonName"
         android:padding="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:backgroundTint="@color/abuLight"/>
 
     <EditText
         android:id="@+id/et_password_login"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
         android:background="@drawable/rounded_edittext"
         android:drawableLeft="@drawable/ic_locked_padlock"
+        android:paddingLeft="10dp"
+        android:drawablePadding="10dp"
+        android:drawableTint="@color/abu"
         android:ems="15"
         android:hint="@string/password"
+        android:fontFamily="@font/mukta_vaani_light"
+        android:elevation="10dp"
         android:inputType="textPersonName"
+        android:backgroundTint="@color/abuLight"
         android:padding="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -64,7 +76,7 @@
 
     <Button
         android:id="@+id/btn_login_login"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="120dp"
         android:layout_marginEnd="56dp"
@@ -74,6 +86,7 @@
         android:background="@drawable/rounded_button"
         android:ems="15"
         android:text="Masuk"
+        android:fontFamily="@font/mukta_vaani_semibold"
         android:textAllCaps="false"
         android:textColor="#fff"
         android:textSize="15dp"
@@ -89,14 +102,13 @@
         android:layout_width="270dp"
         android:layout_height="47dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginLeft="117dp"
+        android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginStart="56dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="24dp"
         android:textAllCaps="false"
         android:textSize="10dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_login_login" />
 
@@ -108,7 +120,9 @@
         android:layout_marginEnd="172dp"
         android:layout_marginLeft="172dp"
         android:layout_marginStart="172dp"
+        android:fontFamily="@font/mukta_vaani_semibold"
         android:text="Daftar"
+        app:fontFamily="@font/mukta_vaani_extralight"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
