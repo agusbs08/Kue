@@ -2,6 +2,7 @@ package com.marketplace.kelompok2.kue.ui.pilihbahan;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -60,13 +61,17 @@ public class PilihBahanRecyclerViewAdapter extends RecyclerView.Adapter<PilihBah
         private Context context;
         private Integer rbSelectedId;
         private View view;
-        private LinearLayout layoutListHarga;
+        private RecyclerView recyclerView;
         private LinearLayout layout;
+        private int state;
+
+        private PilihBarangRecyclerViewAdapter adapter;
 
         public PilihBahanViewHolder(View view, Context context){
             super(view);
             this.context = context;
             this.view = view;
+            state = -1;
             initView();
         }
 
@@ -74,8 +79,9 @@ public class PilihBahanRecyclerViewAdapter extends RecyclerView.Adapter<PilihBah
             namaBahan = view.findViewById(R.id.tv_namabahan_bahan);
             checkBoxBahan = view.findViewById(R.id.cb_bahan_bahan);
             radioGroupListBahan = view.findViewById(R.id.rg_listbarang_bahan);
-            layoutListHarga = view.findViewById(R.id.linear_pilihbahan_bahan);
-            layout = view.findViewById(R.id.linear_root_bahan);
+            recyclerView = view.findViewById(R.id.rv_recycler_pilih_bahan);
+            recyclerView.setLayoutManager(new LinearLayoutManager(context));
+            layout = view.findViewById(R.id.linear_pilihbahan);
             setActionRadioButton();
         }
 
@@ -85,54 +91,46 @@ public class PilihBahanRecyclerViewAdapter extends RecyclerView.Adapter<PilihBah
                 public void onClick(View v) {
                     if(checkBoxBahan.isChecked()){
                         layout.setVisibility(View.VISIBLE);
+                        state = 1;
                     }
                     else{
                         layout.setVisibility(View.GONE);
+                        state = 0;
                     }
                 }
             });
         }
 
-        void bindItem(final BarangTokoList barangTokoList,final int position,final String keyword){
-            namaBahan.setText(keyword);
-            checkBoxBahan.setChecked(true);
-            boolean flag = true;
-            for(int i=0;i<barangTokoList.getListBarang().size();i++){
-                Barang barang = barangTokoList.getListBarang().get(i);
-                String match = barangTokoList.getListBarang().get(i).getNama().toLowerCase();
-                if(match.contains(keyword.toLowerCase())){
-                    RadioButton radioButton = getRadioButton(barang, position, i);
-                    if(flag){
-                        radioButton.setChecked(true);
-                        flag = false;
-                    }
-                    addTextViewHarga(barang, position, i);
-                }
+        void bindItem(BarangTokoList barangTokoList,int position,String keyword){
+            if(namaBahan.getText().equals("")){
+                namaBahan.setText(keyword);
+            }
+            if(adapter == null){
+                ArrayList<Barang> listBarang = getListBarang(barangTokoList.getListBarang(), keyword, position);
+                adapter = new PilihBarangRecyclerViewAdapter(radioGroupListBahan, listBarang, context);
+                recyclerView.setAdapter(adapter);
+            }
+            if(state == -1){
+                state = 1;
+            }
+            if(state == 1){
+                layout.setVisibility(View.VISIBLE);
+                checkBoxBahan.setChecked(true);
+            }
+            else{
+                layout.setVisibility(View.GONE);
+                checkBoxBahan.setChecked(false);
             }
         }
 
-        private RadioButton getRadioButton(Barang barang, Integer position, int increment){
-            RadioButton radioButton = new RadioButton(context);
-            radioButton.setId((position+1)*(increment+1));
-            radioButton.setText(barang.getNama());
-            radioButton.setLayoutParams(
-                    new LinearLayout
-                            .LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
-            );
-            radioGroupListBahan.addView(radioButton);
-            return radioButton;
-        }
-
-        private void addTextViewHarga(Barang barang, int position, int increment){
-            TextView hargaBahan = new TextView(context);
-            hargaBahan.setId((position+1)*100+(increment+1));
-            Integer harga = barang.getHarga().intValue();
-            hargaBahan.setText(harga.toString());
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-            params.setMargins(0,14,20,14);
-            hargaBahan.setLayoutParams(params);
-            hargaBahan.setGravity(Gravity.RIGHT);
-            layoutListHarga.addView(hargaBahan);
+        private ArrayList<Barang> getListBarang(ArrayList<Barang> listBarang, String keyword, Integer position){
+            ArrayList<Barang> tmp = new ArrayList<>();
+            for(Barang barang : listBarang){
+                if(barang.getNama().toLowerCase().contains(keyword.toLowerCase())){
+                    tmp.add(barang);
+                }
+            }
+            return tmp;
         }
 
         @Override

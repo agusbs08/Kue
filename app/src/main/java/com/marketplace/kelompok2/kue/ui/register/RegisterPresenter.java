@@ -1,6 +1,7 @@
 package com.marketplace.kelompok2.kue.ui.register;
 
 import android.content.Context;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.marketplace.kelompok2.kue.model.Pembeli;
@@ -33,6 +34,7 @@ public class RegisterPresenter extends BasePresenterNetwork{
 
             @Override
             public void onFailure(Call<ModelResponse<Pembeli>> call, Throwable t) {
+                Log.d("register", "gagal");
                 view.hideLoading();
                 view.showError();
             }

@@ -63,7 +63,11 @@ public class SearchFragment extends Fragment implements SearchView{
         InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.showSoftInput(searchEditText, InputMethodManager.SHOW_IMPLICIT);
         imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
-        searchEditText.addTextChangedListener(new TextWatcher() {
+        searchEditText.addTextChangedListener(getTextWatcher());
+    }
+
+    private TextWatcher getTextWatcher(){
+        return new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -79,7 +83,7 @@ public class SearchFragment extends Fragment implements SearchView{
             public void afterTextChanged(Editable s) {
 
             }
-        });
+        };
     }
 
     @Override
