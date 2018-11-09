@@ -21,6 +21,7 @@ public class ResepActivity extends AppCompatActivity implements ResepView {
     private TextView tvCaraMemasak;
     private ImageView imgImageResep;
     private Button btnBeli;
+    private Button btnAddWishlist;
     private ResepPresenter presenter;
     private Integer idResep;
     private String namaResep;
@@ -57,6 +58,7 @@ public class ResepActivity extends AppCompatActivity implements ResepView {
         tvBahan = findViewById(R.id.tv_isibahan_resep_beranda);
         tvCaraMemasak = findViewById(R.id.tv_isicara_resep_beranda);
         imgImageResep = findViewById(R.id.img_resep);
+        btnAddWishlist = findViewById(R.id.btn_addwishlist_resep);
         btnBeli = findViewById(R.id.btn_beli_resep_beranda);
     }
 
@@ -97,6 +99,13 @@ public class ResepActivity extends AppCompatActivity implements ResepView {
                 Intent intent = new Intent(getApplicationContext(), PilihTokoActivity.class);
                 intent.putExtra("listBahan", justBahan);
                 startActivity(intent);
+            }
+        });
+
+        btnAddWishlist.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                presenter.addWishlist(idResep, getApplicationContext());
             }
         });
     }

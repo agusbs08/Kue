@@ -6,11 +6,13 @@ import android.view.Display;
 
 import com.marketplace.kelompok2.kue.model.Barang;
 import com.marketplace.kelompok2.kue.model.BarangTokoList;
+import com.marketplace.kelompok2.kue.model.Favorit;
 import com.marketplace.kelompok2.kue.model.IsiKeranjang;
 import com.marketplace.kelompok2.kue.model.Keranjang;
 import com.marketplace.kelompok2.kue.model.Pembeli;
 import com.marketplace.kelompok2.kue.model.Penjual;
 import com.marketplace.kelompok2.kue.model.Resep;
+import com.marketplace.kelompok2.kue.model.list.ResepList;
 import com.marketplace.kelompok2.kue.model.response.DataResponse;
 import com.marketplace.kelompok2.kue.model.response.DetailTransaksi;
 import com.marketplace.kelompok2.kue.model.response.ModelResponse;
@@ -96,4 +98,12 @@ public interface DataService {
     @POST("api/keranjang")
     io.reactivex.Observable<ModelResponse<Keranjang>> setCart(@Field("id_pembeli") Integer idPembeli,
                                                @Field("total_harga_keranjang") Float total);
+
+    @GET("api/favorit/{id_pembeli}")
+    Call<ResepList> getAllWishlist(@Path("id_pembeli") Integer idUser);
+
+    @FormUrlEncoded
+    @POST("api/favorit")
+    Call<Favorit> addWishlist(@Field("id_pembeli") Integer idUser,
+                              @Field("id_resep") Integer idResep);
 }

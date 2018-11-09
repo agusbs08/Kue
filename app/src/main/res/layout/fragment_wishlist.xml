@@ -40,8 +40,14 @@
         app:layout_constraintStart_toStartOf="@+id/view2"
         app:layout_constraintTop_toTopOf="@+id/view2" />
 
+    <ProgressBar
+        android:id="@+id/pb_fragment_wishlist"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/rv_listresep_wishlist"/>
+
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycler_view"
+        android:id="@+id/rv_listresep_wishlist"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:padding="10dp"
