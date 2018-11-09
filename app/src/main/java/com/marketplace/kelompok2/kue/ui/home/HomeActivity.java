@@ -28,8 +28,11 @@ public class HomeActivity extends AppCompatActivity implements HomeSearchView{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         save = savedInstanceState;
-        init();
         BottomNavigationView btn = findViewById(R.id.bottom_navigation_menu);
+        //Toast.makeText(getApplicationContext(), UserState.getInstance().getIdUser().toString(), Toast.LENGTH_SHORT).show();
+       // if(UserState.getInstance().getPembeli() == null){
+        //    Toast.makeText(getApplicationContext(), UserState.getInstance().getPembeli().getUsername() + UserState.getInstance().getPembeli().getIdKeranjang().toString(), Toast.LENGTH_SHORT).show();
+
         btn.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener(){
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -54,14 +57,6 @@ public class HomeActivity extends AppCompatActivity implements HomeSearchView{
             }
         });
         btn.setSelectedItemId(R.id.home_menu);
-    }
-
-    private void init(){
-        if(UserState.getInstance().getIdUser() == 0){
-            Intent intent = getIntent();
-            Integer id = intent.getIntExtra("idUser", 0);
-            UserState.getInstance().setIdUser(id);
-        }
     }
 
     private void setFragment(Bundle savedInstanceState, Fragment fragment){

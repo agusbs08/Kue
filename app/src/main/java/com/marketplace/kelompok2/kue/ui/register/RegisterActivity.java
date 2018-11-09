@@ -12,6 +12,8 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.marketplace.kelompok2.kue.R;
+import com.marketplace.kelompok2.kue.common.UserState;
+import com.marketplace.kelompok2.kue.model.Pembeli;
 import com.marketplace.kelompok2.kue.ui.home.HomeActivity;
 
 public class RegisterActivity extends AppCompatActivity implements RegisterView{
@@ -68,6 +70,7 @@ public class RegisterActivity extends AppCompatActivity implements RegisterView{
                     boolean flagEmail = checkEmail(etEmail.getText().toString());
                     boolean flagPhone = checkPhone(etNoHp.getText().toString());
                     if(flagEmail && flagPhone){
+                        Toast.makeText(getApplicationContext(), etUsername.getText().toString(), Toast.LENGTH_SHORT).show();
                         presenter.register(etUsername.getText().toString(),
                                             etEmail.getText().toString(),
                                             etPassword.getText().toString(),
@@ -96,9 +99,10 @@ public class RegisterActivity extends AppCompatActivity implements RegisterView{
     }
 
     @Override
-    public void actionRegisterSuccess(Integer id) {
+    public void actionRegisterSuccess(Pembeli pembeli) {
         Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
-        intent.putExtra("idUser", id);
+        UserState.getInstance().setIdUser(pembeli.getId());
+        UserState.getInstance().setPembeli(pembeli);
         startActivity(intent);
         finish();
     }

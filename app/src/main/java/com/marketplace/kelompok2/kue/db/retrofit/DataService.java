@@ -6,6 +6,8 @@ import android.view.Display;
 
 import com.marketplace.kelompok2.kue.model.Barang;
 import com.marketplace.kelompok2.kue.model.BarangTokoList;
+import com.marketplace.kelompok2.kue.model.IsiKeranjang;
+import com.marketplace.kelompok2.kue.model.Keranjang;
 import com.marketplace.kelompok2.kue.model.Pembeli;
 import com.marketplace.kelompok2.kue.model.Penjual;
 import com.marketplace.kelompok2.kue.model.Resep;
@@ -51,12 +53,19 @@ public interface DataService {
     @POST("api/pembeli/getbyemail")
     public Call<ModelResponse<Pembeli>> getUserFromEmail(@Field("email_pem") String email);
 
-    @Multipart
+//    @Multipart
+//    @POST("api/pembeli")
+//    public Call<ModelResponse<Pembeli>> registerPembeli(@Part("username_pem") String username,
+//                                               @Part("password_pem") String password,
+//                                               @Part("email_pem") String email,
+//                                               @Part("notlp_pem") String noHp);
+
+    @FormUrlEncoded
     @POST("api/pembeli")
-    public Call<ModelResponse<Pembeli>> registerPembeli(@Part("username_pem") String username,
-                                               @Part("password_pem") String password,
-                                               @Part("email_pem") String email,
-                                               @Part("notlp_pem") String noHp);
+    public Call<ModelResponse<Pembeli>> registerPembeli(@Field("username_pem") String username,
+                                                        @Field("password_pem") String password,
+                                                        @Field("email_pem") String email,
+                                                        @Field("notlp_pem") String noHp);
 
     @FormUrlEncoded
     @POST("api/penjual/pilihan")
@@ -77,4 +86,14 @@ public interface DataService {
                                                             @Field("status_penerimaan") String statusPenerimaan,
                                                             @Field("total_harga_transaksi") Integer totalHargaTransaksi,
                                                             @Field("metode_pembayaran") String metodePembayaran);
+
+    @FormUrlEncoded
+    @POST("api/isikeranjang")
+    io.reactivex.Observable<ModelResponse<IsiKeranjang>> addToChart(@Field("id_keranjang") Integer idKeranjang,
+                                                                              @Field("id_barang") Integer idBarang);
+
+    @FormUrlEncoded
+    @POST("api/keranjang")
+    io.reactivex.Observable<ModelResponse<Keranjang>> setCart(@Field("id_pembeli") Integer idPembeli,
+                                               @Field("total_harga_keranjang") Float total);
 }

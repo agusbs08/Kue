@@ -32,6 +32,8 @@ public class Pembeli implements Serializable{
     @SerializedName("notlp_pem")
     private String noTlp;
 
+    @SerializedName("id_keranjang")
+    private Integer idKeranjang;
 
     public Pembeli(){
 
@@ -105,4 +107,11 @@ public class Pembeli implements Serializable{
 
     public void setNoTlp(String noTlp) { this.noTlp = noTlp; }
 
+    public Integer getIdKeranjang() {
+        return idKeranjang;
+    }
+
+    public void setIdKeranjang(Integer idKeranjang) {
+        this.idKeranjang = idKeranjang;
+    }
 }
