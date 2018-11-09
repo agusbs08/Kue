@@ -13,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -20,10 +21,12 @@ import android.widget.Toast;
 
 import com.marketplace.kelompok2.kue.BerhasilActivity;
 import com.marketplace.kelompok2.kue.R;
+import com.marketplace.kelompok2.kue.common.UserState;
 import com.marketplace.kelompok2.kue.model.Barang;
 import com.marketplace.kelompok2.kue.model.BarangTokoList;
 import com.marketplace.kelompok2.kue.model.list.BarangList;
 import com.marketplace.kelompok2.kue.model.response.DataResponse;
+import com.marketplace.kelompok2.kue.ui.home.HomeActivity;
 import com.marketplace.kelompok2.kue.ui.listtoko.PilihTokoActivity;
 import com.marketplace.kelompok2.kue.ui.nota.NotaActivity;
 
@@ -32,6 +35,7 @@ import java.util.ArrayList;
 public class PilihBahanActivity extends AppCompatActivity implements PilihBahanView {
 
 
+    private ProgressBar pb;
     private String[] listBahan;
     private RecyclerView recyclerView;
     private PilihBahanRecyclerViewAdapter adapter;
@@ -48,6 +52,7 @@ public class PilihBahanActivity extends AppCompatActivity implements PilihBahanV
         setContentView(R.layout.activity_pilih_bahan);
         initData();
         initView();
+        hideLoading();
         actionBtnOnclick();
     }
 
@@ -56,11 +61,13 @@ public class PilihBahanActivity extends AppCompatActivity implements PilihBahanV
         Intent intent = getIntent();
         listBahan = intent.getStringArrayExtra("listBahan");
         BarangTokoList barangTokoList = (BarangTokoList) intent.getSerializableExtra("barangTokoList");
+        UserState.getInstance().setPenjual(barangTokoList.getPenjual());
         listBarang.add(barangTokoList);
     }
 
     private void initView(){
         listViewHolder = new ArrayList<>();
+        pb = findViewById(R.id.pb_pilih_bahan);
         recyclerView = findViewById(R.id.rv_listbarang_pilih_bahan);
         adapter = new PilihBahanRecyclerViewAdapter(listBarang, getApplicationContext(), listViewHolder);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
@@ -87,13 +94,18 @@ public class PilihBahanActivity extends AppCompatActivity implements PilihBahanV
         btnTes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                BarangList listBarangs = new BarangList(getListBahan());
-                Intent intent = new Intent(getApplicationContext(), NotaActivity.class);
-                intent.putExtra("listBarang", listBarangs);
-                intent.putExtra("penjual", listBarang.get(0).getPenjual());
-                startActivity(intent);
+                ArrayList<Barang> listBarangs = getListBahan();
+                presenter.addToCart(listBarangs, getTotalHarga(listBarangs));
             }
         });
+    }
+
+    private Float getTotalHarga(ArrayList<Barang> listBarang){
+        Float total = new Float(0);
+        for(Barang barang : listBarang){
+            total += barang.getHarga();
+        }
+        return total;
     }
 
     private ArrayList<Barang> getListBahan(){
@@ -141,12 +153,24 @@ public class PilihBahanActivity extends AppCompatActivity implements PilihBahanV
     }
 
     @Override
-    public void showLoading() {
+    public void actionAddToCartSuccess() {
+        Toast.makeText(getApplicationContext(), "Add to cart success", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+        startActivity(intent);
+    }
 
+    @Override
+    public void actionAddToCartFailed() {
+        Toast.makeText(getApplicationContext(), "Add to cart failed", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void showLoading() {
+        pb.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hideLoading() {
-
+        pb.setVisibility(View.GONE);
     }
 }

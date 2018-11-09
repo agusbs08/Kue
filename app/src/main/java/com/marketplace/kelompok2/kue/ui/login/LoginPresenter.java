@@ -65,7 +65,7 @@ public class LoginPresenter extends BasePresenterNetwork{
                     Pembeli pembeli1 = response.body().getModel();
                     Log.d("Success", response.message());
                     view.hideLoading();
-                    view.actionLoginSuccess(pembeli1.getId());
+                    view.actionLoginSuccess(pembeli1);
                 }
                 else{
                     view.hideLoading();
@@ -96,7 +96,7 @@ public class LoginPresenter extends BasePresenterNetwork{
                 if(response.isSuccessful()){
                     Pembeli pembeli1 = response.body().getModel();
                     view.hideLoading();
-                    view.actionLoginSuccess(pembeli1.getId());
+                    view.actionLoginSuccess(pembeli1);
                 }
                 else{
                     view.hideLoading();

@@ -27,14 +27,20 @@ public class RegisterPresenter extends BasePresenterNetwork{
         result.enqueue(new Callback<ModelResponse<Pembeli>>() {
             @Override
             public void onResponse(Call<ModelResponse<Pembeli>> call, Response<ModelResponse<Pembeli>> response) {
-                Pembeli pembeli = response.body().getModel();
-                view.hideLoading();
-                view.actionRegisterSuccess(pembeli.getId());
+                if(response.isSuccessful()){
+                    Pembeli pembeli = response.body().getModel();
+                    view.hideLoading();
+                    view.actionRegisterSuccess(pembeli);
+                }
+                else {
+                    Log.e("registerr", response.message());
+                    view.hideLoading();
+                }
             }
 
             @Override
             public void onFailure(Call<ModelResponse<Pembeli>> call, Throwable t) {
-                Log.d("register", "gagal");
+                Log.d("register", t.getMessage());
                 view.hideLoading();
                 view.showError();
             }

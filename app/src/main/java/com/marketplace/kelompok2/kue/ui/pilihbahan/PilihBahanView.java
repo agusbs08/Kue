@@ -7,4 +7,6 @@ import java.util.ArrayList;
 
 public interface PilihBahanView extends BaseView{
     void showListBahan(ArrayList<BarangTokoList> listBarang);
+    void actionAddToCartSuccess();
+    void actionAddToCartFailed();
 }

@@ -8,11 +8,17 @@ public class Keranjang implements Serializable{
     @SerializedName("id_keranjang")
     private Integer id;
 
-    @SerializedName("total_harga")
+    @SerializedName("total_harga_keranjang")
     private Float totalHarga;
 
-    @SerializedName("pembeli")
-    private Pembeli pembeli;
+    @SerializedName("id_pembeli")
+    private Integer id_pembeli;
+
+    @SerializedName("created_at")
+    private String createdAt;
+
+    @SerializedName("updated_at")
+    private String updateAt;
 
     public Keranjang(){
 
@@ -34,11 +40,27 @@ public class Keranjang implements Serializable{
         this.totalHarga = totalHarga;
     }
 
-    public Pembeli getPembeli() {
-        return pembeli;
+    public Integer getId_pembeli() {
+        return id_pembeli;
     }
 
-    public void setPembeli(Pembeli pembeli) {
-        this.pembeli = pembeli;
+    public void setId_pembeli(Integer id_pembeli) {
+        this.id_pembeli = id_pembeli;
+    }
+
+    public String getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(String createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public String getUpdateAt() {
+        return updateAt;
+    }
+
+    public void setUpdateAt(String updateAt) {
+        this.updateAt = updateAt;
     }
 }

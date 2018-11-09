@@ -22,6 +22,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.marketplace.kelompok2.kue.BerhasilActivity;
 import com.marketplace.kelompok2.kue.R;
+import com.marketplace.kelompok2.kue.common.UserState;
 import com.marketplace.kelompok2.kue.model.Pembeli;
 import com.marketplace.kelompok2.kue.ui.home.HomeActivity;
 import com.marketplace.kelompok2.kue.ui.register.RegisterActivity;
@@ -127,9 +128,10 @@ public class LoginActivity extends AppCompatActivity implements LoginView{
     }
 
     @Override
-    public void actionLoginSuccess(Integer id) {
+    public void actionLoginSuccess(Pembeli pembeli) {
         Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
-        intent.putExtra("idUser", id);
+        UserState.getInstance().setIdUser(pembeli.getId());
+        UserState.getInstance().setPembeli(pembeli);
         startActivity(intent);
         finish();
     }

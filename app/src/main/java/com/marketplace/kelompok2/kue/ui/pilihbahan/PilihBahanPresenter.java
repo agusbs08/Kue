@@ -3,9 +3,13 @@ package com.marketplace.kelompok2.kue.ui.pilihbahan;
 import android.util.Log;
 
 import com.marketplace.kelompok2.kue.base.BasePresenterNetwork;
+import com.marketplace.kelompok2.kue.common.UserState;
 import com.marketplace.kelompok2.kue.model.Barang;
 import com.marketplace.kelompok2.kue.model.BarangTokoList;
+import com.marketplace.kelompok2.kue.model.Keranjang;
+import com.marketplace.kelompok2.kue.model.list.BarangList;
 import com.marketplace.kelompok2.kue.model.response.DataResponse;
+import com.marketplace.kelompok2.kue.model.response.ModelResponse;
 
 import java.util.ArrayList;
 
@@ -42,6 +46,26 @@ public class PilihBahanPresenter extends BasePresenterNetwork {
 
             }
         });
+    }
+
+    public void addToCart(ArrayList<Barang> listBarang, Float total){
+        view.showLoading();
+        Observable.concat(
+                Observable.fromIterable(listBarang).flatMap(barang ->
+                        service.addToChart(UserState.getInstance().getPembeli().getIdKeranjang(), barang.getId())),
+                service.setCart(UserState.getInstance().getIdUser(), total)
+        )
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(modelResponse -> {
+            view.hideLoading();
+            view.actionAddToCartSuccess();
+        }
+        ,throwable -> {
+            view.hideLoading();
+            Log.e("addToChart", throwable.getMessage());
+            view.actionAddToCartFailed();
+                });
     }
 
 }
