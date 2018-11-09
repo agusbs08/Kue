@@ -26,6 +26,5 @@
             app:itemBackground="@android:color/white"
             app:menu="@menu/bottom_navigation_menu_home"
             />
-
     </LinearLayout>
 </RelativeLayout>

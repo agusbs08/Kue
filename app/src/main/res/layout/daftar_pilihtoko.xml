@@ -30,7 +30,6 @@
                 android:layout_marginBottom="27dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="27dp"
-                android:background="@mipmap/ic_launcher"
                 android:contentDescription="@string/todo1"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
