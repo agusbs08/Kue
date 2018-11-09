@@ -12,27 +12,28 @@
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="match_parent"
+        >
 
         <ImageView
             android:id="@+id/img_item_wishlist"
             android:layout_width="90dp"
             android:layout_height="90dp"
             android:background="@drawable/card_wishlist"
+            android:scaleType="centerCrop"
             card_view:srcCompat="@drawable/ic_launcher_background"
             tools:ignore="ContentDescription,VectorDrawableCompat" />
 
         <TextView
             android:id="@+id/tv_resep_wishlist"
-            android:layout_width="wrap_content"
+            android:layout_width="220dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="23dp"
             android:layout_marginStart="10dp"
             android:layout_marginTop="20dp"
             android:text="Nama Resep"
             android:textColor="@color/black"
-            android:textSize="17sp"
+            android:textSize="12sp"
             card_view:layout_constraintBottom_toBottomOf="parent"
             card_view:layout_constraintStart_toEndOf="@+id/img_item_wishlist"
             card_view:layout_constraintTop_toTopOf="parent"
