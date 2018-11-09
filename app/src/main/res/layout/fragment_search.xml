@@ -20,18 +20,25 @@
             android:hint="@string/action_search"
             android:inputType="text"
             android:background="@drawable/rounded_search"
-            android:layout_margin="20dp"/>
+            android:layout_margin="20dp"
+            android:drawableStart="@drawable/ic_search"
+            android:paddingStart="20dp" />
 
     </android.support.design.widget.AppBarLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
     <ProgressBar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/pb_fragment_search"/>
-    <android.support.v7.widget.RecyclerView
-        android:layout_margin="20dp"
+
+        <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/rv_fragment_search"
-        />
+        android:id="@+id/rv_fragment_search" />
 
+    </android.support.constraint.ConstraintLayout>
 </LinearLayout>

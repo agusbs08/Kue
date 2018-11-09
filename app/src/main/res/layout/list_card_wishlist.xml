@@ -10,7 +10,7 @@
     card_view:cardElevation="10dp"
     card_view:cardMaxElevation="30dp">
 
-    <LinearLayout
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -21,72 +21,38 @@
             android:layout_height="90dp"
             android:background="@drawable/card_wishlist"
             card_view:srcCompat="@drawable/ic_launcher_background"
-            tools:ignore="VectorDrawableCompat"
-            android:contentDescription="TODO" />
+            tools:ignore="ContentDescription,VectorDrawableCompat" />
 
-       <LinearLayout
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:orientation="vertical">
+        <TextView
+            android:id="@+id/tv_resep_wishlist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="23dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="20dp"
+            android:text="Nama Resep"
+            android:textColor="@color/black"
+            android:textSize="17sp"
+            card_view:layout_constraintBottom_toBottomOf="parent"
+            card_view:layout_constraintStart_toEndOf="@+id/img_item_wishlist"
+            card_view:layout_constraintTop_toTopOf="parent"
+            android:layout_marginLeft="10dp" />
 
-           <TextView
-               android:id="@+id/tv_item_wishlist"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:paddingLeft="20dp"
-               android:paddingTop="15dp"
-               android:text="@string/nama_item"
-               android:textSize="12dp" />
+        <ImageButton
+            android:id="@+id/btn_remove_wishlist"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="right"
+            android:layout_marginBottom="30dp"
+            android:layout_marginTop="30dp"
+            android:background="?android:attr/selectableItemBackground"
+            android:contentDescription="TODO"
+            android:src="@drawable/ic_trash"
+            android:tint="@color/black"
+            card_view:layout_constraintBottom_toBottomOf="parent"
+            card_view:layout_constraintEnd_toEndOf="parent"
+            card_view:layout_constraintTop_toTopOf="parent"
+            android:layout_marginRight="16dp" />
 
-
-           <LinearLayout
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:orientation="horizontal">
-
-               <TextView
-                   android:id="@+id/tv_harga_wishlist"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:paddingLeft="20dp"
-                   android:paddingTop="15dp"
-                   android:text="Rp 5.000"
-                   android:textSize="12dp"
-                   android:textStyle="bold" />
-
-           </LinearLayout>
-
-       </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="50dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center|right"
-            android:orientation="vertical">
-
-            <ImageButton
-                android:id="@+id/btn_addtochart_wishlist"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_gravity="right"
-                android:layout_marginRight="10dp"
-                android:background="?android:attr/selectableItemBackground"
-                android:src="@drawable/ic_shopping_cartx"
-                android:tint="@color/black"
-                android:contentDescription="TODO" />
-
-            <ImageButton
-                android:id="@+id/btn_remove_wishlist"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_gravity="right"
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="10dp"
-                android:background="?android:attr/selectableItemBackground"
-                android:src="@drawable/ic_trash"
-                android:tint="@color/black"
-                android:contentDescription="TODO" />
-        </LinearLayout>
-    </LinearLayout>
+    </android.support.constraint.ConstraintLayout>
 </android.support.v7.widget.CardView>

@@ -13,11 +13,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".ui.login.LoginActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".BerhasilActivity" />
         <activity android:name=".ui.register.RegisterActivity" />
@@ -25,7 +20,14 @@
         <activity android:name=".ui.resep.ResepActivity" />
         <activity android:name=".ui.listtoko.PilihTokoActivity" />
         <activity android:name=".ui.pilihbahan.PilihBahanActivity" />
-        <activity android:name=".ui.nota.NotaActivity"></activity>
+        <activity android:name=".ui.nota.NotaActivity" />
+        <activity android:name=".ui.splash.SplashActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
