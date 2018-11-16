@@ -60,7 +60,7 @@
         android:background="@drawable/rounded_button"
         android:text="Back to Home"
         android:textAllCaps="false"
-        android:textColor="#FFFF"
+        android:textColor="@color/biru"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

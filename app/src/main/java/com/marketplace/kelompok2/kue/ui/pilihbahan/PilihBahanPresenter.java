@@ -50,22 +50,37 @@ public class PilihBahanPresenter extends BasePresenterNetwork {
 
     public void addToCart(ArrayList<Barang> listBarang, Float total){
         view.showLoading();
-        Observable.concat(
-                Observable.fromIterable(listBarang).flatMap(barang ->
-                        service.addToChart(UserState.getInstance().getPembeli().getIdKeranjang(), barang.getId())),
-                service.setCart(UserState.getInstance().getIdUser(), total)
-        )
-        .subscribeOn(Schedulers.io())
-        .observeOn(AndroidSchedulers.mainThread())
-        .subscribe(modelResponse -> {
-            view.hideLoading();
-            view.actionAddToCartSuccess();
-        }
-        ,throwable -> {
-            view.hideLoading();
-            Log.e("addToChart", throwable.getMessage());
-            view.actionAddToCartFailed();
-                });
+        Observable.fromIterable(listBarang)
+                .flatMap(barang -> service.addToChart(UserState.getInstance().getPembeli().getIdKeranjang(), barang.getId()))
+                .toList()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(modelResponses -> setCart(total));
     }
 
+    private void setCart(Float total){
+        Call<ModelResponse<Keranjang>> result = service.setCart(UserState.getInstance().getPembeli().getId(), total.intValue());
+        result.enqueue(new Callback<ModelResponse<Keranjang>>() {
+            @Override
+            public void onResponse(Call<ModelResponse<Keranjang>> call, Response<ModelResponse<Keranjang>> response) {
+                if(response.isSuccessful()){
+                    view.actionAddToCartSuccess();
+                }
+                else {
+                    Log.e("setcartr", response.message());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ModelResponse<Keranjang>> call, Throwable t) {
+                Log.e("setcartf", t.getMessage());
+            }
+        });
+    }
+
+
+    private void showError(String error){
+        Log.e("adToCart", error);
+        view.actionAddToCartFailed();
+    }
 }

@@ -37,7 +37,7 @@
 
             <TextView
                 android:id="@+id/tv_nama_produk_resep_beranda"
-                android:layout_width="200dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="310dp"
                 android:layout_marginLeft="16dp"
@@ -49,15 +49,6 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/img_resep" />
-
-            <Button
-                android:id="@+id/btn_addwishlist_resep"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Add to wishlist"
-                android:textColor="@color/black"
-                app:layout_constraintStart_toEndOf="@id/tv_nama_produk_resep_beranda"
-                app:layout_constraintTop_toBottomOf="@+id/img_resep"/>
 
 
             <TextView
@@ -75,7 +66,15 @@
                 app:layout_constraintTop_toBottomOf="@+id/tv_nama_produk_resep_beranda"
                 tools:ignore="HardcodedText" />
 
+            <ImageView
+                android:id="@+id/btn_addwishlist_resep"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/tv_nama_produk_resep_beranda"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginRight="20dp"/>
             <TextView
+
                 android:id="@+id/tv_isibahan_resep_beranda"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

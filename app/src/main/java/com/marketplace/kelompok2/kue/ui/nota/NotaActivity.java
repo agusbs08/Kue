@@ -14,8 +14,10 @@ import android.widget.Toast;
 import com.marketplace.kelompok2.kue.BerhasilActivity;
 import com.marketplace.kelompok2.kue.R;
 import com.marketplace.kelompok2.kue.model.Barang;
+import com.marketplace.kelompok2.kue.model.BarangKeranjang;
 import com.marketplace.kelompok2.kue.model.Penjual;
 import com.marketplace.kelompok2.kue.model.list.BarangList;
+import com.marketplace.kelompok2.kue.model.list.KeranjangList;
 
 import java.util.ArrayList;
 
@@ -32,6 +34,7 @@ public class NotaActivity extends AppCompatActivity implements NotaView{
     private Button btnBayar;
 
     private Float total;
+    private ArrayList<BarangKeranjang> keranjangList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +48,7 @@ public class NotaActivity extends AppCompatActivity implements NotaView{
     private void initData(){
         Intent intent = getIntent();
         listBarang = (BarangList) intent.getSerializableExtra("listBarang");
+        keranjangList = (ArrayList<BarangKeranjang>) intent.getSerializableExtra("listKeranjang");
         penjual = (Penjual) intent.getSerializableExtra("penjual");
     }
 
@@ -65,7 +69,7 @@ public class NotaActivity extends AppCompatActivity implements NotaView{
         btnBayar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                presenter.setTransaksi(listBarang.getListBarang(), total);
+                presenter.setTransaksi(listBarang.getListBarang(), total, keranjangList);
             }
         });
     }

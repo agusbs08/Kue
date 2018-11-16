@@ -5,6 +5,7 @@ import android.util.Log;
 import com.marketplace.kelompok2.kue.base.BasePresenterNetwork;
 import com.marketplace.kelompok2.kue.common.UserState;
 import com.marketplace.kelompok2.kue.model.Barang;
+import com.marketplace.kelompok2.kue.model.BarangKeranjang;
 import com.marketplace.kelompok2.kue.model.response.DetailTransaksi;
 import com.marketplace.kelompok2.kue.model.response.ModelResponse;
 
@@ -26,7 +27,7 @@ public class NotaPresenter extends BasePresenterNetwork {
         this.view = view;
     }
 
-    public void setTransaksi(ArrayList<Barang> listBarang, Float total){
+    public void setTransaksi(ArrayList<Barang> listBarang, Float total, ArrayList<BarangKeranjang> listKeranjang){
         view.showLoading();
         Call<ModelResponse<DetailTransaksi>> result = service.setDetailTransaksi("Belum Terbayar",
                 "Sedang Diproses",
@@ -40,7 +41,7 @@ public class NotaPresenter extends BasePresenterNetwork {
             public void onResponse(Call<ModelResponse<DetailTransaksi>> call, Response<ModelResponse<DetailTransaksi>> response) {
                 if(response.isSuccessful()){
                     Log.d("getDetailTransaksi","Berhasil");
-                    uploadListBarang(listBarang, response.body().getModel().getId());
+                    uploadListBarang(listBarang, response.body().getModel().getId(), listKeranjang);
                 }
                 else{
                     Log.d("getDetailTransaksir",response.message());
@@ -54,7 +55,7 @@ public class NotaPresenter extends BasePresenterNetwork {
         });
     }
 
-    private void uploadListBarang(ArrayList<Barang> listBarang, Integer idDetailTransaksi){
+    private void uploadListBarang(ArrayList<Barang> listBarang, Integer idDetailTransaksi, ArrayList<BarangKeranjang> listKeranjang){
         Observable.fromIterable(listBarang)
                 .flatMap(barang -> service.uploadBarang(UserState.getInstance().getIdUser(),
                                                         barang.getId(),
@@ -64,10 +65,21 @@ public class NotaPresenter extends BasePresenterNetwork {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe( modelResponses -> {
-                    view.hideLoading();
-                    view.showActionSuccess();
+                    deleteKeranjang(listKeranjang);
                 },throwable -> {
                     Log.e("error",throwable.getMessage());
+                });
+    }
+
+    private void deleteKeranjang(ArrayList<BarangKeranjang> listBarang){
+        Observable.fromIterable(listBarang).flatMap(
+                barangKeranjang -> service.deleteKeranjang(barangKeranjang.getIdIsiKeranjang()))
+                .toList()
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(modelResponses -> {
+                    view.hideLoading();
+                    view.showActionSuccess();
                 });
     }
 }

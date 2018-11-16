@@ -64,7 +64,6 @@ public class WishlistFragment extends Fragment implements WishlistView{
 
     @Override
     public void showListWishlist(ArrayList<ResepFavorit> listResepFavorit) {
-        Toast.makeText(getContext(), listResepFavorit.get(0).getResep().getNamaResep(), Toast.LENGTH_SHORT).show();
         this.resepFavorits.clear();
         this.resepFavorits.addAll(listResepFavorit);
         adapter.notifyDataSetChanged();

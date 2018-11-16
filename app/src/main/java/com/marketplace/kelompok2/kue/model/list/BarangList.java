@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 public class BarangList implements Serializable{
     private ArrayList<Barang> listBarang;
+
     public BarangList(ArrayList<Barang> listBarang){
         this.listBarang = listBarang;
     }

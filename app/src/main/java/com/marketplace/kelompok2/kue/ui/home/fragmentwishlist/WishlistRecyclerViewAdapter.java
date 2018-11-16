@@ -21,6 +21,7 @@ import com.marketplace.kelompok2.kue.model.Resep;
 import com.marketplace.kelompok2.kue.model.ResepFavorit;
 import com.marketplace.kelompok2.kue.model.list.ResepList;
 import com.marketplace.kelompok2.kue.ui.home.HomeActivity;
+import com.marketplace.kelompok2.kue.ui.resep.ResepActivity;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -59,6 +60,7 @@ public class WishlistRecyclerViewAdapter extends RecyclerView.Adapter<WishlistRe
         private View view;
         private Context context;
         private ImageButton btnHapus;
+        private WishlistRecyclerViewPresenter presenter;
 
         public WishlistViewHolder(View view, Context context){
             super(view);
@@ -71,6 +73,7 @@ public class WishlistRecyclerViewAdapter extends RecyclerView.Adapter<WishlistRe
             imageResep = view.findViewById(R.id.img_item_wishlist);
             namaResep = view.findViewById(R.id.tv_resep_wishlist);
             btnHapus = view.findViewById(R.id.btn_remove_wishlist);
+            presenter = new WishlistRecyclerViewPresenter(this);
         }
 
         void bindItem(ResepFavorit resepFavorit){
@@ -78,6 +81,22 @@ public class WishlistRecyclerViewAdapter extends RecyclerView.Adapter<WishlistRe
             Picasso.get().load(BuildConfig.BASE_STORAGE + resep.getImageResep()).into(imageResep);
             namaResep.setText(resep.getNamaResep());
             initBtnHapus(resep.getNamaResep(), resepFavorit.getIdFavorit());
+            setOnclickItemView(resep);
+        }
+
+        private void setOnclickItemView(Resep resep){
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context, ResepActivity.class);
+                    intent.putExtra("idResep", resep.getId());
+                    intent.putExtra("namaResep", resep.getNamaResep());
+                    intent.putExtra("caraResep", resep.getListCara());
+                    intent.putExtra("bahanResep", resep.getListBahan());
+                    intent.putExtra("imageResep", BuildConfig.BASE_STORAGE + resep.getImageResep());
+                    context.startActivity(intent);
+                }
+            });
         }
 
         private void initBtnHapus(String namaResep, Integer idFavorit){
@@ -89,7 +108,7 @@ public class WishlistRecyclerViewAdapter extends RecyclerView.Adapter<WishlistRe
                     builder.setCancelable(false);
                     builder.setPositiveButton("YA", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
-
+                            presenter.deleteWishlist(idFavorit);
                         }
                     });
                     builder.setNegativeButton("TIDAK", new DialogInterface.OnClickListener() {

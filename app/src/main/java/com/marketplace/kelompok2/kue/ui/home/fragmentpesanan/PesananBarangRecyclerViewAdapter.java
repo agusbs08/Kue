@@ -1,4 +1,4 @@
-package com.marketplace.kelompok2.kue.ui.home.fragmentkeranjang;
+package com.marketplace.kelompok2.kue.ui.home.fragmentpesanan;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -12,30 +12,31 @@ import android.widget.TextView;
 import com.marketplace.kelompok2.kue.BuildConfig;
 import com.marketplace.kelompok2.kue.R;
 import com.marketplace.kelompok2.kue.model.Barang;
-import com.marketplace.kelompok2.kue.model.BarangKeranjang;
+import com.marketplace.kelompok2.kue.model.BarangTransaksi;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-public class KeranjangRecyclerViewAdapter extends RecyclerView.Adapter<KeranjangRecyclerViewAdapter.KeranjangViewHolder>{
+public class PesananBarangRecyclerViewAdapter extends RecyclerView.Adapter<PesananBarangRecyclerViewAdapter.PesananBarangViewHolder> {
 
-    private ArrayList<BarangKeranjang> listPesanan;
+    private ArrayList<BarangTransaksi> listPesanan;
     private Context context;
 
-    public KeranjangRecyclerViewAdapter(Context context, ArrayList<BarangKeranjang> listPesanan){
+    public PesananBarangRecyclerViewAdapter(Context context, ArrayList<BarangTransaksi> listPesanan){
         this.context = context;
         this.listPesanan = listPesanan;
     }
 
     @NonNull
     @Override
-    public KeranjangViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new KeranjangViewHolder(
-                LayoutInflater.from(parent.getContext()).inflate(R.layout.list_keranjang, parent,false), context);
+    public PesananBarangViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return new PesananBarangViewHolder(LayoutInflater
+                .from(parent.getContext())
+                .inflate(R.layout.item_pesanan, parent, false), context);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull KeranjangViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull PesananBarangViewHolder holder, int position) {
         holder.bindItem(listPesanan.get(position));
     }
 
@@ -44,7 +45,7 @@ public class KeranjangRecyclerViewAdapter extends RecyclerView.Adapter<Keranjang
         return listPesanan.size();
     }
 
-    class KeranjangViewHolder extends RecyclerView.ViewHolder{
+    class PesananBarangViewHolder extends RecyclerView.ViewHolder{
 
         private View view;
         private Context context;
@@ -52,7 +53,7 @@ public class KeranjangRecyclerViewAdapter extends RecyclerView.Adapter<Keranjang
         private TextView namaPesanan;
         private TextView hargaPesanan;
 
-        public KeranjangViewHolder(View view, Context context){
+        public PesananBarangViewHolder(View view, Context context){
             super(view);
             this.view = view;
             this.context = context;
@@ -60,13 +61,13 @@ public class KeranjangRecyclerViewAdapter extends RecyclerView.Adapter<Keranjang
         }
 
         private void initView(View view){
-            imageView = view.findViewById(R.id.iv_foto_keranjang);
+            imageView = view.findViewById(R.id.iv_foto_pesanan);
             namaPesanan = view.findViewById(R.id.tv_namaitem_pesanan);
-            hargaPesanan = view.findViewById(R.id.tv_harga_keranjang);
+            hargaPesanan = view.findViewById(R.id.tv_harga_pesanan);
         }
 
-        public void bindItem(BarangKeranjang barangKeranjang){
-            Barang barang = barangKeranjang.getBarang();
+        public void bindItem(BarangTransaksi barangTransaksi){
+            Barang barang = barangTransaksi.getBarang();
             Picasso.get().load(BuildConfig.BASE_STORAGE + barang.getGambar()).into(imageView);
             namaPesanan.setText(barang.getNama());
             hargaPesanan.setText(barang.getHarga().toString());

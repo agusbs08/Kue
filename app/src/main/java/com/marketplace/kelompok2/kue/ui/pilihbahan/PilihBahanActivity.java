@@ -95,7 +95,9 @@ public class PilihBahanActivity extends AppCompatActivity implements PilihBahanV
             @Override
             public void onClick(View v) {
                 ArrayList<Barang> listBarangs = getListBahan();
-                presenter.addToCart(listBarangs, getTotalHarga(listBarangs));
+                Float total = getTotalHarga(listBarangs);
+                Toast.makeText(getApplicationContext(), total.toString(), Toast.LENGTH_SHORT).show();
+                presenter.addToCart(listBarangs, total);
             }
         });
     }

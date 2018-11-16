@@ -76,20 +76,14 @@
                 app:layout_constraintTop_toBottomOf="@+id/rv_listbarang_keranjang"
                 tools:ignore="RtlSymmetry" />
 
-            <CheckBox
-                android:id="@+id/cb_list_keranjang"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="11dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginTop="11dp"
-                app:layout_constraintBottom_toTopOf="@+id/rv_listbarang_nota"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginRight="16dp" />
-
             //list keranjang
-
+            <Button
+                android:id="@+id/btn_bayar_keranjang"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/blue_dompet"
+                android:text="Checkout"
+                app:layout_constraintTop_toBottomOf="@+id/tv_totalharga_keranjang"/>
         </android.support.constraint.ConstraintLayout>
     </android.support.v7.widget.CardView>
 </android.support.constraint.ConstraintLayout>

@@ -5,6 +5,7 @@ import android.provider.ContactsContract;
 import android.view.Display;
 
 import com.marketplace.kelompok2.kue.model.Barang;
+import com.marketplace.kelompok2.kue.model.BarangKeranjang;
 import com.marketplace.kelompok2.kue.model.BarangTokoList;
 import com.marketplace.kelompok2.kue.model.Favorit;
 import com.marketplace.kelompok2.kue.model.IsiKeranjang;
@@ -12,11 +13,14 @@ import com.marketplace.kelompok2.kue.model.Keranjang;
 import com.marketplace.kelompok2.kue.model.Pembeli;
 import com.marketplace.kelompok2.kue.model.Penjual;
 import com.marketplace.kelompok2.kue.model.Resep;
+import com.marketplace.kelompok2.kue.model.list.BarangTransaksiList;
+import com.marketplace.kelompok2.kue.model.list.KeranjangList;
 import com.marketplace.kelompok2.kue.model.list.ResepList;
 import com.marketplace.kelompok2.kue.model.response.DataResponse;
 import com.marketplace.kelompok2.kue.model.response.DetailTransaksi;
 import com.marketplace.kelompok2.kue.model.response.ModelResponse;
 
+import retrofit2.http.DELETE;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -96,8 +100,8 @@ public interface DataService {
 
     @FormUrlEncoded
     @POST("api/keranjang")
-    io.reactivex.Observable<ModelResponse<Keranjang>> setCart(@Field("id_pembeli") Integer idPembeli,
-                                               @Field("total_harga_keranjang") Float total);
+    Call<ModelResponse<Keranjang>> setCart(@Field("id_pembeli") Integer idPembeli,
+                                               @Field("total_harga_keranjang") Integer total);
 
     @GET("api/favorit/{id_pembeli}")
     Call<ResepList> getAllWishlist(@Path("id_pembeli") Integer idUser);
@@ -106,4 +110,17 @@ public interface DataService {
     @POST("api/favorit")
     Call<Favorit> addWishlist(@Field("id_pembeli") Integer idUser,
                               @Field("id_resep") Integer idResep);
+
+    @DELETE("api/favorit/{id_favorit}")
+    Call<ModelResponse<Favorit>> deleteWishlist(@Path("id_favorit") Integer idFavorit);
+
+   @GET("api/isikeranjang/{id_keranjang}")
+    Call<KeranjangList> getALlKeranjang(@Path("id_keranjang") Integer idKeranjang);
+
+   @GET("api/transaksi/{id_user}")
+    Call<BarangTransaksiList> getAllTransaksi(@Path("id_user") Integer idUser);
+
+   @DELETE("api/isikeranjang/{id_keranjang}")
+    io.reactivex.Observable<ModelResponse<BarangKeranjang>> deleteKeranjang(@Path("id_keranjang") Integer idKeranjang);
+
 }

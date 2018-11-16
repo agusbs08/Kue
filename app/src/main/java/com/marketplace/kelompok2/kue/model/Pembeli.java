@@ -35,6 +35,9 @@ public class Pembeli implements Serializable{
     @SerializedName("id_keranjang")
     private Integer idKeranjang;
 
+    @SerializedName("alamat_pem")
+    private String alamat;
+
     public Pembeli(){
 
     }
@@ -113,5 +116,13 @@ public class Pembeli implements Serializable{
 
     public void setIdKeranjang(Integer idKeranjang) {
         this.idKeranjang = idKeranjang;
+    }
+
+    public String getAlamat() {
+        return alamat;
+    }
+
+    public void setAlamat(String alamat) {
+        this.alamat = alamat;
     }
 }

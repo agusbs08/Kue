@@ -21,7 +21,7 @@ public class ResepActivity extends AppCompatActivity implements ResepView {
     private TextView tvCaraMemasak;
     private ImageView imgImageResep;
     private Button btnBeli;
-    private Button btnAddWishlist;
+    private ImageView btnAddWishlist;
     private ResepPresenter presenter;
     private Integer idResep;
     private String namaResep;
@@ -29,6 +29,8 @@ public class ResepActivity extends AppCompatActivity implements ResepView {
     private String[] bahanResep;
     private String imageResep;
     private String[] justBahan;
+    private boolean status;
+    private Integer idFavorit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +41,7 @@ public class ResepActivity extends AppCompatActivity implements ResepView {
         initActionView();
         showData();
         setActionIntent();
-        presenter.getResep(idResep);
+        presenter.getResepStatus(idResep, getApplicationContext(), 0);
     }
 
     private void setActionIntent(){
@@ -105,7 +107,12 @@ public class ResepActivity extends AppCompatActivity implements ResepView {
         btnAddWishlist.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                presenter.addWishlist(idResep, getApplicationContext());
+                if (status == false){
+                    presenter.addWishlist(idResep, getApplicationContext());
+                }
+                else{
+                    presenter.deleteWishlist(idFavorit, getApplicationContext());
+                }
             }
         });
     }
@@ -113,5 +120,17 @@ public class ResepActivity extends AppCompatActivity implements ResepView {
     @Override
     public void showResep(Resep resep) {
         Picasso.get().load(BuildConfig.BASE_URL + resep.getImageResep()).into(imgImageResep);
+    }
+
+    @Override
+    public void setImageWishlist(boolean status, Integer idFavorit) {
+        this.status = status;
+        this.idFavorit = idFavorit;
+        if(status == false){
+            btnAddWishlist.setImageResource(R.drawable.ic_basic_heart);
+        }
+        else{
+            btnAddWishlist.setImageResource(R.drawable.ic_red_heart);
+        }
     }
 }
