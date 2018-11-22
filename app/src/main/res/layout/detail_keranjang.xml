@@ -77,13 +77,7 @@
                 tools:ignore="RtlSymmetry" />
 
             //list keranjang
-            <Button
-                android:id="@+id/btn_bayar_keranjang"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/blue_dompet"
-                android:text="Checkout"
-                app:layout_constraintTop_toBottomOf="@+id/tv_totalharga_keranjang"/>
+
         </android.support.constraint.ConstraintLayout>
     </android.support.v7.widget.CardView>
 </android.support.constraint.ConstraintLayout>

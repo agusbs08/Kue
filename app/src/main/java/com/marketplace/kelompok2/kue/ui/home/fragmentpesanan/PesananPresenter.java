@@ -1,7 +1,10 @@
 package com.marketplace.kelompok2.kue.ui.home.fragmentpesanan;
 
+import android.util.Log;
+
 import com.marketplace.kelompok2.kue.base.BasePresenterNetwork;
 import com.marketplace.kelompok2.kue.model.list.BarangTransaksiList;
+import com.marketplace.kelompok2.kue.model.response.DataResponse;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -16,18 +19,23 @@ public class PesananPresenter extends BasePresenterNetwork {
     }
 
     public void getListTransaksi(Integer idUser){
-        Call<BarangTransaksiList> result = service.getAllTransaksi(idUser);
-        result.enqueue(new Callback<BarangTransaksiList>() {
+        view.showLoading();
+        Call<DataResponse<BarangTransaksiList>> result = service.getAllTransaksi(idUser);
+        result.enqueue(new Callback<DataResponse<BarangTransaksiList>>() {
             @Override
-            public void onResponse(Call<BarangTransaksiList> call, Response<BarangTransaksiList> response) {
+            public void onResponse(Call<DataResponse<BarangTransaksiList>> call, Response<DataResponse<BarangTransaksiList>> response) {
                 if(response.isSuccessful()){
-                    view.showListPesanan(response.body().getListBarang());
+                    view.hideLoading();
+                    view.showListPesanan(response.body().getListData());
+                }
+                else{
+                    Log.e("getListPesananr", response.message());
                 }
             }
 
             @Override
-            public void onFailure(Call<BarangTransaksiList> call, Throwable t) {
-
+            public void onFailure(Call<DataResponse<BarangTransaksiList>> call, Throwable t) {
+                Log.e("getListPesananf", t.getMessage());
             }
         });
     }

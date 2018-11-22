@@ -29,7 +29,6 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_above="@+id/bottom_navigation_menu"
-        android:layout_marginBottom="56dp"
         android:layout_marginTop="520dp"
         android:background="@drawable/blue_dompet"
         app:layout_constraintBottom_toBottomOf="parent"

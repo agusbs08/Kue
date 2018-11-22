@@ -22,6 +22,7 @@ public class PilihTokoActivity extends AppCompatActivity implements PilihTokoVie
     private PilihTokoRecyclerViewAdapter adapter;
     private PilihTokoPresenter presenter;
     private String[] listBahan;
+    private String[] bahanResep;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +49,7 @@ public class PilihTokoActivity extends AppCompatActivity implements PilihTokoVie
     private void initData(){
         Intent intent = getIntent();
         listBahan = intent.getStringArrayExtra("listBahan");
+        bahanResep = intent.getStringArrayExtra("bahanResep");
     }
 
     private String setStrListBahan(){

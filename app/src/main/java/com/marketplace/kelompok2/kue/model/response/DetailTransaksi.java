@@ -1,6 +1,7 @@
 package com.marketplace.kelompok2.kue.model.response;
 
 import com.google.gson.annotations.SerializedName;
+import com.marketplace.kelompok2.kue.model.Penjual;
 
 import java.util.Date;
 
@@ -31,6 +32,9 @@ public class DetailTransaksi {
 
     @SerializedName("metode_pembayaran")
     private String metodePembayaran;
+
+    @SerializedName("id_penjual")
+    private Integer idPenjual;
 
     public Integer getId() {
         return id;
@@ -102,5 +106,13 @@ public class DetailTransaksi {
 
     public void setMetodePembayaran(String metodePembayaran) {
         this.metodePembayaran = metodePembayaran;
+    }
+
+    public Integer getIdPenjual() {
+        return idPenjual;
+    }
+
+    public void setIdPenjual(Integer idPenjual) {
+        this.idPenjual = idPenjual;
     }
 }

@@ -9,22 +9,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.marketplace.kelompok2.kue.BerhasilActivity;
 import com.marketplace.kelompok2.kue.R;
-import com.marketplace.kelompok2.kue.model.Barang;
 import com.marketplace.kelompok2.kue.model.BarangKeranjang;
-import com.marketplace.kelompok2.kue.model.Penjual;
-import com.marketplace.kelompok2.kue.model.list.BarangList;
 import com.marketplace.kelompok2.kue.model.list.KeranjangList;
-
-import java.util.ArrayList;
+import com.marketplace.kelompok2.kue.model.response.KeranjangResponse;
 
 public class NotaActivity extends AppCompatActivity implements NotaView{
 
-    private BarangList listBarang;
-    private Penjual penjual;
     private NotaRecyclerViewAdapter adapter;
     private NotaPresenter presenter;
 
@@ -34,8 +27,7 @@ public class NotaActivity extends AppCompatActivity implements NotaView{
     private Button btnBayar;
 
     private Float total;
-    private ArrayList<BarangKeranjang> keranjangList;
-
+    private KeranjangResponse keranjangResponse;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,9 +39,7 @@ public class NotaActivity extends AppCompatActivity implements NotaView{
 
     private void initData(){
         Intent intent = getIntent();
-        listBarang = (BarangList) intent.getSerializableExtra("listBarang");
-        keranjangList = (ArrayList<BarangKeranjang>) intent.getSerializableExtra("listKeranjang");
-        penjual = (Penjual) intent.getSerializableExtra("penjual");
+        keranjangResponse = (KeranjangResponse) intent.getSerializableExtra("keranjangResponse");
     }
 
     private void initView(){
@@ -57,7 +47,7 @@ public class NotaActivity extends AppCompatActivity implements NotaView{
         totalHarga = findViewById(R.id.tv_nominal_checkout);
         progressBar = findViewById(R.id.pb_checkout);
         btnBayar = findViewById(R.id.btn_bayar_checkout);
-        adapter = new NotaRecyclerViewAdapter(listBarang);
+        adapter = new NotaRecyclerViewAdapter(keranjangResponse.getListKeranjang());
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         recyclerView.setAdapter(adapter);
         presenter = new NotaPresenter(this);
@@ -69,18 +59,21 @@ public class NotaActivity extends AppCompatActivity implements NotaView{
         btnBayar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                presenter.setTransaksi(listBarang.getListBarang(), total, keranjangList);
+               // presenter.setTransaksi(listBarang.getListBarang(), total, keranjangList);
             }
         });
     }
 
     private void initTotalHarga(){
         Float total = new Float(0);
-        for(Barang barang : listBarang.getListBarang()){
-            total += barang.getHarga();
+        for(KeranjangList keranjangList : keranjangResponse.getListKeranjang()){
+            for(BarangKeranjang barangKeranjang : keranjangList.getListBarang()){
+                total += barangKeranjang.getBarang().getHarga();
+            }
         }
         this.total = total;
-        totalHarga.setText("RP " + total.toString());
+        Integer harga = total.intValue();
+        totalHarga.setText("RP " + harga.toString());
     }
 
     @Override

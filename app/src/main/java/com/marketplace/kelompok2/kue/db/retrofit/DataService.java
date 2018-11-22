@@ -18,6 +18,7 @@ import com.marketplace.kelompok2.kue.model.list.KeranjangList;
 import com.marketplace.kelompok2.kue.model.list.ResepList;
 import com.marketplace.kelompok2.kue.model.response.DataResponse;
 import com.marketplace.kelompok2.kue.model.response.DetailTransaksi;
+import com.marketplace.kelompok2.kue.model.response.KeranjangResponse;
 import com.marketplace.kelompok2.kue.model.response.ModelResponse;
 
 import retrofit2.http.DELETE;
@@ -115,10 +116,10 @@ public interface DataService {
     Call<ModelResponse<Favorit>> deleteWishlist(@Path("id_favorit") Integer idFavorit);
 
    @GET("api/isikeranjang/{id_keranjang}")
-    Call<KeranjangList> getALlKeranjang(@Path("id_keranjang") Integer idKeranjang);
+    Call<KeranjangResponse> getALlKeranjang(@Path("id_keranjang") Integer idKeranjang);
 
-   @GET("api/transaksi/{id_user}")
-    Call<BarangTransaksiList> getAllTransaksi(@Path("id_user") Integer idUser);
+   @GET("api/transaksi")
+    Call<DataResponse<BarangTransaksiList>> getAllTransaksi(@Query("id_pembeli") Integer idUser);
 
    @DELETE("api/isikeranjang/{id_keranjang}")
     io.reactivex.Observable<ModelResponse<BarangKeranjang>> deleteKeranjang(@Path("id_keranjang") Integer idKeranjang);

@@ -11,6 +11,7 @@
         android:layout_marginEnd="22dp"
         android:layout_marginStart="22dp"
         android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
         app:cardCornerRadius="20dp"
         app:cardElevation="8dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -61,16 +62,23 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/rv_listbarang_nota"
+            <android.support.v4.widget.NestedScrollView
+                android:id="@+id/scrollView"
                 android:layout_width="match_parent"
                 android:layout_height="180dp"
                 android:layout_marginTop="16dp"
-                android:background="#7D7D7D"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_namatoko_nota" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_namatoko_nota">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_listbarang_nota"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#7D7D7D"
+                    />
+            </android.support.v4.widget.NestedScrollView>
 
             <TextView
                 android:id="@+id/textView9"
@@ -82,7 +90,7 @@
                 android:text="Total : Rp"
                 android:textColor="#000"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/rv_listbarang_nota"
+                app:layout_constraintTop_toBottomOf="@+id/scrollView"
                 tools:ignore="HardcodedText" />
 
             <TextView
@@ -95,7 +103,7 @@
                 android:text="@string/total_pesanan"
                 android:textColor="#000"
                 app:layout_constraintStart_toEndOf="@+id/textView9"
-                app:layout_constraintTop_toBottomOf="@+id/rv_listbarang_nota"
+                app:layout_constraintTop_toBottomOf="@+id/scrollView"
                 tools:ignore="RtlSymmetry" />
 
             <TextView

@@ -5,6 +5,7 @@ import android.util.Log;
 import com.marketplace.kelompok2.kue.base.BasePresenterNetwork;
 import com.marketplace.kelompok2.kue.model.BarangKeranjang;
 import com.marketplace.kelompok2.kue.model.list.KeranjangList;
+import com.marketplace.kelompok2.kue.model.response.KeranjangResponse;
 
 import java.util.ArrayList;
 
@@ -24,21 +25,22 @@ public class KeranjangPresenter extends BasePresenterNetwork {
     }
 
     public void getListKeranjang(Integer idKeranjang){
-        Call<KeranjangList> result = service.getALlKeranjang(idKeranjang);
-        result.enqueue(new Callback<KeranjangList>() {
+        Call<KeranjangResponse> result = service.getALlKeranjang(idKeranjang);
+        result.enqueue(new Callback<KeranjangResponse>() {
             @Override
-            public void onResponse(Call<KeranjangList> call, Response<KeranjangList> response) {
+            public void onResponse(Call<KeranjangResponse> call, Response<KeranjangResponse> response) {
                 if(response.isSuccessful()){
-                   view.showListKeranjang(response.body().getListBarang());
+                    Log.e("getListKeranjangr", "success");
+                    view.showListKeranjang(response.body());
                 }
                 else{
-                    Log.e("listpesanan", response.message());
+                    Log.e("getListKeranjangr", response.message());
                 }
             }
 
             @Override
-            public void onFailure(Call<KeranjangList> call, Throwable t) {
-                Log.e("listpesananf", t.getMessage());
+            public void onFailure(Call<KeranjangResponse> call, Throwable t) {
+                Log.e("getListKeranjangf", t.getMessage());
             }
         });
     }

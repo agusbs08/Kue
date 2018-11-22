@@ -4,27 +4,35 @@ import com.google.gson.annotations.SerializedName;
 
 import com.marketplace.kelompok2.kue.model.BarangKeranjang;
 import com.marketplace.kelompok2.kue.model.Keranjang;
+import com.marketplace.kelompok2.kue.model.Penjual;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 
 public class KeranjangList implements Serializable{
-    @SerializedName("keranjang")
-    private Keranjang keranjang;
+    @SerializedName("id_penjual")
+    private Integer idPenjual;
+
+    @SerializedName("penjual")
+    private Penjual penjual;
 
     @SerializedName("list_barang")
     private ArrayList<BarangKeranjang> listBarang;
 
-    public KeranjangList(){
-
+    public Integer getIdPenjual() {
+        return idPenjual;
     }
 
-    public Keranjang getKeranjang() {
-        return keranjang;
+    public void setIdPenjual(Integer idPenjual) {
+        this.idPenjual = idPenjual;
     }
 
-    public void setKeranjang(Keranjang keranjang) {
-        this.keranjang = keranjang;
+    public Penjual getPenjual() {
+        return penjual;
+    }
+
+    public void setPenjual(Penjual penjual) {
+        this.penjual = penjual;
     }
 
     public ArrayList<BarangKeranjang> getListBarang() {

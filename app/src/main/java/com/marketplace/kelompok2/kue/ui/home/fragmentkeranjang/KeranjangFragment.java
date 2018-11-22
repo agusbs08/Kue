@@ -7,32 +7,33 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.marketplace.kelompok2.kue.R;
 import com.marketplace.kelompok2.kue.common.UserState;
 import com.marketplace.kelompok2.kue.model.Barang;
 import com.marketplace.kelompok2.kue.model.BarangKeranjang;
-import com.marketplace.kelompok2.kue.model.Keranjang;
 import com.marketplace.kelompok2.kue.model.list.BarangList;
+import com.marketplace.kelompok2.kue.model.list.KeranjangList;
+import com.marketplace.kelompok2.kue.model.response.KeranjangResponse;
 import com.marketplace.kelompok2.kue.ui.nota.NotaActivity;
 
 import java.util.ArrayList;
 
 public class KeranjangFragment extends Fragment implements KeranjangView {
 
-    private TextView namaToko;
-    private TextView totalHarga;
-    private RecyclerView recyclerView;
-    private Button btnBayar;
-    private KeranjangRecyclerViewAdapter adapter;
-    private ArrayList<BarangKeranjang> listBarang;
+
+    private ArrayList<KeranjangList> listKeranjang;
+    private KeranjangResponse keranjangResponse;
     private KeranjangPresenter presenter;
+    private Button btnBayar;
+    private RecyclerView recyclerView;
+    private KeranjangRecyclerViewAdapter adapter;
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -43,53 +44,50 @@ public class KeranjangFragment extends Fragment implements KeranjangView {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.detail_keranjang, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_keranjang, container, false);
         initView(rootView);
         initBtnChekout();
         return rootView;
     }
 
     private void initView(View rootView){
-        listBarang = new ArrayList<>();
-        namaToko = rootView.findViewById(R.id.tv_namatoko_keranjang);
-        totalHarga = rootView.findViewById(R.id.tv_totalharga_keranjang);
-        recyclerView = rootView.findViewById(R.id.rv_listbarang_keranjang);
+        listKeranjang = new ArrayList<>();
         btnBayar = rootView.findViewById(R.id.btn_bayar_keranjang);
-        adapter = new KeranjangRecyclerViewAdapter(getContext(), listBarang);
+        recyclerView = rootView.findViewById(R.id.recyclerview_fragment_keranjang);
+        adapter = new KeranjangRecyclerViewAdapter(getContext(), listKeranjang);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(adapter);
         presenter = new KeranjangPresenter(this);
     }
 
     @Override
-    public void showListKeranjang(ArrayList<BarangKeranjang> keranjangs) {
-        listBarang.clear();
-        listBarang.addAll(keranjangs);
+    public void showListKeranjang(KeranjangResponse keranjangResponse) {
+        this.keranjangResponse = keranjangResponse;
+        this.listKeranjang.clear();
+        this.listKeranjang.addAll(keranjangResponse.getListKeranjang());
+        this.adapter.notifyDataSetChanged();
         setTotalHarga();
-        adapter.notifyDataSetChanged();
     }
 
     private void setTotalHarga(){
         Float total = new Float(0);
-        for(BarangKeranjang barangKeranjang : listBarang){
-            total += barangKeranjang.getBarang().getHarga();
+        for(KeranjangList keranjangList : listKeranjang){
+            for(BarangKeranjang barangKeranjang : keranjangList.getListBarang()){
+                total += barangKeranjang.getBarang().getHarga();
+            }
         }
-        Integer i = total.intValue();
-        totalHarga.setText(i.toString());
+        Integer harga = total.intValue();
+        Log.e("total", harga.toString());
+        btnBayar.setText("Bayar: Rp " + harga.toString());
+        Log.e("total", harga.toString());
     }
 
     private void initBtnChekout(){
         btnBayar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ArrayList<Barang> list = new ArrayList<>();
-                for(BarangKeranjang barangKeranjang : listBarang){
-                    list.add(barangKeranjang.getBarang());
-                }
-                BarangList barangList = new BarangList(list);
                 Intent intent = new Intent(getContext(), NotaActivity.class);
-                intent.putExtra("listBarang", barangList);
-                intent.putExtra("listKeranjang", listBarang);
+                intent.putExtra("keranjangResponse" , keranjangResponse);
                 startActivity(intent);
             }
         });

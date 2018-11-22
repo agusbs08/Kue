@@ -1,35 +1,45 @@
 package com.marketplace.kelompok2.kue.model.list;
 
 import com.google.gson.annotations.SerializedName;
+import com.marketplace.kelompok2.kue.model.Barang;
 import com.marketplace.kelompok2.kue.model.BarangTransaksi;
 import com.marketplace.kelompok2.kue.model.Pembeli;
+import com.marketplace.kelompok2.kue.model.Penjual;
+import com.marketplace.kelompok2.kue.model.response.DetailTransaksi;
 
 import java.util.ArrayList;
 
 public class BarangTransaksiList {
-    @SerializedName("pembeli")
-    private Pembeli pembeli;
+    @SerializedName("detail_transaksi")
+    private DetailTransaksi detailTransaksi;
+
+    @SerializedName("penjual")
+    private Penjual penjual;
 
     @SerializedName("list_barang")
-    private ArrayList<BarangTransaksi> listBarang;
+    private ArrayList<Barang> listBarang;
 
-    public BarangTransaksiList(){
-
+    public DetailTransaksi getDetailTransaksi() {
+        return detailTransaksi;
     }
 
-    public Pembeli getPembeli() {
-        return pembeli;
+    public void setDetailTransaksi(DetailTransaksi detailTransaksi) {
+        this.detailTransaksi = detailTransaksi;
     }
 
-    public void setPembeli(Pembeli pembeli) {
-        this.pembeli = pembeli;
+    public Penjual getPenjual() {
+        return penjual;
     }
 
-    public ArrayList<BarangTransaksi> getListBarang() {
+    public void setPenjual(Penjual penjual) {
+        this.penjual = penjual;
+    }
+
+    public ArrayList<Barang> getListBarang() {
         return listBarang;
     }
 
-    public void setListBarang(ArrayList<BarangTransaksi> listBarang) {
+    public void setListBarang(ArrayList<Barang> listBarang) {
         this.listBarang = listBarang;
     }
 }

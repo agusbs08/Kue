@@ -18,6 +18,7 @@ import com.marketplace.kelompok2.kue.ui.home.fragmentpesanan.PesananFragment;
 import com.marketplace.kelompok2.kue.ui.home.fragmentprofile.ProfileFragment;
 import com.marketplace.kelompok2.kue.ui.home.fragmentsearch.SearchFragment;
 import com.marketplace.kelompok2.kue.ui.home.fragmentwishlist.WishlistFragment;
+import com.marketplace.kelompok2.kue.util.BottomNavigationViewHelper;
 
 public class HomeActivity extends AppCompatActivity implements HomeSearchView{
 
@@ -29,10 +30,7 @@ public class HomeActivity extends AppCompatActivity implements HomeSearchView{
         setContentView(R.layout.activity_home);
         save = savedInstanceState;
         BottomNavigationView btn = findViewById(R.id.bottom_navigation_menu);
-        //Toast.makeText(getApplicationContext(), UserState.getInstance().getIdUser().toString(), Toast.LENGTH_SHORT).show();
-       // if(UserState.getInstance().getPembeli() == null){
-        //    Toast.makeText(getApplicationContext(), UserState.getInstance().getPembeli().getUsername() + UserState.getInstance().getPembeli().getIdKeranjang().toString(), Toast.LENGTH_SHORT).show();
-
+        BottomNavigationViewHelper.disableShiftMode(btn);
         btn.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener(){
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {

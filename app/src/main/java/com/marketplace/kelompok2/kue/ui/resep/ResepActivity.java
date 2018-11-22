@@ -100,6 +100,7 @@ public class ResepActivity extends AppCompatActivity implements ResepView {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), PilihTokoActivity.class);
                 intent.putExtra("listBahan", justBahan);
+                intent.putExtra("bahanResep", bahanResep);
                 startActivity(intent);
             }
         });
