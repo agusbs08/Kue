@@ -83,6 +83,9 @@ dependencies {
     implementation 'io.reactivex.rxjava2:rxjava:2.1.0'
     implementation 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
 
+    //carrousel
+    implementation 'com.synnapps:carouselview:0.1.4'
+
 }
 
 apply plugin: 'com.google.gms.google-services'
