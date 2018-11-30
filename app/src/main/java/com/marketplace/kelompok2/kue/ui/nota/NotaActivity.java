@@ -59,7 +59,7 @@ public class NotaActivity extends AppCompatActivity implements NotaView{
         btnBayar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               // presenter.setTransaksi(listBarang.getListBarang(), total, keranjangList);
+                presenter.setTransaksi(total, keranjangResponse.getListKeranjang());
             }
         });
     }

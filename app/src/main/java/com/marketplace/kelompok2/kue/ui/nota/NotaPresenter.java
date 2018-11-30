@@ -6,8 +6,10 @@ import com.marketplace.kelompok2.kue.base.BasePresenterNetwork;
 import com.marketplace.kelompok2.kue.common.UserState;
 import com.marketplace.kelompok2.kue.model.Barang;
 import com.marketplace.kelompok2.kue.model.BarangKeranjang;
+import com.marketplace.kelompok2.kue.model.list.KeranjangList;
 import com.marketplace.kelompok2.kue.model.response.DetailTransaksi;
 import com.marketplace.kelompok2.kue.model.response.ModelResponse;
+import com.marketplace.kelompok2.kue.service.NotifikasiService;
 
 import java.util.ArrayList;
 
@@ -21,13 +23,14 @@ import retrofit2.Response;
 
 public class NotaPresenter extends BasePresenterNetwork {
     private NotaView view;
+    private String topicSetSubscribe = "frompembeli";
 
     public NotaPresenter(NotaView view){
         super();
         this.view = view;
     }
 
-    public void setTransaksi(ArrayList<Barang> listBarang, Float total, ArrayList<BarangKeranjang> listKeranjang){
+    public void setTransaksi( Float total, ArrayList<KeranjangList> listKeranjang){
         view.showLoading();
         Call<ModelResponse<DetailTransaksi>> result = service.setDetailTransaksi("Belum Terbayar",
                 "Sedang Diproses",
@@ -41,7 +44,7 @@ public class NotaPresenter extends BasePresenterNetwork {
             public void onResponse(Call<ModelResponse<DetailTransaksi>> call, Response<ModelResponse<DetailTransaksi>> response) {
                 if(response.isSuccessful()){
                     Log.d("getDetailTransaksi","Berhasil");
-                    uploadListBarang(listBarang, response.body().getModel().getId(), listKeranjang);
+                    uploadListBarang(listKeranjang.get(0).getListBarang(), response.body().getModel().getId());
                 }
                 else{
                     Log.d("getDetailTransaksir",response.message());
@@ -55,17 +58,18 @@ public class NotaPresenter extends BasePresenterNetwork {
         });
     }
 
-    private void uploadListBarang(ArrayList<Barang> listBarang, Integer idDetailTransaksi, ArrayList<BarangKeranjang> listKeranjang){
+    private void uploadListBarang(ArrayList<BarangKeranjang> listBarang, Integer idDetailTransaksi){
         Observable.fromIterable(listBarang)
                 .flatMap(barang -> service.uploadBarang(UserState.getInstance().getIdUser(),
-                                                        barang.getId(),
+                                                        barang.getBarang().getId(),
                                                         idDetailTransaksi,
                                                         1))
                 .toList()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe( modelResponses -> {
-                    deleteKeranjang(listKeranjang);
+                    NotifikasiService.getInstance().sendNotification(true, topicSetSubscribe);
+                    deleteKeranjang(listBarang);
                 },throwable -> {
                     Log.e("error",throwable.getMessage());
                 });

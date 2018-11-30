@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.google.android.gms.common.internal.service.Common;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.marketplace.kelompok2.kue.R;
 import com.marketplace.kelompok2.kue.common.UserState;
 import com.marketplace.kelompok2.kue.ui.home.fragmenthome.HomeFragment;
@@ -24,10 +25,13 @@ public class HomeActivity extends AppCompatActivity implements HomeSearchView{
 
     private Bundle save;
 
+    private String topicToSubscribe = "frompenjual";
+
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        subscribeToTopic();
         save = savedInstanceState;
         BottomNavigationView btn = findViewById(R.id.bottom_navigation_menu);
         BottomNavigationViewHelper.disableShiftMode(btn);
@@ -55,6 +59,10 @@ public class HomeActivity extends AppCompatActivity implements HomeSearchView{
             }
         });
         btn.setSelectedItemId(R.id.home_menu);
+    }
+
+    private void subscribeToTopic(){
+        FirebaseMessaging.getInstance().subscribeToTopic(topicToSubscribe);
     }
 
     private void setFragment(Bundle savedInstanceState, Fragment fragment){
