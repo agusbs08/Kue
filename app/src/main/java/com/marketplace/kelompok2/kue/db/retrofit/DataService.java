@@ -92,7 +92,8 @@ public interface DataService {
                                                             @Field("status_pengiriman") String statusPengiriman,
                                                             @Field("status_penerimaan") String statusPenerimaan,
                                                             @Field("total_harga_transaksi") Integer totalHargaTransaksi,
-                                                            @Field("metode_pembayaran") String metodePembayaran);
+                                                            @Field("metode_pembayaran") String metodePembayaran,
+                                                            @Field("id_penjual") Integer idPenjual);
 
     @FormUrlEncoded
     @POST("api/isikeranjang")

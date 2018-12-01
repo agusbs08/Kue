@@ -53,10 +53,13 @@ public class NotifikasiService {
 
         try{
             jNotification.put("idpembeli", UserState.getInstance().getIdUser().toString());
-            jNotification.put("title", "Dari Pembeli");
-            jNotification.put("body", "HAY PENJUAL");
+            jNotification.put("title", "Pesanan Baru");
+            jNotification.put("body", "Anda Mendapat Pesanan dari " + UserState.getInstance().getPembeli().getUsername());
+            jNotification.put("uang", "uang");
             jNotification.put("state", state);
 
+            jData.put("body", "Anda Mendapat Pesanan dari " + UserState.getInstance().getPembeli().getUsername());
+            jData.put("title", "Pesanan Baru");
             jPayload.put("to", "/topics/" + topic);
             jPayload.put("collapse_key", "type_a");
             jPayload.put("priority", "high");
