@@ -6,18 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/bg_login"
     tools:context=".ui.login.LoginActivity">
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Tes Send Notip"
-        android:id="@+id/tesnotip"/>
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Tes Subscribe"
-        android:id="@+id/tesnotips"
-        app:layout_constraintLeft_toRightOf="@+id/tesnotip"/>
+    
     <ImageView
         android:id="@+id/imag_logo_login"
         android:layout_width="250dp"
