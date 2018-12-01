@@ -134,19 +134,6 @@ public class PilihBahanActivity extends AppCompatActivity implements PilihBahanV
         return barang;
     }
 
-    private String setStrListBahan(){
-        String str = "";
-        for(int i=0;i<listBahan.length;i++){
-            if(i == listBahan.length -1){
-                str += listBahan[i];
-            }
-            else{
-                str += listBahan[i] + ",";
-            }
-        }
-        return str;
-    }
-
     @Override
     public void showListBahan(ArrayList<BarangTokoList> listBarang) {
         this.listBarang.clear();

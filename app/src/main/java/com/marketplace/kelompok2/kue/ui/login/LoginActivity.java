@@ -3,6 +3,7 @@ package com.marketplace.kelompok2.kue.ui.login;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
@@ -20,10 +21,13 @@ import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.marketplace.kelompok2.kue.BerhasilActivity;
 import com.marketplace.kelompok2.kue.R;
 import com.marketplace.kelompok2.kue.common.UserState;
 import com.marketplace.kelompok2.kue.model.Pembeli;
+import com.marketplace.kelompok2.kue.service.NotifikasiService;
 import com.marketplace.kelompok2.kue.ui.home.HomeActivity;
 import com.marketplace.kelompok2.kue.ui.register.RegisterActivity;
 
@@ -53,6 +57,25 @@ public class LoginActivity extends AppCompatActivity implements LoginView{
             }
         });
 
+//        findViewById(R.id.tesnotip).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                new Thread(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                       // NotifikasiService.getInstance().pushNotification(true, topicSetSubscribe);
+//                    }
+//                }).start();
+//            }
+//        });
+//
+//        findViewById(R.id.tesnotips).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                FirebaseMessaging.getInstance().subscribeToTopic(topicToSubscribe);
+//                Log.d("subcribe", "subscribe bangsat");
+//            }
+//        });
         hideLoading();
     }
 

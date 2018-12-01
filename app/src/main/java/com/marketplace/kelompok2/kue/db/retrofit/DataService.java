@@ -97,7 +97,8 @@ public interface DataService {
     @FormUrlEncoded
     @POST("api/isikeranjang")
     io.reactivex.Observable<ModelResponse<IsiKeranjang>> addToChart(@Field("id_keranjang") Integer idKeranjang,
-                                                                              @Field("id_barang") Integer idBarang);
+                                                                    @Field("id_barang") Integer idBarang,
+                                                                    @Field("quantity_barang") Integer kuantitas);
 
     @FormUrlEncoded
     @POST("api/keranjang")

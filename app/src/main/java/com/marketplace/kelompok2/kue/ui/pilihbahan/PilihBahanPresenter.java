@@ -24,59 +24,47 @@ import retrofit2.Response;
 public class PilihBahanPresenter extends BasePresenterNetwork {
     private Call<DataResponse<BarangTokoList>> result;
     private PilihBahanView view;
-
+    private Integer kuantitas = 1;
     public PilihBahanPresenter(PilihBahanView view){
         super();
         this.view = view;
     }
 
-    public void getListBahan(String keyword){
-        result = super.service.getListBarangPenjual(keyword);
-
-        result.enqueue(new Callback<DataResponse<BarangTokoList>>() {
-            @Override
-            public void onResponse(Call<DataResponse<BarangTokoList>> call, Response<DataResponse<BarangTokoList>> response) {
-                ArrayList<BarangTokoList> listBarangPenjual = response.body().getListData();
-                view.showListBahan(listBarangPenjual);
-            }
-
-            @Override
-            public void onFailure(Call<DataResponse<BarangTokoList>> call, Throwable t) {
-                Log.i("getListToko", "Failed");
-
-            }
-        });
-    }
-
     public void addToCart(ArrayList<Barang> listBarang, Float total){
         view.showLoading();
         Observable.fromIterable(listBarang)
-                .flatMap(barang -> service.addToChart(UserState.getInstance().getPembeli().getIdKeranjang(), barang.getId()))
+                .flatMap(barang -> service.addToChart(UserState.getInstance().getPembeli().getIdKeranjang(), barang.getId(), kuantitas))
                 .toList()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(modelResponses -> setCart(total));
+                .subscribe(modelResponses -> {
+                            view.hideLoading();
+                            view.actionAddToCartSuccess();
+                        },
+                        throwable -> {
+                            Log.e("setListBarang", throwable.getMessage());
+                        });
     }
 
-    private void setCart(Float total){
-        Call<ModelResponse<Keranjang>> result = service.setCart(UserState.getInstance().getPembeli().getId(), total.intValue());
-        result.enqueue(new Callback<ModelResponse<Keranjang>>() {
-            @Override
-            public void onResponse(Call<ModelResponse<Keranjang>> call, Response<ModelResponse<Keranjang>> response) {
-                if(response.isSuccessful()){
-                    view.actionAddToCartSuccess();
-                }
-                else {
-                    Log.e("setcartr", response.message());
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ModelResponse<Keranjang>> call, Throwable t) {
-                Log.e("setcartf", t.getMessage());
-            }
-        });
-    }
+//    private void setCart(Float total){
+//        Call<ModelResponse<Keranjang>> result = service.setCart(UserState.getInstance().getPembeli().getId(), total.intValue());
+//        result.enqueue(new Callback<ModelResponse<Keranjang>>() {
+//            @Override
+//            public void onResponse(Call<ModelResponse<Keranjang>> call, Response<ModelResponse<Keranjang>> response) {
+//                if(response.isSuccessful()){
+//                    view.actionAddToCartSuccess();
+//                }
+//                else {
+//                    Log.e("setcartr", response.message());
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<ModelResponse<Keranjang>> call, Throwable t) {
+//                Log.e("setcartf", t.getMessage());
+//            }
+//        });
+//    }
 
 
     private void showError(String error){
