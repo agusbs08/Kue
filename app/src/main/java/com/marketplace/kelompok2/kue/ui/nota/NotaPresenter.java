@@ -24,6 +24,7 @@ import retrofit2.Response;
 public class NotaPresenter extends BasePresenterNetwork {
     private NotaView view;
     private String topicSetSubscribe = "frompembeli";
+    private String TAG = NotaPresenter.class.getSimpleName();
 
     public NotaPresenter(NotaView view){
         super();
@@ -31,13 +32,16 @@ public class NotaPresenter extends BasePresenterNetwork {
     }
 
     public void setTransaksi( Float total, ArrayList<KeranjangList> listKeranjang){
+        Log.d(TAG, "begin");
         view.showLoading();
         Call<ModelResponse<DetailTransaksi>> result = service.setDetailTransaksi("Belum Terbayar",
                 "Sedang Diproses",
                 "Dikirm",
                 "Belum diterima",
                 total.intValue(),
-                "Bayar Ditempat");
+                "Bayar Ditempat",
+                listKeranjang.get(0).getIdPenjual());
+        Log.d(TAG, "begin1");
 
         result.enqueue(new Callback<ModelResponse<DetailTransaksi>>() {
             @Override
@@ -68,10 +72,13 @@ public class NotaPresenter extends BasePresenterNetwork {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe( modelResponses -> {
+                    Log.d(TAG, "upload success");
                     NotifikasiService.getInstance().sendNotification(true, topicSetSubscribe);
+                    Log.d(TAG, "notif success");
                     deleteKeranjang(listBarang);
+
                 },throwable -> {
-                    Log.e("error",throwable.getMessage());
+                    Log.d("error",throwable.getMessage());
                 });
     }
 
@@ -84,6 +91,6 @@ public class NotaPresenter extends BasePresenterNetwork {
                 .subscribe(modelResponses -> {
                     view.hideLoading();
                     view.showActionSuccess();
-                });
+                },throwable -> Log.d("error delete",throwable.getMessage()));
     }
 }

@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.marketplace.kelompok2.kue.BerhasilActivity;
 import com.marketplace.kelompok2.kue.R;
@@ -59,6 +60,7 @@ public class NotaActivity extends AppCompatActivity implements NotaView{
         btnBayar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Toast.makeText(getApplicationContext(), "Click", Toast.LENGTH_SHORT).show();
                 presenter.setTransaksi(total, keranjangResponse.getListKeranjang());
             }
         });
