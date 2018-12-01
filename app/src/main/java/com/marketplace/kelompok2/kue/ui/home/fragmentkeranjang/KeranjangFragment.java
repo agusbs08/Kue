@@ -78,7 +78,6 @@ public class KeranjangFragment extends Fragment implements KeranjangView {
         }
         Integer harga = total.intValue();
         Log.e("total", harga.toString());
-        btnBayar.setText("Bayar: Rp " + harga.toString());
         Log.e("total", harga.toString());
     }
 
