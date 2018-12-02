@@ -50,5 +50,36 @@
             app:layout_constraintTop_toBottomOf="@+id/tv_namaitem_pesanan"
             android:layout_marginLeft="12dp" />
 
+        <Button
+            android:id="@+id/btn_tambahitem_keranjang"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginRight="25dp"
+            android:background="@drawable/ic_add"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/tv_jumlahitem_keranjang" />
+
+        <TextView
+            android:id="@+id/tv_jumlahitem_keranjang"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:layout_marginRight="25dp"
+            android:text="0"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btn_kurangitem_keranjang" />
+
+        <Button
+            android:id="@+id/btn_kurangitem_keranjang"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/ic_minus"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
     </android.support.constraint.ConstraintLayout>
 </android.support.v7.widget.CardView>
