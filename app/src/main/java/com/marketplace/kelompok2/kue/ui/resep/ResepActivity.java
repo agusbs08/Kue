@@ -7,8 +7,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.marketplace.kelompok2.kue.BuildConfig;
 import com.marketplace.kelompok2.kue.R;
+import com.marketplace.kelompok2.kue.common.UserState;
 import com.marketplace.kelompok2.kue.model.Resep;
 import com.marketplace.kelompok2.kue.ui.listtoko.PilihTokoActivity;
 import com.marketplace.kelompok2.kue.ui.pilihbahan.PilihBahanActivity;
@@ -48,9 +51,14 @@ public class ResepActivity extends AppCompatActivity implements ResepView {
         btnBeli.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), PilihTokoActivity.class);
-                intent.putExtra("listBahan", justBahan);
-                startActivity(intent);
+                if(checkLogin()){
+                    Intent intent = new Intent(getApplicationContext(), PilihTokoActivity.class);
+                    intent.putExtra("listBahan", justBahan);
+                    startActivity(intent);
+                }
+                else{
+                    Toast.makeText(getApplicationContext(), "Anda Belum Login", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
@@ -98,21 +106,31 @@ public class ResepActivity extends AppCompatActivity implements ResepView {
         btnBeli.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), PilihTokoActivity.class);
-                intent.putExtra("listBahan", justBahan);
-                intent.putExtra("bahanResep", bahanResep);
-                startActivity(intent);
+                if(checkLogin()){
+                    Intent intent = new Intent(getApplicationContext(), PilihTokoActivity.class);
+                    intent.putExtra("listBahan", justBahan);
+                    intent.putExtra("bahanResep", bahanResep);
+                    startActivity(intent);
+                }
+                else{
+                    Toast.makeText(getApplicationContext(), "Anda Belum Login", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
         btnAddWishlist.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (status == false){
-                    presenter.addWishlist(idResep, getApplicationContext());
+                if(!checkLogin()){
+                    Toast.makeText(getApplicationContext(), "Anda Belum Login", Toast.LENGTH_SHORT).show();
                 }
                 else{
-                    presenter.deleteWishlist(idFavorit, getApplicationContext());
+                    if (status == false){
+                        presenter.addWishlist(idResep, getApplicationContext());
+                    }
+                    else{
+                        presenter.deleteWishlist(idFavorit, getApplicationContext());
+                    }
                 }
             }
         });
@@ -132,6 +150,15 @@ public class ResepActivity extends AppCompatActivity implements ResepView {
         }
         else{
             btnAddWishlist.setImageResource(R.drawable.ic_red_heart);
+        }
+    }
+
+    private boolean checkLogin(){
+        if(UserState.getInstance().getPembeli() == null){
+            return false;
+        }
+        else{
+            return true;
         }
     }
 }

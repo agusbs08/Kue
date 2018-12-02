@@ -23,8 +23,21 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view2"/>
 
+    <TextView
+        android:id="@+id/tv_status_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Anda Belum Login"
+        app:layout_constraintTop_toBottomOf="@+id/view3"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:visibility="gone"
+        />
+
     <Button
-        android:id="@+id/view"
+        android:id="@+id/btn_logout_profile"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_above="@+id/bottom_navigation_menu"
@@ -38,8 +51,8 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0">
-    </Button>
+        app:layout_constraintVertical_bias="1.0" />
+
 
     <TextView
         android:id="@+id/textView3"
@@ -82,7 +95,7 @@
         android:layout_height="124dp"
         android:layout_marginBottom="100dp"
         android:background="@color/abuLight"
-        app:layout_constraintBottom_toTopOf="@+id/view"
+        app:layout_constraintBottom_toTopOf="@+id/btn_logout_profile"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
@@ -120,7 +133,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingLeft="10dp"
-                android:text="Smiley Yaoming" />
+                android:text="Anonym" />
         </android.support.v7.widget.LinearLayoutCompat>
 
         <android.support.v7.widget.LinearLayoutCompat
@@ -139,7 +152,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingLeft="10dp"
-                android:text="+62 877 583 4723" />
+                android:text="+62 8xxxxxxxxxxxx" />
         </android.support.v7.widget.LinearLayoutCompat>
 
         <android.support.v7.widget.LinearLayoutCompat
@@ -158,7 +171,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingLeft="10dp"
-                android:text="ming@mail.com" />
+                android:text="anonym@mail.com" />
         </android.support.v7.widget.LinearLayoutCompat>
     </LinearLayout>
 

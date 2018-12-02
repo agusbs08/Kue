@@ -1,14 +1,11 @@
 package com.marketplace.kelompok2.kue.db.retrofit;
 
-import android.database.Observable;
-import android.provider.ContactsContract;
-import android.view.Display;
-
 import com.marketplace.kelompok2.kue.model.Barang;
 import com.marketplace.kelompok2.kue.model.BarangKeranjang;
 import com.marketplace.kelompok2.kue.model.BarangTokoList;
 import com.marketplace.kelompok2.kue.model.Favorit;
 import com.marketplace.kelompok2.kue.model.IsiKeranjang;
+import com.marketplace.kelompok2.kue.model.KategoriResep;
 import com.marketplace.kelompok2.kue.model.Keranjang;
 import com.marketplace.kelompok2.kue.model.Pembeli;
 import com.marketplace.kelompok2.kue.model.Penjual;
@@ -21,6 +18,8 @@ import com.marketplace.kelompok2.kue.model.response.DetailTransaksi;
 import com.marketplace.kelompok2.kue.model.response.KeranjangResponse;
 import com.marketplace.kelompok2.kue.model.response.ModelResponse;
 
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.http.DELETE;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -28,6 +27,7 @@ import retrofit2.http.GET;
 import retrofit2.Call;
 import retrofit2.http.Headers;
 import retrofit2.http.Multipart;
+import retrofit2.http.PATCH;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
 import retrofit2.http.Path;
@@ -126,4 +126,17 @@ public interface DataService {
    @DELETE("api/isikeranjang/{id_keranjang}")
     io.reactivex.Observable<ModelResponse<BarangKeranjang>> deleteKeranjang(@Path("id_keranjang") Integer idKeranjang);
 
+    @Multipart
+    @POST("api/pembeli/{id_pembeli}")
+    public Call<ModelResponse<Pembeli>> updatePembeli(
+            @Part("_method") RequestBody reqMethod,
+            @Part("nama_pem") RequestBody reqNamaPembeli,
+           // @Part("email_pem") RequestBody reqEmailPem,
+            @Part("notlp_pem") RequestBody reqNoTlp,
+            @Part MultipartBody.Part image,
+            @Path("id_pembeli") Integer idPembeli);
+
+
+    @GET("api/kategoriresep")
+    public Call<DataResponse<KategoriResep>> getAllKategoriResep();
 }

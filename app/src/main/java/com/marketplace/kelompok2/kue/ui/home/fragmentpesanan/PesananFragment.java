@@ -31,11 +31,18 @@ public class PesananFragment extends Fragment implements PesananView{
     private ArrayList<BarangTransaksiList> listBarangTransaksi;
     private ProgressBar pb;
 
+    private TextView statusLogin;
+
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         hideLoading();
-        presenter.getListTransaksi(UserState.getInstance().getIdUser());
+        if(UserState.getInstance().getPembeli() == null){
+            statusLogin.setVisibility(View.VISIBLE);
+        }
+        else{
+            presenter.getListTransaksi(UserState.getInstance().getIdUser());
+        }
     }
 
     @Nullable
@@ -54,6 +61,7 @@ public class PesananFragment extends Fragment implements PesananView{
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(adapter);
         presenter = new PesananPresenter(this);
+        statusLogin = view.findViewById(R.id.tv_status_login);
     }
 
     @Override

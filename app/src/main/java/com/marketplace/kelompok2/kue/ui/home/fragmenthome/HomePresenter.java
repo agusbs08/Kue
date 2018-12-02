@@ -1,5 +1,6 @@
 package com.marketplace.kelompok2.kue.ui.home.fragmenthome;
 
+import com.marketplace.kelompok2.kue.model.KategoriResep;
 import com.marketplace.kelompok2.kue.model.Resep;
 import com.marketplace.kelompok2.kue.model.response.DataResponse;
 import com.marketplace.kelompok2.kue.base.BasePresenterNetwork;
@@ -28,13 +29,32 @@ public class HomePresenter extends BasePresenterNetwork {
             @Override
             public void onResponse(Call<DataResponse<Resep>> call, Response<DataResponse<Resep>> response) {
                 ArrayList<Resep> listResep = response.body().getListData();
-                view.hideLoading();
-                view.showListResep(listResep);
+//                view.hideLoading();
+//                view.showListResep(listResep);
+                getListKategoriResep(listResep);
             }
 
             @Override
             public void onFailure(Call<DataResponse<Resep>> call, Throwable t) {
                 view.showErrorMessage();
+            }
+        });
+    }
+
+    private void getListKategoriResep(ArrayList<Resep> listResep){
+        Call<DataResponse<KategoriResep>> results = service.getAllKategoriResep();
+
+        results.enqueue(new Callback<DataResponse<KategoriResep>>() {
+            @Override
+            public void onResponse(Call<DataResponse<KategoriResep>> call, Response<DataResponse<KategoriResep>> response) {
+                ArrayList<KategoriResep> listKategoriResep = response.body().getListData();
+                view.hideLoading();
+                view.showListResep(listResep, listKategoriResep);
+            }
+
+            @Override
+            public void onFailure(Call<DataResponse<KategoriResep>> call, Throwable t) {
+
             }
         });
     }
