@@ -44,6 +44,14 @@ public class LoginActivity extends AppCompatActivity implements LoginView{
     private TextView tvRegister;
     private ProgressBar pb;
 
+    private String topicToSubscribe = "frompenjual";
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,25 +65,6 @@ public class LoginActivity extends AppCompatActivity implements LoginView{
             }
         });
 
-//        findViewById(R.id.tesnotip).setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                new Thread(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                       // NotifikasiService.getInstance().pushNotification(true, topicSetSubscribe);
-//                    }
-//                }).start();
-//            }
-//        });
-//
-//        findViewById(R.id.tesnotips).setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                FirebaseMessaging.getInstance().subscribeToTopic(topicToSubscribe);
-//                Log.d("subcribe", "subscribe bangsat");
-//            }
-//        });
         hideLoading();
     }
 
@@ -152,11 +141,17 @@ public class LoginActivity extends AppCompatActivity implements LoginView{
 
     @Override
     public void actionLoginSuccess(Pembeli pembeli) {
+        subscribeToTopic();
         Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
         UserState.getInstance().setIdUser(pembeli.getId());
         UserState.getInstance().setPembeli(pembeli);
         startActivity(intent);
         finish();
+    }
+
+
+    private void subscribeToTopic(){
+        FirebaseMessaging.getInstance().subscribeToTopic(topicToSubscribe);
     }
 
     @Override

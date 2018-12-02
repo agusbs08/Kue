@@ -125,6 +125,7 @@ public class WishlistRecyclerViewAdapter extends RecyclerView.Adapter<WishlistRe
         public void showActionDeleteSuccess() {
             Toast.makeText(context, "Delete Success", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(context, HomeActivity.class);
+            intent.putExtra("state", 1);
             context.startActivity(intent);
         }
     }

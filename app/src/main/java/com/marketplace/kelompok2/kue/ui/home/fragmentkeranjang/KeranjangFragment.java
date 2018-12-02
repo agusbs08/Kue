@@ -34,11 +34,19 @@ public class KeranjangFragment extends Fragment implements KeranjangView {
     private Button btnBayar;
     private RecyclerView recyclerView;
     private KeranjangRecyclerViewAdapter adapter;
+    private TextView statusLogin;
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        presenter.getListKeranjang(UserState.getInstance().getPembeli().getIdKeranjang());
+        if(UserState.getInstance().getPembeli() == null){
+            statusLogin.setVisibility(View.VISIBLE);
+            btnBayar.setVisibility(View.INVISIBLE);
+            btnBayar.setEnabled(false);
+        }
+        else{
+            presenter.getListKeranjang(UserState.getInstance().getPembeli().getIdKeranjang());
+        }
     }
 
     @Nullable
@@ -58,6 +66,7 @@ public class KeranjangFragment extends Fragment implements KeranjangView {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(adapter);
         presenter = new KeranjangPresenter(this);
+        statusLogin = rootView.findViewById(R.id.tv_status_login);
     }
 
     @Override

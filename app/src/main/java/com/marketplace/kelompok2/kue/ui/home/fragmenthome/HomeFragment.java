@@ -21,6 +21,7 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.marketplace.kelompok2.kue.R;
+import com.marketplace.kelompok2.kue.model.KategoriResep;
 import com.marketplace.kelompok2.kue.model.Resep;
 import com.marketplace.kelompok2.kue.ui.home.HomeSearchView;
 
@@ -32,8 +33,12 @@ public class HomeFragment extends Fragment implements HomeView {
     private RecyclerView recyclerView;
     private HomeRecyclerViewAdapter adapter;
     private ArrayList<Resep> listResep;
+    private ArrayList<KategoriResep> listKategoriResep;
     private ProgressBar progressBar;
     private HomePresenter presenter;
+
+    private RecyclerView recyclerViewKategori;
+    private HomeKategoriRecyclerViewAdapter kategoriAdapter;
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -50,7 +55,7 @@ public class HomeFragment extends Fragment implements HomeView {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_home, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_berandabaru, container, false);
         initView(rootView);
         initComponent();
         setSearchView();
@@ -66,13 +71,20 @@ public class HomeFragment extends Fragment implements HomeView {
         searchView = rootView.findViewById(R.id.et_search_fragment_home);
         recyclerView = rootView.findViewById(R.id.recyclerview_fragment_home);
         progressBar = rootView.findViewById(R.id.pb_fragment_home);
+        recyclerViewKategori = rootView.findViewById(R.id.list_kategori_beranda);
     }
 
     private void initComponent(){
         listResep = new ArrayList<>();
+        listKategoriResep = new ArrayList<>();
+
         adapter = new HomeRecyclerViewAdapter(getContext(), listResep);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(adapter);
+
+        kategoriAdapter = new HomeKategoriRecyclerViewAdapter(getContext(), listKategoriResep);
+        recyclerViewKategori.setLayoutManager(new GridLayoutManager(getContext(), 3));
+        recyclerViewKategori.setAdapter(kategoriAdapter);
         presenter = new HomePresenter(this);
     }
 
@@ -88,9 +100,13 @@ public class HomeFragment extends Fragment implements HomeView {
     }
 
     @Override
-    public void showListResep(ArrayList<Resep> listResep) {
+    public void showListResep(ArrayList<Resep> listResep, ArrayList<KategoriResep> listKategoriResep) {
+        this.listResep.clear();
+        this.listKategoriResep.clear();
         this.listResep.addAll(listResep);
+        this.listKategoriResep.addAll(listKategoriResep);
         adapter.notifyDataSetChanged();
+        kategoriAdapter.notifyDataSetChanged();
     }
 
     @Override

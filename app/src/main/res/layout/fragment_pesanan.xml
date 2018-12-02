@@ -47,6 +47,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view3" />
+    <TextView
+        android:id="@+id/tv_status_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Anda Belum Login"
+        app:layout_constraintTop_toBottomOf="@+id/view3"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:visibility="gone"
+        />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerView"

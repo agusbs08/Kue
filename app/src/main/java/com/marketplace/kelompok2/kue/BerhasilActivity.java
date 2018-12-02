@@ -37,6 +37,7 @@ public class BerhasilActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
                 startActivity(intent);
+                intent.putExtra("state", 0);
                 finish();
             }
         });

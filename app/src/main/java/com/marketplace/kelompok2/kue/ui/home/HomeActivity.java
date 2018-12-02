@@ -24,14 +24,13 @@ import com.marketplace.kelompok2.kue.util.BottomNavigationViewHelper;
 public class HomeActivity extends AppCompatActivity implements HomeSearchView{
 
     private Bundle save;
-
-    private String topicToSubscribe = "frompenjual";
+    private int state;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        subscribeToTopic();
+        initData();
         save = savedInstanceState;
         BottomNavigationView btn = findViewById(R.id.bottom_navigation_menu);
         BottomNavigationViewHelper.disableShiftMode(btn);
@@ -58,12 +57,25 @@ public class HomeActivity extends AppCompatActivity implements HomeSearchView{
                 return true;
             }
         });
-        btn.setSelectedItemId(R.id.home_menu);
+        if(state == 0){
+            btn.setSelectedItemId(R.id.home_menu);
+        }
+        else if(state == 1){
+            btn.setSelectedItemId(R.id.wishlist_menu);
+        }
+        else if(state == 2){
+            btn.setSelectedItemId(R.id.traksaksi_menu);
+        }
+        else if(state == 3){
+            btn.setSelectedItemId(R.id.profile_menu);
+        }
     }
 
-    private void subscribeToTopic(){
-        FirebaseMessaging.getInstance().subscribeToTopic(topicToSubscribe);
+    private void initData(){
+        Intent intent = getIntent();
+        state = intent.getIntExtra("state", 0);
     }
+
 
     private void setFragment(Bundle savedInstanceState, Fragment fragment){
         if(savedInstanceState == null){
