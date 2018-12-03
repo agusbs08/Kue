@@ -35,6 +35,7 @@ public class Barang implements Serializable {
     @SerializedName("harga_barang")
     private Float harga;
 
+    private Integer kuantitasKeranjang = 0;
 
     public Barang(){
 
@@ -118,5 +119,13 @@ public class Barang implements Serializable {
 
     public void setRating(Float rating) {
         this.rating = rating;
+    }
+
+    public Integer getKuantitasKeranjang() {
+        return kuantitasKeranjang;
+    }
+
+    public void setKuantitasKeranjang(Integer kuantitasKeranjang) {
+        this.kuantitasKeranjang = kuantitasKeranjang;
     }
 }

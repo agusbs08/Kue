@@ -20,6 +20,9 @@ public class Resep implements Serializable{
     @SerializedName("image_resep")
     private String imageResep;
 
+    @SerializedName("chef")
+    private Chef chef;
+
     public Resep(){
 
     }
@@ -62,5 +65,13 @@ public class Resep implements Serializable{
 
     public void setImageResep(String imageResep) {
         this.imageResep = imageResep;
+    }
+
+    public Chef getChef() {
+        return chef;
+    }
+
+    public void setChef(Chef chef) {
+        this.chef = chef;
     }
 }

@@ -1,6 +1,7 @@
 package com.marketplace.kelompok2.kue.ui.home.fragmenthome;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 
 import com.marketplace.kelompok2.kue.R;
 import com.marketplace.kelompok2.kue.model.KategoriResep;
+import com.marketplace.kelompok2.kue.ui.listresepper.ResepKhususActivity;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -61,6 +63,16 @@ public class HomeKategoriRecyclerViewAdapter extends RecyclerView.Adapter<HomeKa
         void bindItem(final KategoriResep kategoriResep){
             Picasso.get().load(kategoriResep.getImageKategori()).into(imageView);
             textView.setText(kategoriResep.getNamaKategori());
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context, ResepKhususActivity.class);
+                    intent.putExtra("key", 0);
+                    intent.putExtra("id", kategoriResep.getIdKategori());
+                    intent.putExtra("name", kategoriResep.getNamaKategori());
+                    context.startActivity(intent);
+                }
+            });
         }
     }
 }

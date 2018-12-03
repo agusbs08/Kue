@@ -1,6 +1,7 @@
 package com.marketplace.kelompok2.kue.ui.home.fragmenthome;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -17,6 +18,7 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -24,6 +26,9 @@ import com.marketplace.kelompok2.kue.R;
 import com.marketplace.kelompok2.kue.model.KategoriResep;
 import com.marketplace.kelompok2.kue.model.Resep;
 import com.marketplace.kelompok2.kue.ui.home.HomeSearchView;
+import com.marketplace.kelompok2.kue.ui.listresepper.ResepKhususActivity;
+import com.synnapps.carouselview.CarouselView;
+import com.synnapps.carouselview.ImageListener;
 
 import java.util.ArrayList;
 
@@ -40,6 +45,11 @@ public class HomeFragment extends Fragment implements HomeView {
     private RecyclerView recyclerViewKategori;
     private HomeKategoriRecyclerViewAdapter kategoriAdapter;
 
+    private CarouselView carouselView;
+
+    private int[] listChef = {R.drawable.juna, R.drawable.chandra};
+    private int[] idChef = {1,2};
+    private String[] chefName = {"Juna", "Chandra"};
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -72,6 +82,30 @@ public class HomeFragment extends Fragment implements HomeView {
         recyclerView = rootView.findViewById(R.id.recyclerview_fragment_home);
         progressBar = rootView.findViewById(R.id.pb_fragment_home);
         recyclerViewKategori = rootView.findViewById(R.id.list_kategori_beranda);
+        carouselView = rootView.findViewById(R.id.carv_1);
+        initCarousel();
+    }
+
+    private void initCarousel(){
+        carouselView.setPageCount(listChef.length);
+        ImageListener imageListener = new ImageListener() {
+            @Override
+            public void setImageForPosition(int position, ImageView imageView) {
+                imageView.setImageResource(listChef[position]);
+                imageView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(getContext(), ResepKhususActivity.class);
+                        intent.putExtra("key", 1);
+                        intent.putExtra("id",idChef[position]);
+                        intent.putExtra("name", chefName[position]);
+                        startActivity(intent);
+                    }
+                });
+
+            }
+        };
+        carouselView.setImageListener(imageListener);
     }
 
     private void initComponent(){

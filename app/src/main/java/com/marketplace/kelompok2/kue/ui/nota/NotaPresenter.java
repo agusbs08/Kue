@@ -67,7 +67,7 @@ public class NotaPresenter extends BasePresenterNetwork {
                 .flatMap(barang -> service.uploadBarang(UserState.getInstance().getIdUser(),
                                                         barang.getBarang().getId(),
                                                         idDetailTransaksi,
-                                                        1))
+                                                        barang.getBarang().getKuantitasKeranjang()))
                 .toList()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

@@ -1,4 +1,4 @@
-package com.marketplace.kelompok2.kue.ui.home.fragmenthome;
+package com.marketplace.kelompok2.kue.ui.listresepper;
 
 import android.content.Context;
 import android.content.Intent;
@@ -9,9 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.marketplace.kelompok2.kue.BuildConfig;
 import com.marketplace.kelompok2.kue.R;
 import com.marketplace.kelompok2.kue.model.Resep;
 import com.marketplace.kelompok2.kue.ui.resep.ResepActivity;
@@ -19,26 +17,41 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
+public class ResepKhususRecyclerViewAdapter extends RecyclerView.Adapter<ResepKhususRecyclerViewAdapter.ResepKhususViewHolder> {
 
-public class HomeRecyclerViewAdapter extends RecyclerView.Adapter<HomeRecyclerViewAdapter.HomeViewHolder> {
-
-    private Context context;
     private ArrayList<Resep> listResep;
-
-    public HomeRecyclerViewAdapter(Context context, ArrayList<Resep> listResep){
-        this.context = context;
+    private Context context;
+    public ResepKhususRecyclerViewAdapter(ArrayList<Resep> listResep, Context context){
         this.listResep = listResep;
+        this.context = context;
     }
 
-    public class HomeViewHolder extends RecyclerView.ViewHolder{
-        private Context ctx;
-        private ImageView imageResep;
-        private TextView authorResep;
-        private TextView namaResep ;
+    @NonNull
+    @Override
+    public ResepKhususViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return new ResepKhususViewHolder(LayoutInflater.from(context).inflate(R.layout.list_beranda, parent, false), context);
+    }
 
-        HomeViewHolder(View view, Context context){
+    @Override
+    public void onBindViewHolder(@NonNull ResepKhususViewHolder holder, int position) {
+        holder.bindItem(listResep.get(position));
+    }
+
+    @Override
+    public int getItemCount() {
+        return listResep.size();
+    }
+
+    class ResepKhususViewHolder extends RecyclerView.ViewHolder{
+
+        private Context context;
+        private ImageView imageResep;
+        private TextView namaResep ;
+        private TextView authorResep;
+
+        public ResepKhususViewHolder(View view, Context context){
             super(view);
-            this.ctx = context;
+            this.context = context;
             initView(view);
         }
 
@@ -48,7 +61,7 @@ public class HomeRecyclerViewAdapter extends RecyclerView.Adapter<HomeRecyclerVi
             authorResep = view.findViewById(R.id.tv_author_list_beranda);
         }
 
-        void bindItem(final Resep resep){
+        void bindItem(Resep resep){
             Picasso.get().load(resep.getImageResep()).into(imageResep);
             namaResep.setText(resep.getNamaResep());
             authorResep.setText(resep.getChef().getNamaChef());
@@ -61,27 +74,10 @@ public class HomeRecyclerViewAdapter extends RecyclerView.Adapter<HomeRecyclerVi
                     intent.putExtra("caraResep", resep.getListCara());
                     intent.putExtra("bahanResep", resep.getListBahan());
                     intent.putExtra("imageResep", resep.getImageResep());
-                    ctx.startActivity(intent);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    context.startActivity(intent);
                 }
             });
         }
     }
-
-    @NonNull
-    @Override
-    public HomeViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new HomeViewHolder(LayoutInflater.from(context)
-                .inflate(R.layout.list_beranda, parent, false), parent.getContext());
-    }
-
-    @Override
-    public void onBindViewHolder(@NonNull HomeViewHolder holder, final int position) {
-        holder.bindItem(listResep.get(position));
-    }
-
-    @Override
-    public int getItemCount() {
-       return listResep.size();
-    }
-
 }

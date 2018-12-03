@@ -44,7 +44,6 @@ public class PilihBahanActivity extends AppCompatActivity implements PilihBahanV
 
     private Button btnTes;
     private ArrayList<PilihBahanRecyclerViewAdapter.PilihBahanViewHolder> listViewHolder;
-    private Spinner spinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,20 +73,6 @@ public class PilihBahanActivity extends AppCompatActivity implements PilihBahanV
         recyclerView.setAdapter(adapter);
         presenter = new PilihBahanPresenter(this);
         btnTes = findViewById(R.id.btn_tes_bahan);
-        spinner = findViewById(R.id.spinner_metodebayar_bahan);
-        spinner.setAdapter(ArrayAdapter.createFromResource(getApplicationContext(), R.array.spinner_item, R.layout.support_simple_spinner_dropdown_item ));
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                ((TextView) parent.getChildAt(0)).setTextColor(Color.BLACK);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-        spinner.setSelection(0);
     }
 
     private void actionBtnOnclick(){

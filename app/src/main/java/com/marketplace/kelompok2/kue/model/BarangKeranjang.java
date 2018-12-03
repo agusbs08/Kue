@@ -11,6 +11,9 @@ public class BarangKeranjang implements Serializable{
     @SerializedName("id_isi_keranjang")
     private Integer idIsiKeranjang;
 
+    @SerializedName("quantity_barang")
+    private Integer kuantitas;
+
     public BarangKeranjang(){
 
     }
@@ -29,5 +32,13 @@ public class BarangKeranjang implements Serializable{
 
     public void setIdIsiKeranjang(Integer idIsiKeranjang) {
         this.idIsiKeranjang = idIsiKeranjang;
+    }
+
+    public Integer getKuantitas() {
+        return kuantitas;
+    }
+
+    public void setKuantitas(Integer kuantitas) {
+        this.kuantitas = kuantitas;
     }
 }

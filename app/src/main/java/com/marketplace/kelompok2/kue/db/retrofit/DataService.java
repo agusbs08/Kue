@@ -139,4 +139,10 @@ public interface DataService {
 
     @GET("api/kategoriresep")
     public Call<DataResponse<KategoriResep>> getAllKategoriResep();
+
+    @GET("api/resep")
+    public Call<DataResponse<Resep>> getListResepFromKategori(@Query("id_kategori_resep") Integer idKategori);
+
+    @GET("api/resep")
+    public Call<DataResponse<Resep>> getListResepFromChef(@Query("id_chef") Integer idChef);
 }
