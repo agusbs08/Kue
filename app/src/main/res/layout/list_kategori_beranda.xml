@@ -10,7 +10,8 @@
         android:layout_width="130dp"
         android:layout_height="140dp"
         android:background="@mipmap/ic_launcher"
-        tools:ignore="ContentDescription" />
+        tools:ignore="ContentDescription"
+        android:scaleType="centerCrop"/>
 
     <ImageView
         android:id="@+id/imageView3"

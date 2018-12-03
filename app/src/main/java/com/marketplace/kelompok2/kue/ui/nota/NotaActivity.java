@@ -70,7 +70,7 @@ public class NotaActivity extends AppCompatActivity implements NotaView{
         Float total = new Float(0);
         for(KeranjangList keranjangList : keranjangResponse.getListKeranjang()){
             for(BarangKeranjang barangKeranjang : keranjangList.getListBarang()){
-                total += barangKeranjang.getBarang().getHarga();
+                total += barangKeranjang.getBarang().getHarga() * barangKeranjang.getBarang().getKuantitasKeranjang();
             }
         }
         this.total = total;

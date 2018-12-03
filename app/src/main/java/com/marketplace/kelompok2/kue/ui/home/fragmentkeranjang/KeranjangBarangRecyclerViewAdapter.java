@@ -16,21 +16,26 @@ import com.marketplace.kelompok2.kue.model.Barang;
 import com.marketplace.kelompok2.kue.model.BarangKeranjang;
 import com.squareup.picasso.Picasso;
 
+import java.nio.channels.FileLock;
 import java.util.ArrayList;
 
 public class KeranjangBarangRecyclerViewAdapter extends RecyclerView.Adapter<KeranjangBarangRecyclerViewAdapter.KeranjangBarangViewHolder>{
 
     private ArrayList<BarangKeranjang> listPesanan;
-
-    public KeranjangBarangRecyclerViewAdapter(ArrayList<BarangKeranjang> listPesanan){
+    private Float hargaTotal;
+    private TextView totalHarga;
+    public KeranjangBarangRecyclerViewAdapter(ArrayList<BarangKeranjang> listPesanan, Float hargaTotal, TextView totalHarga){
         this.listPesanan = listPesanan;
+        this.hargaTotal = hargaTotal;
+        this.totalHarga = totalHarga;
     }
 
     @NonNull
     @Override
     public KeranjangBarangViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new KeranjangBarangViewHolder(
-                LayoutInflater.from(parent.getContext()).inflate(R.layout.list_keranjang, parent,false));
+                LayoutInflater.from(parent.getContext()).inflate(R.layout.list_keranjang, parent,false),
+                hargaTotal,totalHarga);
     }
 
     @Override
@@ -55,9 +60,14 @@ public class KeranjangBarangRecyclerViewAdapter extends RecyclerView.Adapter<Ker
         private TextView tvJumlah;
 
         private Integer jumlah = -1;
-        public KeranjangBarangViewHolder(View view){
+
+        private Float hargaTotal;
+        private TextView totalHarga;
+        public KeranjangBarangViewHolder(View view, Float hargaTotal, TextView totalHarga){
             super(view);
             this.view = view;
+            this.hargaTotal = hargaTotal;
+            this.totalHarga = totalHarga;
             initView(view);
         }
 
@@ -87,25 +97,31 @@ public class KeranjangBarangRecyclerViewAdapter extends RecyclerView.Adapter<Ker
             btnTambah.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    int state = jumlah;
                     jumlah+=1;
-                    updateJumlah(barang);
+                    updateJumlah(barang, state);
                 }
             });
 
             btnKurang.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    int state = jumlah;
                     if(jumlah > 1){
                         jumlah-=1;
                     }
-                    updateJumlah(barang);
+                    updateJumlah(barang, state);
                 }
             });
         }
 
-        private void updateJumlah(Barang barang){
+        private void updateJumlah(Barang barang, int state){
             tvJumlah.setText(jumlah.toString());
             barang.setKuantitasKeranjang(jumlah);
+            Float hargaSebelum = barang.getHarga() * state;
+            Float hargaSesudah = barang.getHarga() *jumlah;
+            hargaTotal = hargaTotal - hargaSebelum + hargaSesudah;
+            totalHarga.setText(hargaTotal.toString());
         }
     }
 }

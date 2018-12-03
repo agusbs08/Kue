@@ -50,6 +50,8 @@ public class KeranjangRecyclerViewAdapter extends RecyclerView.Adapter<Keranjang
         private RecyclerView recyclerView;
         private KeranjangBarangRecyclerViewAdapter adapter;
 
+        private Float hargaTotal;
+
         public KeranjangViewHolder(View view, Context context){
             super(view);
             this.context = context;
@@ -65,7 +67,8 @@ public class KeranjangRecyclerViewAdapter extends RecyclerView.Adapter<Keranjang
 
         void bindItem(KeranjangList keranjangList){
             if(adapter == null){
-                adapter = new KeranjangBarangRecyclerViewAdapter(keranjangList.getListBarang());
+                hargaTotal = Float.parseFloat(getHargaTotal(keranjangList.getListBarang()));
+                adapter = new KeranjangBarangRecyclerViewAdapter(keranjangList.getListBarang(), hargaTotal, totalHarga);
                 recyclerView.setAdapter(adapter);
                 namaToko.setText(keranjangList.getPenjual().getNamatoko());
                 totalHarga.setText("Rp " + getHargaTotal(keranjangList.getListBarang()));

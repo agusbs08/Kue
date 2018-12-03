@@ -46,6 +46,7 @@ public class NotaBarangRecyclerViewAdapter extends RecyclerView.Adapter<NotaBara
         private ImageView imageBarang;
         private TextView namaBarang;
         private TextView hargaBarang;
+        private TextView jumlahBarang;
 
         public NotaBarangViewHolder(View view){
             super(view);
@@ -56,13 +57,16 @@ public class NotaBarangRecyclerViewAdapter extends RecyclerView.Adapter<NotaBara
             imageBarang = view.findViewById(R.id.iv_gambaritem_checkout);
             namaBarang = view.findViewById(R.id.tv_namaitem_checkout);
             hargaBarang = view.findViewById(R.id.tv_hargaitem_checkout);
+            jumlahBarang= view.findViewById(R.id.tv_kuantitas_checkout);
         }
 
         void bindItem(final BarangKeranjang barangKeranjang){
             Barang barang = barangKeranjang.getBarang();
             Picasso.get().load(BuildConfig.BASE_STORAGE + barang.getGambar()).into(imageBarang);
             namaBarang.setText(barang.getNama());
-            hargaBarang.setText(barang.getHarga().toString());
+            Float harga = barangKeranjang.getBarang().getHarga() * barangKeranjang.getBarang().getKuantitasKeranjang();
+            hargaBarang.setText(harga.toString());
+            jumlahBarang.setText("X" + barangKeranjang.getBarang().getKuantitasKeranjang());
         }
     }
 }
