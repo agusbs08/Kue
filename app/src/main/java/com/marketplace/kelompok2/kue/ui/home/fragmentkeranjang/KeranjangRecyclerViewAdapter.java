@@ -71,7 +71,7 @@ public class KeranjangRecyclerViewAdapter extends RecyclerView.Adapter<Keranjang
                 adapter = new KeranjangBarangRecyclerViewAdapter(keranjangList.getListBarang(), hargaTotal, totalHarga);
                 recyclerView.setAdapter(adapter);
                 namaToko.setText(keranjangList.getPenjual().getNamatoko());
-                totalHarga.setText("Rp " + getHargaTotal(keranjangList.getListBarang()));
+                totalHarga.setText(" ");
             }
         }
 

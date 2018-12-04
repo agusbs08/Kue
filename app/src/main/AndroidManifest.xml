@@ -41,7 +41,8 @@
         <!-- [END firebase_service] -->
 
         <activity android:name=".ui.editprofil.EditProfilActivity" />
-        <activity android:name=".ui.listresepper.ResepKhususActivity"></activity>
+        <activity android:name=".ui.listresepper.ResepKhususActivity" />
+        <activity android:name=".ui.intro.IntroActivity"></activity>
     </application>
 
 </manifest>

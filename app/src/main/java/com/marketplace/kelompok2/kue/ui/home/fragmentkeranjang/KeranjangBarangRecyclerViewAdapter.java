@@ -121,7 +121,7 @@ public class KeranjangBarangRecyclerViewAdapter extends RecyclerView.Adapter<Ker
             Float hargaSebelum = barang.getHarga() * state;
             Float hargaSesudah = barang.getHarga() *jumlah;
             hargaTotal = hargaTotal - hargaSebelum + hargaSesudah;
-            totalHarga.setText(hargaTotal.toString());
+            totalHarga.setText(" ");
         }
     }
 }

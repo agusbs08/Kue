@@ -1,6 +1,7 @@
 package com.marketplace.kelompok2.kue.ui.pilihbahan;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -67,9 +68,11 @@ public class PilihBarangRecyclerViewAdapter extends RecyclerView.Adapter<PilihBa
         void bindItem(Barang barang, int position){
             View tmp = radioGroup.getChildAt(position);
                 if(tmp == null){
-                    hargaBarang.setText(barang.getHarga().toString());
+                    Integer harga = barang.getHarga().intValue();
+                    hargaBarang.setText("Rp " + harga.toString());
                     RadioButton radioButton = new RadioButton(context);
                     radioButton.setId((position + 1) + 100 );
+                    radioButton.setTextColor(Color.rgb(0,0,1));
                     radioButton.setText(barang.getNama());
                     radioButton.setLayoutParams(new LinearLayout
                             .LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
@@ -78,7 +81,6 @@ public class PilihBarangRecyclerViewAdapter extends RecyclerView.Adapter<PilihBa
                     }
                     radioGroup.addView(radioButton);
                 }
-
         }
     }
 }

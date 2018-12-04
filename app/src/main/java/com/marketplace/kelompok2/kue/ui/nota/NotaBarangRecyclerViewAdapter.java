@@ -65,8 +65,9 @@ public class NotaBarangRecyclerViewAdapter extends RecyclerView.Adapter<NotaBara
             Picasso.get().load(BuildConfig.BASE_STORAGE + barang.getGambar()).into(imageBarang);
             namaBarang.setText(barang.getNama());
             Float harga = barangKeranjang.getBarang().getHarga() * barangKeranjang.getBarang().getKuantitasKeranjang();
-            hargaBarang.setText(harga.toString());
-            jumlahBarang.setText("X" + barangKeranjang.getBarang().getKuantitasKeranjang());
+            Integer hargaint = harga.intValue();
+            hargaBarang.setText("Rp " + hargaint.toString());
+            jumlahBarang.setText("X " + barangKeranjang.getBarang().getKuantitasKeranjang());
         }
     }
 }

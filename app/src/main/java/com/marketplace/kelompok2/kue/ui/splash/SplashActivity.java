@@ -7,6 +7,7 @@ import android.content.Intent;
 
 import com.marketplace.kelompok2.kue.R;
 import com.marketplace.kelompok2.kue.ui.home.HomeActivity;
+import com.marketplace.kelompok2.kue.ui.intro.IntroActivity;
 import com.marketplace.kelompok2.kue.ui.login.LoginActivity;
 
 public class SplashActivity extends AppCompatActivity {
@@ -20,7 +21,7 @@ public class SplashActivity extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(getApplicationContext(),HomeActivity.class);
+                Intent intent = new Intent(getApplicationContext(),IntroActivity.class);
                 intent.putExtra("state", 0);
                 startActivity(intent);
                 finish();
