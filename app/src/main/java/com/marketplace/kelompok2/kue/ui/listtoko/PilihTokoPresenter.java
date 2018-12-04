@@ -40,7 +40,7 @@ public class PilihTokoPresenter extends BasePresenterNetwork {
 
             @Override
             public void onFailure(Call<DataResponse<BarangTokoList>> call, Throwable t) {
-                Log.i("getListToko", "Failed");
+                Log.i("getListToko", t.getMessage() + "f");
                 view.hideLoading();
             }
         });
