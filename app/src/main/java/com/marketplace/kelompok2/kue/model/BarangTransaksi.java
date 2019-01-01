@@ -9,6 +9,9 @@ public class BarangTransaksi {
     @SerializedName("id_transaksi")
     private Integer idTransaksi;
 
+    @SerializedName("quantity")
+    private Integer kuantitas;
+
     public BarangTransaksi(){
 
     }
@@ -27,5 +30,13 @@ public class BarangTransaksi {
 
     public void setIdTransaksi(Integer idTransaksi) {
         this.idTransaksi = idTransaksi;
+    }
+
+    public Integer getKuantitas() {
+        return kuantitas;
+    }
+
+    public void setKuantitas(Integer kuantitas) {
+        this.kuantitas = kuantitas;
     }
 }

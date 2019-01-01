@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.marketplace.kelompok2.kue.R;
 import com.marketplace.kelompok2.kue.model.Barang;
+import com.marketplace.kelompok2.kue.model.BarangTransaksi;
 import com.marketplace.kelompok2.kue.model.list.BarangTransaksiList;
 
 import java.util.ArrayList;
@@ -78,9 +79,10 @@ public class PesananRecyclerViewAdapter extends RecyclerView.Adapter<PesananRecy
             }
         }
 
-        private String getTotalHarga(ArrayList<Barang> listBarang){
+        private String getTotalHarga(ArrayList<BarangTransaksi> listBarang){
             Float total = new Float(0);
-            for(Barang barang : listBarang){
+            for(BarangTransaksi barangTransaksi : listBarang){
+                Barang barang = barangTransaksi.getBarang();
                 total += barang.getHarga();
             }
             Integer harga = total.intValue();

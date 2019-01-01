@@ -17,7 +17,7 @@ public class BarangTransaksiList {
     private Penjual penjual;
 
     @SerializedName("list_barang")
-    private ArrayList<Barang> listBarang;
+    private ArrayList<BarangTransaksi> listBarang;
 
     public DetailTransaksi getDetailTransaksi() {
         return detailTransaksi;
@@ -35,11 +35,11 @@ public class BarangTransaksiList {
         this.penjual = penjual;
     }
 
-    public ArrayList<Barang> getListBarang() {
+    public ArrayList<BarangTransaksi> getListBarang() {
         return listBarang;
     }
 
-    public void setListBarang(ArrayList<Barang> listBarang) {
+    public void setListBarang(ArrayList<BarangTransaksi> listBarang) {
         this.listBarang = listBarang;
     }
 }

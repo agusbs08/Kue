@@ -6,6 +6,8 @@ import android.os.Handler;
 import android.content.Intent;
 
 import com.marketplace.kelompok2.kue.R;
+import com.marketplace.kelompok2.kue.common.UserState;
+import com.marketplace.kelompok2.kue.ui.PrefManager;
 import com.marketplace.kelompok2.kue.ui.home.HomeActivity;
 import com.marketplace.kelompok2.kue.ui.intro.IntroActivity;
 import com.marketplace.kelompok2.kue.ui.login.LoginActivity;
@@ -16,7 +18,7 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-
+        checkUserState();
         final Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
@@ -27,5 +29,13 @@ public class SplashActivity extends AppCompatActivity {
                 finish();
             }
         }, 2000L);
+    }
+
+    private void checkUserState() {
+        PrefManager pref = new PrefManager(getApplicationContext());
+        if(pref.getUserId() != 0){
+            UserState.getInstance().setIdUser(pref.getUserId());
+            UserState.getInstance().setPembeli(pref.getObjPembeli());
+        }
     }
 }

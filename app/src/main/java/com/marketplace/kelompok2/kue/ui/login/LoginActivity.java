@@ -28,6 +28,7 @@ import com.marketplace.kelompok2.kue.R;
 import com.marketplace.kelompok2.kue.common.UserState;
 import com.marketplace.kelompok2.kue.model.Pembeli;
 import com.marketplace.kelompok2.kue.service.NotifikasiService;
+import com.marketplace.kelompok2.kue.ui.PrefManager;
 import com.marketplace.kelompok2.kue.ui.home.HomeActivity;
 import com.marketplace.kelompok2.kue.ui.register.RegisterActivity;
 
@@ -141,6 +142,8 @@ public class LoginActivity extends AppCompatActivity implements LoginView{
 
     @Override
     public void actionLoginSuccess(Pembeli pembeli) {
+        PrefManager pref = new PrefManager(getApplicationContext());
+        pref.setUser(pembeli.getId(), pembeli);
         subscribeToTopic();
         Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
         UserState.getInstance().setIdUser(pembeli.getId());

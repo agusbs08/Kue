@@ -19,6 +19,7 @@ import com.google.firebase.messaging.FirebaseMessaging;
 import com.marketplace.kelompok2.kue.R;
 import com.marketplace.kelompok2.kue.common.UserState;
 import com.marketplace.kelompok2.kue.model.Pembeli;
+import com.marketplace.kelompok2.kue.ui.PrefManager;
 import com.marketplace.kelompok2.kue.ui.editprofil.EditProfilActivity;
 import com.marketplace.kelompok2.kue.ui.home.HomeActivity;
 import com.marketplace.kelompok2.kue.ui.login.LoginActivity;
@@ -92,6 +93,8 @@ public class ProfileFragment extends Fragment implements ProfileView{
                     FirebaseMessaging.getInstance().unsubscribeFromTopic("frompenjual");
                     Intent intent = new Intent(getContext(), HomeActivity.class);
                     startActivity(intent);
+                    PrefManager pref = new PrefManager(getContext());
+                    pref.setUser(0,null);
                     UserState.getInstance().setPembeli(null);
                     UserState.getInstance().setIdUser(0);
                     getActivity().finish();

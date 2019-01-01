@@ -19,10 +19,10 @@ import java.util.ArrayList;
 
 public class PesananBarangRecyclerViewAdapter extends RecyclerView.Adapter<PesananBarangRecyclerViewAdapter.PesananBarangViewHolder> {
 
-    private ArrayList<Barang> listPesanan;
+    private ArrayList<BarangTransaksi> listPesanan;
     private Context context;
 
-    public PesananBarangRecyclerViewAdapter(Context context, ArrayList<Barang> listPesanan){
+    public PesananBarangRecyclerViewAdapter(Context context, ArrayList<BarangTransaksi> listPesanan){
         this.context = context;
         this.listPesanan = listPesanan;
     }
@@ -66,7 +66,8 @@ public class PesananBarangRecyclerViewAdapter extends RecyclerView.Adapter<Pesan
             hargaPesanan = view.findViewById(R.id.tv_harga_pesanan);
         }
 
-        public void bindItem(Barang barang){
+        public void bindItem(BarangTransaksi barangTransaksi){
+            Barang barang = barangTransaksi.getBarang();
             Picasso.get().load(BuildConfig.BASE_STORAGE + barang.getGambar()).into(imageView);
             namaPesanan.setText(barang.getNama());
             hargaPesanan.setText(barang.getHarga().toString());
